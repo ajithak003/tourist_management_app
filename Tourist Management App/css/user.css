@@ -25,13 +25,13 @@ ul{
     list-style: none;
     background-color: black;
     height: 50px;
-    padding-inline: 100px;
+    padding-inline: 10px;
 
 }
 li{
     display: inline-block;
     line-height: 2px;
-    width :200px; ;
+    width :220px; ;
     padding: 24px;
     word-spacing: 4px;
     position:sticky;
@@ -45,5 +45,18 @@ a{
 }
 a:hover{
     color:aqua
+}
+.search input{
+           
+    height: 25px;
+    position: absolute  ;
+    left: 80px;
+}
+.search button{
+
+    height: 25px;
+    position: absolute  ;
+    left: 200px;    
+}
 }
 
