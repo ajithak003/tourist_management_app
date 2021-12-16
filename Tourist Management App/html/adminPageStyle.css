@@ -1,0 +1,41 @@
+*{
+  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    
+}
+body{
+        
+    background-image: url("/images/home.png.jpg") ;
+      background-repeat: no-repeat;
+}
+h1{
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+ul{
+    list-style: none;
+    background-color: black;
+    height: 50px;
+   
+}
+li{
+    display: inline-block;
+    line-height: 2px;
+    padding: 25px;
+    position: relative;
+    left: 80px;
+    
+}
+a{
+    text-decoration: none;
+    color: blanchedalmond;
+ 
+}
+
