@@ -1,0 +1,163 @@
+package com.model;
+
+
+import java.time.LocalDateTime;
+
+import java.util.Objects;
+
+public class FlightClass {
+
+	
+	private int flightNo;
+	private String flightName;
+	private String depature;
+	private String destination;
+	private LocalDateTime depatureDateTime;
+	private LocalDateTime arrivalDateTime;
+	private double businessClassFare;
+	private double economicClassFare;
+	private String status;
+	
+	public FlightClass() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public FlightClass(int flightNo, String flightName, String depature, String destination, LocalDateTime depatureDateTime,
+			LocalDateTime arrivalDateTime, double businessClassFare, double economicClassFare, String status) {
+		super();
+		this.flightNo = flightNo;
+		this.flightName = flightName;
+		this.depature = depature;
+		this.destination = destination;
+		this.depatureDateTime = depatureDateTime;
+		this.arrivalDateTime = arrivalDateTime;
+		this.businessClassFare = businessClassFare;
+		this.economicClassFare = economicClassFare;
+		this.status = status;
+	}
+
+	public FlightClass(String flightName, String depature, String destination, LocalDateTime depatureDateTime,
+			LocalDateTime arrivalDateTime, double businessClassFare, double economicClassFare, String status) {
+		super();
+		this.flightName = flightName;
+		this.depature = depature;
+		this.destination = destination;
+		this.depatureDateTime = depatureDateTime;
+		this.arrivalDateTime = arrivalDateTime;
+		this.businessClassFare = businessClassFare;
+		this.economicClassFare = economicClassFare;
+		this.status = status;
+	}
+
+	public int getFlightNo() {
+		return flightNo;
+	}
+
+	public void setFlightNo(int flightNo) {
+		this.flightNo = flightNo;
+	}
+
+	public String getFlightName() {
+		return flightName;
+	}
+
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
+	}
+
+	public String getDepature() {
+		return depature;
+	}
+
+	public void setDepature(String depature) {
+		this.depature = depature;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public LocalDateTime getDepatureDateTime() {
+		return depatureDateTime;
+	}
+
+	public void setDepatureDateTime(LocalDateTime depatureDateTime) {
+		this.depatureDateTime = depatureDateTime;
+	}
+
+	public LocalDateTime getArrivalDateTime() {
+		return arrivalDateTime;
+	}
+
+	public void setArrivalDateTime(LocalDateTime arrivalDateTime) {
+		this.arrivalDateTime = arrivalDateTime;
+	}
+
+	public double getBusinessClassFare() {
+		return businessClassFare;
+	}
+
+	public void setBusinessClassFare(double businessClassFare) {
+		this.businessClassFare = businessClassFare;
+	}
+
+	public double getEconomicClassFare() {
+		return economicClassFare;
+	}
+
+	public void setEconomicClassFare(double economicClassFare) {
+		this.economicClassFare = economicClassFare;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "FlightClass \n flightName=" + flightName + ",\n depature=" + depature
+				+ ",\n destination=" + destination + ",\n depatureDateTime=" + depatureDateTime + ",\n arrivalDateTime="
+				+ arrivalDateTime + ",\n businessClassFare=" + businessClassFare + ",\n economicClassFare="
+				+ economicClassFare + ",\n status=" + status + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(arrivalDateTime, businessClassFare, depature, depatureDateTime, destination,
+				economicClassFare, flightName, flightNo, status);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FlightClass other = (FlightClass) obj;
+		return Objects.equals(arrivalDateTime, other.arrivalDateTime)
+				&& Double.doubleToLongBits(businessClassFare) == Double.doubleToLongBits(other.businessClassFare)
+				&& Objects.equals(depature, other.depature) && Objects.equals(depatureDateTime, other.depatureDateTime)
+				&& Objects.equals(destination, other.destination)
+				&& Double.doubleToLongBits(economicClassFare) == Double.doubleToLongBits(other.economicClassFare)
+				&& Objects.equals(flightName, other.flightName) && flightNo == other.flightNo
+				&& Objects.equals(status, other.status);
+	}
+
+	
+    
+	
+	
+	
+	
+}

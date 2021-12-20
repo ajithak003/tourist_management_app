@@ -3,15 +3,15 @@ package com.daoInterface;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.module.UserFeedbackClass;
+import com.model.UserFeedbackClass;
 
 public interface UserFeedbackDaoInterface {
 	
-	public boolean insertUser(UserFeedbackClass user) throws ClassNotFoundException, SQLException;
-    List<UserFeedbackClass> getAllUser() throws ClassNotFoundException, SQLException;
-	public void getUserById(UserFeedbackClass user) throws ClassNotFoundException, SQLException;
-	public void updateuser(UserFeedbackClass user) throws ClassNotFoundException, SQLException;
-	public void deleteuser(UserFeedbackClass user) throws ClassNotFoundException, SQLException;
-	public void validateUser(UserFeedbackClass user) throws ClassNotFoundException, SQLException;
-
+	public boolean insertFeedback(UserFeedbackClass Feedback) throws ClassNotFoundException, SQLException;
+    List<UserFeedbackClass> getAllFeedback() throws ClassNotFoundException, SQLException;
+	public UserFeedbackClass getFeedbackByNo(UserFeedbackClass Feedback) throws ClassNotFoundException, SQLException;
+	public boolean updateFeedback(String name, String email,long mobileNo, String password) throws ClassNotFoundException, SQLException;
+	public boolean deleteFeedback(UserFeedbackClass Feedback) throws ClassNotFoundException, SQLException;
+	public UserFeedbackClass validateFeedback(String emailId, String password) throws ClassNotFoundException, SQLException;
+	
 }

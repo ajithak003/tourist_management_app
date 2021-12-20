@@ -9,21 +9,17 @@ import java.util.List;
 
 import com.connection.ConnectionUtil;
 import com.daoInterface.AdminDaoInterface;
-import com.module.AdminClass;
+import com.model.AdminClass;
 
 public class AdminTableDaoImplement implements AdminDaoInterface {
 
 	@Override
-	public boolean insertUser(AdminClass user) throws ClassNotFoundException, SQLException {
+	public boolean insertAdmin(AdminClass user) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
-	public List<AdminClass> getAllUser() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public void getUserById(AdminClass user) throws ClassNotFoundException, SQLException {
@@ -44,9 +40,9 @@ public class AdminTableDaoImplement implements AdminDaoInterface {
 	}
 
 	@Override
-	public AdminClass validateUser(String emailId, String password)  {
+	public AdminClass validateAdmin(String emailId, String password)  {
 		// TODO Auto-generated method stub
-		String validateQuery = "select * from Admins_table where email_id='"+emailId+"' and password='"+password+"'";
+		String validateQuery = "select * from admin_details where email_id='"+emailId+"' and password='"+password+"'";
 		Connection con = ConnectionUtil.getDBConnect();
 		//System.out.println(validateQuery);
 		AdminClass AdminClass=null;
@@ -69,6 +65,12 @@ public class AdminTableDaoImplement implements AdminDaoInterface {
 		return AdminClass;
 		
 		
+	}
+
+	@Override
+	public List<AdminClass> getAllAdmin() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

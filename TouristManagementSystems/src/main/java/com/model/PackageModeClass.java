@@ -1,34 +1,51 @@
-package com.module;
+package com.model;
 
 import java.util.Objects;
 
 public class PackageModeClass {
 	
+	private int packageId;
 	private String name;
 	private double priceTwoDays;
 	private double priceThreeDays;
 	private double pricefourDays;
-	private int noOfDays;
 	private String season;
 	private String protocols;
-	private String forcast;
 	private String description;
 	public PackageModeClass() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PackageModeClass(String name, double priceTwoDays, double priceThreeDays, double pricefourDays, int noOfDays,
-			String season, String protocols, String forcast, String description) {
+	public PackageModeClass(int packageId, String name, double priceTwoDays, double priceThreeDays,
+			double pricefourDays, String season, String protocols, String description) {
+		super();
+		this.packageId = packageId;
+		this.name = name;
+		this.priceTwoDays = priceTwoDays;
+		this.priceThreeDays = priceThreeDays;
+		this.pricefourDays = pricefourDays;
+		this.season = season;
+		this.protocols = protocols;
+		this.description = description;
+	}
+	
+	
+	public PackageModeClass(String name, double priceTwoDays, double priceThreeDays, double pricefourDays,
+			String season, String protocols, String description) {
 		super();
 		this.name = name;
 		this.priceTwoDays = priceTwoDays;
 		this.priceThreeDays = priceThreeDays;
 		this.pricefourDays = pricefourDays;
-		this.noOfDays = noOfDays;
 		this.season = season;
 		this.protocols = protocols;
-		this.forcast = forcast;
 		this.description = description;
+	}
+	public int getPackageId() {
+		return packageId;
+	}
+	public void setPackageId(int packageId) {
+		this.packageId = packageId;
 	}
 	public String getName() {
 		return name;
@@ -51,15 +68,8 @@ public class PackageModeClass {
 	public double getPricefourDays() {
 		return pricefourDays;
 	}
-	
 	public void setPricefourDays(double pricefourDays) {
 		this.pricefourDays = pricefourDays;
-	}
-	public int getNoOfDays() {
-		return noOfDays;
-	}
-	public void setNoOfDays(int noOfDays) {
-		this.noOfDays = noOfDays;
 	}
 	public String getSeason() {
 		return season;
@@ -73,28 +83,22 @@ public class PackageModeClass {
 	public void setProtocols(String protocols) {
 		this.protocols = protocols;
 	}
-	public String getForcast() {
-		return forcast;
-	}
-	public void setForcast(String forcast) {
-		this.forcast = forcast;
-	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 	@Override
 	public String toString() {
-		return "PackageModeClass [name=" + name + ", priceTwoDays=" + priceTwoDays + ", priceThreeDays="
-				+ priceThreeDays + ", pricefourDays=" + pricefourDays + ", noOfDays=" + noOfDays + ", season=" + season
-				+ ", protocols=" + protocols + ", forcast=" + forcast + ", description=" + description + "]";
+		return "PackageMode  \n name=" + name + ", \n priceTwoDays=" + priceTwoDays
+				+ ",\n priceThreeDays=" + priceThreeDays + ",\n pricefourDays=" + pricefourDays + ",\n season=" + season
+				+ ",\n protocols=" + protocols + ",\n description=" + description ;
 	}
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, noOfDays, priceThreeDays, priceTwoDays, pricefourDays, season);
+		return Objects.hash(name, packageId, priceThreeDays, priceTwoDays, pricefourDays);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -105,12 +109,12 @@ public class PackageModeClass {
 		if (getClass() != obj.getClass())
 			return false;
 		PackageModeClass other = (PackageModeClass) obj;
-		return Objects.equals(name, other.name) && noOfDays == other.noOfDays
+		return Objects.equals(name, other.name) && packageId == other.packageId
 				&& Double.doubleToLongBits(priceThreeDays) == Double.doubleToLongBits(other.priceThreeDays)
 				&& Double.doubleToLongBits(priceTwoDays) == Double.doubleToLongBits(other.priceTwoDays)
-				&& Double.doubleToLongBits(pricefourDays) == Double.doubleToLongBits(other.pricefourDays)
-				&& Objects.equals(season, other.season);
+				&& Double.doubleToLongBits(pricefourDays) == Double.doubleToLongBits(other.pricefourDays);
 	}
+	
 	
 
 }

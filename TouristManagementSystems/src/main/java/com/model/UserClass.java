@@ -1,10 +1,14 @@
-package com.module;
+package com.model;
 
 import java.util.Objects;
 
 public class UserClass {
      
 	private int id;
+	private String name;
+	private String email;
+	private long mboNo;
+	private String password;
 	public int getId() {
 		return id;
 	}
@@ -23,10 +27,7 @@ public class UserClass {
 		this.password = password;
 	}
 
-	private String name;
-	private String email;
-	private long mboNo;
-	private String password;
+	
 	
 
 	public String getName() {

@@ -1,33 +1,41 @@
-package com.module;
+package com.model;
 
 import java.util.Objects;
 
-public class GaidClass {
-	
-	
+public class AdminClass {
+	private int id;
 	private String name;
 	private String email;
 	private long mobileNo;
 	private String password;
-	private String address;
-	public GaidClass() {
+	public AdminClass() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public GaidClass(String name, String email, long mobileNo, String password, String address) {
+	
+	public AdminClass(int id, String name, String email, long mobileNo, String password) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.mobileNo = mobileNo;
 		this.password = password;
-		this.address = address;
 	}
+
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -46,16 +54,10 @@ public class GaidClass {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	@Override
 	public String toString() {
-		return "GaidClass \n name=" + name + ",\n email=" + email + ",\n mobileNo=" + mobileNo + ",\n password=" + password
-				+ ",\n address=" + address + "]";
+		return "\n name=" + name + ", \n email=" + email + ", \n mobileNo=" + mobileNo + ", \n password=" + password
+				+ "]";
 	}
 	@Override
 	public int hashCode() {
@@ -69,9 +71,10 @@ public class GaidClass {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GaidClass other = (GaidClass) obj;
+		AdminClass other = (AdminClass) obj;
 		return Objects.equals(email, other.email);
 	}
+	
 	
 	
 

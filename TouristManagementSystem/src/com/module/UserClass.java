@@ -2,51 +2,40 @@ package com.module;
 
 import java.util.Objects;
 
-public class AdminClass {
-	private int id;
+public class UserClass {
+	
 	private String name;
 	private String email;
-	private long mobileNo;
+	private long mboNo;
 	private String password;
-	public AdminClass() {
+	public UserClass() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public AdminClass(int id, String name, String email, long mobileNo, String password) {
+	public UserClass(String name, String email, long mboNo, String password) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.mobileNo = mobileNo;
+		this.mboNo = mboNo;
 		this.password = password;
 	}
-
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public long getMobileNo() {
-		return mobileNo;
+	public long getMboNo() {
+		return mboNo;
 	}
-	public void setMobileNo(long mobileNo) {
-		this.mobileNo = mobileNo;
+	public void setMboNo(long mboNo) {
+		this.mboNo = mboNo;
 	}
 	public String getPassword() {
 		return password;
@@ -56,12 +45,11 @@ public class AdminClass {
 	}
 	@Override
 	public String toString() {
-		return "\n name=" + name + ", \n email=" + email + ", \n mobileNo=" + mobileNo + ", \n password=" + password
-				+ "]";
+		return "UserClass [name=" + name + ", email=" + email + ", mboNo=" + mboNo + ", password=" + password + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(email);
+		return Objects.hash(email, mboNo, name, password);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -71,10 +59,10 @@ public class AdminClass {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AdminClass other = (AdminClass) obj;
-		return Objects.equals(email, other.email);
+		UserClass other = (UserClass) obj;
+		return Objects.equals(email, other.email) && mboNo == other.mboNo && Objects.equals(name, other.name)
+				&& Objects.equals(password, other.password);
 	}
-	
 	
 	
 

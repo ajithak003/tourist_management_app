@@ -55,10 +55,5 @@ function resetpsw() {
           alert("please enter the user name and mobile no");
           return false;
      }
-     if(psw == )
-     else {
-
-          console.log("ture");
-          return true;
-     }
+     
 }

@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.daoImplement.*;
-import com.module.AdminClass;
-import com.module.UserClass;
+import com.model.AdminClass;
+import com.model.UserClass;
 
 public class TestMain {
 
@@ -15,6 +15,9 @@ public class TestMain {
 		// TODO Auto-generated method stub
 
 		Scanner sc = new Scanner(System.in);
+		
+
+		
 		boolean flag = false;
 		do {
 			System.out.println("enter your choice \n 1.user register \n 2.login \n Home page");
@@ -82,7 +85,7 @@ public class TestMain {
 							String temmbo = sc.nextLine();
 
 							if (temmbo.matches("[6-9][0-9]{9}")) {
-								mbo = Long.parseLong(temChoice);
+								mbo = Long.parseLong(temmbo);
 								flagmbo = true;
 							} else {
 								System.out.println(
@@ -158,8 +161,7 @@ public class TestMain {
 									}
 
 								} while (!flagpassword);
-
-								AdminClass admin = adminDao.validateUser(emailId, password);
+								AdminClass admin = adminDao.validateAdmin(emailId, password);
 								if (admin == null) {
 									System.out.println("user name and password mismatch");
 									login = true;
@@ -168,10 +170,11 @@ public class TestMain {
 
 									boolean flagadmin = true;
 									do {
-										System.out.println("choose your choice \n 1.show all user 2.logout");
+										System.out.println("choose your choice \n 1.show all user 2.add package 3.update package 4.delete package"
+												+ " 5.show all package \n 6. go to flight table ");
 
 										String temChoiceadmin = sc.nextLine();
-										if (String.valueOf(temChoiceadmin).matches("[1-2]")) {
+										if (String.valueOf(temChoiceadmin).matches("[1-6]")) {
 											int choiceadmin = Integer.parseInt(temChoiceadmin);
 											flagadmin = false;
 
@@ -187,10 +190,31 @@ public class TestMain {
 													System.out.println(user.get(i));
 
 												}
-
+                                                break;
 											case 2:
-
+												packageMain insert = new packageMain();
+												insert.packageInsert();
 												break;
+											case 3:
+												packageMain update = new packageMain();
+												update.packageUpdate();
+												break;
+											case 4:
+												packageMain delete = new packageMain();
+												delete.delete();
+												break;
+											case 5:
+												packageMain allPackage = new packageMain();
+												allPackage.showAllPackage();
+												break;
+											case 6:
+												FlightMain flighinsert = new FlightMain();
+												flighinsert.flights();
+												
+												default :
+												{
+													System.out.println("invalid input !");
+												}
 											}
 										} else {
 											System.out.println("must be a number");
@@ -228,6 +252,40 @@ public class TestMain {
 								} else if (user != null) {
 									System.out.println("Welcom " + user.getName());
 									login = false;
+									
+									System.out.println("enther your choice 1.update profile 2.delete accout");
+									int userChoice=Integer.parseInt(sc.nextLine());
+									
+									
+									switch(userChoice) {
+									
+									
+									case 1:
+//										update user details
+										UserClassMain userUpdate = new UserClassMain();
+										userUpdate.Update();
+										
+										break;	
+									
+									case 2:
+										//UserClassMain userDelete = new UserClassMain();
+								        //userDelete.delete(user);
+										boolean delete = userDao.deleteuser(user);
+										if(delete==true){
+											System.out.println("deleted successfully");
+										}
+										else {
+											System.out.println("cant't be deleted");
+										}
+										break;
+									case 3:
+										//System.out.println(userDao.getUserById(user));
+										
+										System.out.println(user);
+									break;	
+									}
+									
+									
 								}
 
 							}

@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 import com.connection.ConnectionUtil;
 import com.daoInterface.UserDaoInterface;
-import com.module.AdminClass;
-import com.module.UserClass;
+import com.model.AdminClass;
+import com.model.UserClass;
 
 public class UserTableDaoImplement implements UserDaoInterface {
 
@@ -22,13 +22,16 @@ public class UserTableDaoImplement implements UserDaoInterface {
 	public boolean insertUser(UserClass user) {
 		// TODO Auto-generated method stub
 //		DateFormat dateFormatMDY = new SimpleDateFormat("dd-MM-yyyy");
-		Connection con = ConnectionUtil.getDBConnect();
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		int pstmtvalue = 0;
 		String commit = "commit";
-		String query = "insert into users_table(name,email_id,mobile_no,password) values(?,?,?,?)";
+		String query = "insert into user_details(name,email_id,mobile_no,password) values(?,?,?,?)";
+		
 
 		try {
+			con = ConnectionUtil.getDBConnect();
+			
 			pstmt = con.prepareStatement(query);
 
 //		String date1=dateFormatMDY.format(employees.getHire());
@@ -36,15 +39,21 @@ public class UserTableDaoImplement implements UserDaoInterface {
 			pstmt.setString(2, user.getEmail());
 			pstmt.setLong(3, user.getMboNo());
 			pstmt.setString(4, user.getPassword());
-
+			
+			
+			//System.out.println(query);
 			pstmtvalue = pstmt.executeUpdate();
+			
 			//System.out.println(user.getEmail());
 			pstmt.executeQuery(commit);
 
 			// System.out.println( stmt.executeUpdate()+" Row Instered");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closePreparedStatement(pstmt, con);
 		}
 		return pstmtvalue > 0;
 
@@ -52,39 +61,103 @@ public class UserTableDaoImplement implements UserDaoInterface {
 
 	
 
-	@Override
-	public void getUserById(UserClass user) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 	@Override
-	public void updateuser(UserClass user) {
+	public boolean updateuser( String name, String email, long mobileNo, String password) {
 
-		Connection con = ConnectionUtil.getDBConnect();
-		String query = "update users_table set name=?,mobile_no=?,password=? where email_id='" + user.getEmail() + "'";
-		System.out.println(query);
+		Connection con = null;
+		int update=0;
+		String commit = "commit";
+		String query = "update user_details set name=?,mobile_no=?,password=? where email_id=?";
 		PreparedStatement pstmt = null;
 		try {
+			con = ConnectionUtil.getDBConnect();
 			pstmt = con.prepareStatement(query);
+			
 
 //		String date1=dateFormatMDY.format(employees.getHire());
+			UserClass user = new UserClass(name,email,mobileNo,password);
 			pstmt.setString(1, user.getName());
-			// stmt.setString(2,user.getEmail() );
+			
 			pstmt.setLong(2, user.getMboNo());
 			pstmt.setString(3, user.getPassword());
+			pstmt.setString(4,user.getEmail() );
 
-			System.out.println(pstmt.executeUpdate() + " updated");
+		    update = pstmt.executeUpdate();
+			 pstmt.executeQuery(commit);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closePreparedStatement(pstmt, con);
+			
 		}
-
+           return update>0;
 	}
 
 	@Override
-	public void deleteuser(UserClass user) {
+	public boolean deleteuser(UserClass user) {
 		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		int del=0;
+		String query = "delete user_details where email_id=?";
+		String commit = "commit";
+		
+		try {
+			
+			con = ConnectionUtil.getDBConnect();
+			pstmt = con.prepareStatement(query);
+           
+            
+            pstmt.setString(1, user.getEmail());
+			
+            del = pstmt.executeUpdate();
+            pstmt.executeUpdate(commit);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closePreparedStatement(pstmt, con);
+		}
+		return del>0;
+
+	}
+	
+	@Override
+	public UserClass getUserById(UserClass user) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		UserClass userById=null;
+		
+		
+		String query ="select * from user_details where email_id=?";
+		try {
+		 con = ConnectionUtil.getDBConnect();
+		 pstmt = con.prepareStatement(query);
+		 
+		 pstmt.setString(1, user.getEmail());
+		 
+		 ResultSet rs = pstmt.executeQuery(query);
+		
+		 
+		 if (rs.next()) {
+
+			 userById=new UserClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getString(5));
+				
+			}} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				System.out.println(e.getMessage());
+			} finally {
+				ConnectionUtil.closePreparedStatement(pstmt, con);
+			}
+		 return userById;
 
 	}
 	
@@ -93,12 +166,13 @@ public class UserTableDaoImplement implements UserDaoInterface {
 
 		// TODO Auto-generated method stub
 		List<UserClass> userList = new ArrayList<UserClass>();
-		Connection con = ConnectionUtil.getDBConnect();
+		Connection con = null;
 		//System.out.println("connection");
-		String query = "select * from users_table";
+		String query = "select * from user_details";
 
-		Statement stmt;
+		Statement stmt = null;
 		try {
+			con = ConnectionUtil.getDBConnect();
 			stmt = con.createStatement();
 		
 		ResultSet rs = stmt.executeQuery(query);
@@ -106,13 +180,18 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		while (rs.next()) {
 
 			UserClass user = new UserClass(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
-
+			 
 			userList.add(user);
 		}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
+		finally {
+			ConnectionUtil.closeStatement(stmt, con);
+		}
+
 		return userList;
 	}
 
@@ -121,13 +200,17 @@ public class UserTableDaoImplement implements UserDaoInterface {
 	public UserClass validateUser(String emailId, String password) {
 		// TODO Auto-generated method stub
 
-		String validateQuery = "select * from users_table where email_id='"+emailId+"' and password='"+password+"'";
-		Connection con = ConnectionUtil.getDBConnect();
+		String validateQuery = "select * from user_details where email_id='"+emailId+"' and password='"+password+"'";
+		Connection con = null;
+		Statement stmt = null;
 		//System.out.println(validateQuery);
 		UserClass UserClass=null;
 		
 		try {
-			Statement stmt = con.createStatement();
+			con = ConnectionUtil.getDBConnect();
+			 stmt = con.createStatement();
+			 
+			 
 			ResultSet rs = stmt.executeQuery(validateQuery);
 			if (rs.next()) {
 
@@ -138,8 +221,10 @@ public class UserTableDaoImplement implements UserDaoInterface {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Statement error");
+		} finally {
+			ConnectionUtil.closeStatement(stmt, con);
 		}
 
 		return UserClass;
@@ -147,15 +232,16 @@ public class UserTableDaoImplement implements UserDaoInterface {
 	}
 	
 	public boolean emailvalid(String emailverifi) {
-		Connection con = ConnectionUtil.getDBConnect();
+		Connection con = null;
 		UserClass UserClass=null;
-		String query = "select email_id from users_table where email_id='"+emailverifi+"'";
+		String query = "select email_id from user_details where email_id='"+emailverifi+"'";
 		
 		boolean flag = true;
 		
 		 
-		Statement stmt;
+		Statement stmt = null;
 		try {
+			con = ConnectionUtil.getDBConnect();
 			stmt = con.createStatement();
 		
 		ResultSet rs = stmt.executeQuery(query);
@@ -168,7 +254,10 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closeStatement(stmt, con);
 		}
 		
 		
