@@ -2,22 +2,24 @@ package com.daoImplement;
 
 import java.sql.Timestamp;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 import com.connection.ConnectionUtil;
 import com.daoInterface.FlightDaoInterface;
 import com.model.FlightClass;
-import com.model.PackageModeClass;
+
 
 public class FlightTableDaoImplement implements FlightDaoInterface {
 
@@ -160,15 +162,14 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 	@Override
 	public List<FlightClass> getAllFlight() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		DateTimeFormatter formatter =
-	            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		
 		List<FlightClass> flightDetails = new ArrayList<FlightClass>();
 		Connection con = null;
 		//System.out.println("connection");
-		String query = "select flight_no, flight_name,depature,destination,to_char(depature_date_time,'dd-mm-yyyy hh:mm') as depature_date_time,to_char(arrival_date_time,'dd-mm-yyyy hh:mm') as arrival_date_time,business_class_fare,economic_class_fare,status from flights_details";
+		String query = "select flight_no, flight_name,depature,destination, depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status from flights_details";
 		//select flight_no, flight_name,depature,destination,to_char(depature_date_time,'dd-mm-yyyy hh:mm') as depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status from flights_details ;
 		Statement stmt = null;
+		
 		try {
 			con = ConnectionUtil.getDBConnect();
 			stmt = con.createStatement();
@@ -176,12 +177,10 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		ResultSet rs = stmt.executeQuery(query);
 		
 		while (rs.next()) {
-			
-		                           LocalDateTime depature = LocalDateTime("yyyy-MM-dd HH:mm");
-			                        depature.format(formatter);
-			         
-			FlightClass flight = new  FlightClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),formatter.ofLocalizedDateTime(rs.getTimestamp(5), "yyyy-MM-dd HH:mm") , rs.getTimestamp(6)),rs.getDouble(7),rs.getDouble(8),rs.getString(9));
+			   
+			FlightClass flight = new  FlightClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5).toLocalDateTime(), rs.getTimestamp(6).toLocalDateTime(),rs.getDouble(7),rs.getDouble(8),rs.getString(9));
 			flightDetails.add(flight);
+			
 		}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -196,22 +195,57 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		
 	}
 
-	private LocalDateTime LocalDateTime(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 
 	@Override
-	public FlightClass getFlightByNo(FlightClass flight) throws ClassNotFoundException, SQLException {
+	public List<FlightClass> getFlightByNo(String location, LocalDate startDate)  {
 		// TODO Auto-generated method stub
-		return null;
+		Connection con = null;
+		Statement stmt = null;
+		//PreparedStatement pstmt =null;
+		
+		FlightClass flight= null;
+		
+		List<FlightClass> flights = new ArrayList<FlightClass>();
+
+		String query = "select * from flights_details where destination='"+location+"' and to_char(depature_date_time,'yyyy-mm-dd')='"+startDate+"'";
+				
+		String commit = "commit";
+		
+		try {
+			con = ConnectionUtil.getDBConnect();
+			// pstmt = con.prepareStatement(query);
+			
+			 stmt =con.createStatement();
+			
+			 ResultSet rs = stmt.executeQuery(query);
+			
+			while(rs.next()) {
+				flight = new FlightClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5).toLocalDateTime(), rs.getTimestamp(6).toLocalDateTime(),rs.getDouble(7),rs.getDouble(8),rs.getString(9));
+				flights.add(flight);
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closeStatement(stmt, con);
+		}
+		
+		return flights;
 	}
+
 	@Override
 	public FlightClass validateFlight(String emailId, String password) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+	
 
 }

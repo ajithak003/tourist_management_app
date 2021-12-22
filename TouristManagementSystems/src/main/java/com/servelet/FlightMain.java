@@ -140,10 +140,16 @@ case 3:
 	case 4:
 		
 		try {
+			
 			FlightClass showAllFlight = new FlightClass();
 			FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
 
 			List<FlightClass> flights = flightDao.getAllFlight();
+			
+			LocalDateTime datetime1 = LocalDateTime.now();  
+		    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");  
+		     
+		    
 			// System.out.println("second");
 			for (int i = 0; i < flights.size(); i++) {
 

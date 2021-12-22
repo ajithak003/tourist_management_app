@@ -26,7 +26,7 @@ drop table admin_details;
 
 select * from admin_details;
 
-insert into admins_table(name,email_id,mobile_no,password) values('gopi','gopi@admin.com',7834661290,'Gopi@123');
+insert into admin_details(name,email_id,mobile_no,password) values('ajith','ajith@admin.com',7834661290,'Ajith@123');
 insert into admins_table(name,email_id,mobile_no,password) values('saruk','saruk@admin.com',8144873768,'Saruk@123');
 
 
@@ -75,19 +75,21 @@ create table hotel_details(
 hotel_id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 600 ,
 location varchar (100) not null,
 hotel_name varchar(100) not null,
-room_type varchar(100) not null,
-price number(30) not null,
-check (price>0),
+room_type_mid_range_price varchar(100) not null,
+room_type_premium_price varchar(100) not null,
+check(room_type_premium_price>0),
+check (room_type_mid_range_price>0),
 CONSTRAINT pk_hotel_id primary key (hotel_id)
 );
 
 
 describe hotel_details;
 
-
+select * from hotel_details where location='kashmir';
+delete from hotel_details where hotel_id=600
 select * from hotel_details;
-drop table hotel_details;
-
+drop table hotel_details  CASCADE CONSTRAINTS;
+insert into hotel_details(location,hotel_name,room_type_mid_range_price,room_type_premium_price) values('kashmir','white snow',2500,3750);
 create table booking_details(
 booking_id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 300,
 user_id number not null,
@@ -99,6 +101,7 @@ start_date date not null,
 end_date date  not null,
 total_price number(30) not null,
 status varchar(30) default 'confirmed',
+booking_date TIMESTAMP default sysdate, 
 check(total_price>0),
 CONSTRAINT pk_booking_id primary key (booking_id),
 CONSTRAINT fk_user_id FOREIGN key (user_id) REFERENCES user_details (user_id),
@@ -106,15 +109,16 @@ CONSTRAINT fk_package_id FOREIGN key (package_id) REFERENCES package_modes (pack
 CONSTRAINT fk_flight_no FOREIGN key (flight_no) REFERENCES flights_details (flight_no),
 CONSTRAINT fk_hotel_id FOREIGN key (hotel_id) REFERENCES hotel_details (hotel_id)
 );
+
 describe booking_details;
 drop table booking_details CASCADE CONSTRAINTS;
-
+select * from booking_details;
 
 create table users_feedback(
 feedback_id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 800,
 booking_id number not null,
 package_id number not null,
-rating varchar (30),
+rating varchar (30),    
 describtion varchar(200),
 CONSTRAINT pk_feedback_id primary key (feedback_id),
 CONSTRAINT fk_feedback_booking_id FOREIGN key (booking_id) REFERENCES booking_details (booking_id),
@@ -129,6 +133,10 @@ update users_table set name='manoj',mobile_no='', password=? where email_id='"+u
 select email_id from users_table where email_id='ajith@gmail.com';
 delete user_details  where email_id='hari@gmail.com';
 
-select flight_no, flight_name,depature,destination,to_char(depature_date_time,'dd-mm-yyyy hh:mm') as depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status from flights_details 
+select flight_no, flight_name,depature,destination, depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status from flights_details ;
 where to_char(depature_date_time,'dd')=21;
+select * from flights_details;
 
+select * from flights_details where destination='kashmir' and to_char(depature_date_time,'dd-mm-yyyy')='21-12-2021';
+
+select * from booking_details inner join 

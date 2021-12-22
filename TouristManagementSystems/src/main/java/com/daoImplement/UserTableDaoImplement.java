@@ -136,12 +136,13 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		UserClass userById=null;
 		
 		
-		String query ="select * from user_details where email_id=?";
+		String query ="select * from user_details where email_id='"+user.getEmail()+"'";
+		
 		try {
 		 con = ConnectionUtil.getDBConnect();
 		 pstmt = con.prepareStatement(query);
 		 
-		 pstmt.setString(1, user.getEmail());
+		
 		 
 		 ResultSet rs = pstmt.executeQuery(query);
 		

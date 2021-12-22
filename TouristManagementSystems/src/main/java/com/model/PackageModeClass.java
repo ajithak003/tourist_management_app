@@ -91,30 +91,10 @@ public class PackageModeClass {
 	}
 	@Override
 	public String toString() {
-		return "PackageMode  \n name=" + name + ", \n priceTwoDays=" + priceTwoDays
+		return "PackageMode  \n location=" + name + ", \n priceTwoDays=" + priceTwoDays
 				+ ",\n priceThreeDays=" + priceThreeDays + ",\n pricefourDays=" + pricefourDays + ",\n season=" + season
 				+ ",\n protocols=" + protocols + ",\n description=" + description ;
 	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(name, packageId, priceThreeDays, priceTwoDays, pricefourDays);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PackageModeClass other = (PackageModeClass) obj;
-		return Objects.equals(name, other.name) && packageId == other.packageId
-				&& Double.doubleToLongBits(priceThreeDays) == Double.doubleToLongBits(other.priceThreeDays)
-				&& Double.doubleToLongBits(priceTwoDays) == Double.doubleToLongBits(other.priceTwoDays)
-				&& Double.doubleToLongBits(pricefourDays) == Double.doubleToLongBits(other.pricefourDays);
-	}
-	
 	
 
 }

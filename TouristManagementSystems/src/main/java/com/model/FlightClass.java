@@ -2,7 +2,7 @@ package com.model;
 
 
 import java.time.LocalDateTime;
-
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class FlightClass {
@@ -124,14 +124,20 @@ public class FlightClass {
 
 	@Override
 	public String toString() {
+		
+		
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");  
+	        
+		
 		return "FlightClass \n flightName=" + flightName + ",\n depature=" + depature
-				+ ",\n destination=" + destination + ",\n depatureDateTime=" + depatureDateTime + ",\n arrivalDateTime="
-				+ arrivalDateTime + ",\n businessClassFare=" + businessClassFare + ",\n economicClassFare="
+				+ ",\n destination=" + destination + ",\n depatureDateTime=" + depatureDateTime.format(format) + ",\n arrivalDateTime="
+				+ arrivalDateTime.format(format) + ",\n businessClassFare=" + businessClassFare + ",\n economicClassFare="
 				+ economicClassFare + ",\n status=" + status + "]";
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode() { 
+		
 		return Objects.hash(arrivalDateTime, businessClassFare, depature, depatureDateTime, destination,
 				economicClassFare, flightName, flightNo, status);
 	}

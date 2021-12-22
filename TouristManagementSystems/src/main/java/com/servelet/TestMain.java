@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import com.daoImplement.*;
 import com.model.AdminClass;
+import com.model.HotelClass;
 import com.model.UserClass;
 
 public class TestMain {
@@ -171,10 +172,10 @@ public class TestMain {
 									boolean flagadmin = true;
 									do {
 										System.out.println("choose your choice \n 1.show all user 2.add package 3.update package 4.delete package"
-												+ " 5.show all package \n 6. go to flight table ");
+												+ " 5.show all package \n 6. go to flight table \n 7.hotel table");
 
 										String temChoiceadmin = sc.nextLine();
-										if (String.valueOf(temChoiceadmin).matches("[1-6]")) {
+										if (String.valueOf(temChoiceadmin).matches("[1-7]")) {
 											int choiceadmin = Integer.parseInt(temChoiceadmin);
 											flagadmin = false;
 
@@ -210,6 +211,11 @@ public class TestMain {
 											case 6:
 												FlightMain flighinsert = new FlightMain();
 												flighinsert.flights();
+												
+											case 7:
+												HotelMain hotel=new HotelMain();
+												
+												hotel.hotels();
 												
 												default :
 												{
@@ -253,8 +259,11 @@ public class TestMain {
 									System.out.println("Welcom " + user.getName());
 									login = false;
 									
-									System.out.println("enther your choice 1.update profile 2.delete accout");
-									int userChoice=Integer.parseInt(sc.nextLine());
+									int userChoice = 0;
+									do {
+									
+									System.out.println("enther your choice 1.update profile 2.delete accout 3.see your profile 4. booking");
+									 userChoice=Integer.parseInt(sc.nextLine());
 									
 									
 									switch(userChoice) {
@@ -264,6 +273,8 @@ public class TestMain {
 //										update user details
 										UserClassMain userUpdate = new UserClassMain();
 										userUpdate.Update();
+										System.out.println("do u want continue please enter 5");
+										userChoice=Integer.parseInt(sc.nextLine());
 										
 										break;	
 									
@@ -273,6 +284,8 @@ public class TestMain {
 										boolean delete = userDao.deleteuser(user);
 										if(delete==true){
 											System.out.println("deleted successfully");
+											System.out.println("do u want continue please enter 4");
+											userChoice=Integer.parseInt(sc.nextLine());
 										}
 										else {
 											System.out.println("cant't be deleted");
@@ -282,8 +295,16 @@ public class TestMain {
 										//System.out.println(userDao.getUserById(user));
 										
 										System.out.println(user);
+										System.out.println("do u want continue please enter 4");
+										userChoice=Integer.parseInt(sc.nextLine());
 									break;	
+									
+									case 4:
+										
+										BookingMain book = new BookingMain();
+										book.bookingInsert(user);
 									}
+									}while(userChoice==4);
 									
 									
 								}

@@ -135,19 +135,19 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 	}
 
 	@Override
-	public PackageModeClass getPackageByNo(PackageModeClass Package) {
+	public PackageModeClass getPackageByNo(String PackageName) {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PackageModeClass packageById=null;
 		
 		
-		String query ="select * from package_modes where package_id=?";
+		String query ="select * from package_modes where package_name=?";
 		try {
 		 con = ConnectionUtil.getDBConnect();
 		 pstmt = con.prepareStatement(query);
 		 
-		 pstmt.setInt(1, Package.getPackageId());
+		 pstmt.setString(1,PackageName);
 		 
 		 ResultSet rs = pstmt.executeQuery(query);
 		

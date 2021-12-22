@@ -130,6 +130,29 @@ public void showAllPackage() {
 		System.out.println(e.getMessage());
 	}
 }
+
+public List<PackageModeClass> showAllUserPackage() {
+	
+	List<PackageModeClass> packages =null;
+	try {
+	PackageModeClass showAllPackage = new PackageModeClass();
+	PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
+
+	packages = packageDao.getAllPackage();
+	// System.out.println("second");
+//	for (int i = 0; i < packages.size(); i++) {
+//
+//		System.out.println(packages.get(i));
+
+//	}
+	
+	
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		System.out.println(e.getMessage());
+	}
+	return packages;
+}
 	
 
 }
