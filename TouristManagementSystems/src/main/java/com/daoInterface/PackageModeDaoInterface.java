@@ -15,5 +15,6 @@ public interface PackageModeDaoInterface {
 	public boolean updatePackage(PackageModeClass packages) throws ClassNotFoundException, SQLException;
 	public boolean deletePackage(int packageId) throws ClassNotFoundException, SQLException;
 	public PackageModeClass validatePackage(String emailId, String password) throws ClassNotFoundException, SQLException;
+	PackageModeClass getSinglePackage(int packageId);
 	
 }

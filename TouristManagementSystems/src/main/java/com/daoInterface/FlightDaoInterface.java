@@ -18,6 +18,7 @@ public interface FlightDaoInterface {
 	public boolean deleteFlight(int flightNo) throws ClassNotFoundException, SQLException;
 	public FlightClass validateFlight(String emailId, String password) throws ClassNotFoundException, SQLException;
 	List<FlightClass> getFlightByNo(String location, LocalDate startDate);
+	FlightClass getSingleFlight(int flightNo);
 
 
 }

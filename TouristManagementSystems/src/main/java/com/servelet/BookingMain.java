@@ -43,10 +43,10 @@ public class BookingMain {
 				System.out.println(showALLPackage.get(i));
 				}
 					
-		System.out.println("enter the location");
+		System.out.println("\n enter the location");
 		String location = sc.nextLine();
 
-		System.out.println("enter the planning date enter ");
+		System.out.println("\n enter the planning date enter ");
 		String planningDate = sc.nextLine(); //"2021-12-21 05:30";
 		LocalDate startDate = LocalDate.parse(planningDate, formatter);
 		
@@ -64,35 +64,36 @@ public class BookingMain {
 		double totalPrice = 0.0;
 		boolean plan = true;
 		int end =0;
+		String days = null;
 		do {	
 		
-		System.out.println("enter the choice 1. 2 days night plan \n 2. 3 days night plan 3. 4 days night plan");
+		System.out.println("\n enter the choice 1. 2 days night plan \n 2. 3 days night plan 3. 4 days night plan");
 	       int daysPlan = Integer.parseInt(sc.nextLine());
 	      
 	       if(daysPlan==1) {
-	    	   daysPlan=3;
+	    	   days=" Two days night plan";
 	    	   plan=false;
 	    	   end=2;
 	    	   totalPrice = totalPrice+ singlePackage.getPriceTwoDays();
 	       }
 	       else if(daysPlan==2) {
-	    	   daysPlan=4;
+	    	   days=" Three days night plan";
 	    	   plan=false;
 	    	   end=3;
 	    	   totalPrice = totalPrice + singlePackage.getPriceThreeDays();
 	       }
 	       else if(daysPlan==3) {
-	    	   daysPlan=5;
+	    	   days=" four days night plan";
 	    	   plan=false;
 	    	   end=4;
 	    	   totalPrice = totalPrice + singlePackage.getPricefourDays();
 	       }
 	       else {
-	    	   System.out.println("enter the correct value");
+	    	   System.out.println("\n enter the correct value");
 	       }
 		}while (plan);
 	      
-		 System.out.println(totalPrice);
+		// System.out.println(totalPrice);
 		
 	
 		FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
@@ -104,7 +105,7 @@ public class BookingMain {
 		}
 		
 			
-		System.out.println("choose your depature location given below available flights");
+		System.out.println("\n choose your depature location given below available flights");
 		String depatureLocation = sc.nextLine();
 		
 		FlightClass singleFlight=null;
@@ -116,16 +117,17 @@ public class BookingMain {
 		
 		System.out.println(singleFlight);
 		
-		System.out.println("enter the 1. business class 2.economic class");
+		String flightClass = null;
+		System.out.println("\n enter the 1. business class 2.economic class");
 		int flightClassRate = Integer.parseInt(sc.nextLine());
 		
 		if(flightClassRate==1) {
-			flightClassRate=4;
+			flightClass="business class";
 			totalPrice = totalPrice + singleFlight.getBusinessClassFare();
 			
 		}
 		else if(flightClassRate==2) {
-			flightClassRate=5;
+			flightClass="economic class";
 			totalPrice = totalPrice + singleFlight.getEconomicClassFare();
 			
 		}
@@ -134,7 +136,7 @@ public class BookingMain {
 		}
 		
 		
-		 System.out.println(totalPrice);
+		// System.out.println(totalPrice);
 
 			HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
 			List<HotelClass> hotels = hotelDao.getHotelByNo(location);
@@ -155,18 +157,20 @@ public class BookingMain {
 		
 		System.out.println(singleHotel);
 		
+		String hotelRoom=null;
 		boolean roomType = true;
 		do {
-		System.out.println("enter the room type 1.mid range\n 2. premium");
+		System.out.println("\n enter the room type 1.mid range\n 2. premium");
 		int hotelRoomType = Integer.parseInt(sc.nextLine());
 		 
 		if(hotelRoomType==1) {
-			hotelRoomType =4;
+			hotelRoom = "mid range room";
 			totalPrice= totalPrice + singleHotel.getMidRangePrice();
 			roomType=false;
+			
 		}
 		else if(hotelRoomType==2) {
-			hotelRoomType=5;
+			hotelRoom = " premimum room";
 			totalPrice= totalPrice + singleHotel.getPremiumPrice();
 			roomType=false;
 		}
@@ -184,10 +188,10 @@ public class BookingMain {
 		 LocalDate endDates = LocalDate.parse(endDate);
 		 
 
-	        System.out.println("end date"+endDate+"\n\n");
+	       // System.out.println("end date"+endDate+"\n\n");
 	        System.out.println("total amount of 2 adult:   "+totalPrice);
 		 
-		 System.out.println("enter the number of person (above 2 person the total amount is increse)!");
+		 System.out.println("\n enter the number of person (above 2 person the total amount is increse)!");
 		 int noOfPerson = Integer.parseInt(sc.nextLine());
           
 		 if(noOfPerson>2) {
@@ -200,18 +204,16 @@ public class BookingMain {
 		 
 			 
 			 BookingTableDaoImplement bookDao = new BookingTableDaoImplement();
-			 BookingClass booking = new BookingClass(userDetails.getId(),singlePackage.getPackageId(), singleFlight.getFlightNo(), singleHotel.getHotelId(),noOfPerson,startDate ,endDates,totalPrice);
+			 BookingClass booking = new BookingClass(userDetails.getId(),singlePackage.getPackageId(), singleFlight.getFlightNo(), singleHotel.getHotelId(),noOfPerson,startDate ,endDates,totalPrice,flightClass,hotelRoom,days);
 			 System.out.println(booking);
 			boolean book= bookDao.insertbooking(booking);
 			if(book==true) {
-				System.out.println("successfully booked");
+				System.out.println("\n \n successfully booked \n\n\n"
+						+ "get a amazing trip");
 			}
 			else {
-				System.out.println("unable to booking \n please try again");
+				System.out.println("\n unable to booking \n please try again");
 			}
-			
-		
-		
 		
 		}catch(Exception e) {
 			System.out.println(e.getMessage());

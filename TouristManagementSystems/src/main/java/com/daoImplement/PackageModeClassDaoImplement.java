@@ -206,4 +206,36 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public PackageModeClass getSinglePackage(int packageId) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		PackageModeClass packages=null;
+		
+		
+		String query ="select * from package_modes where package_id="+packageId;
+		try {
+		 con = ConnectionUtil.getDBConnect();
+		 pstmt = con.prepareStatement(query);
+		 
+		 ResultSet rs = pstmt.executeQuery(query);
+		
+		 
+		 if (rs.next()) {
+
+			 packages=new  PackageModeClass(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getString(8));
+				
+			}} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				System.out.println(e.getMessage());
+			} finally {
+				ConnectionUtil.closePreparedStatement(pstmt, con);
+			}
+		 return packages;
+	}
+	
+	
 }

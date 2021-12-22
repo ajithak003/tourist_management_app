@@ -2,12 +2,19 @@ package com.daoImplement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.connection.ConnectionUtil;
 import com.daoInterface.BookingDaoInterface;
 import com.model.BookingClass;
+import com.model.FlightClass;
+import com.model.HotelClass;
+import com.model.UserClass;
 
 public class BookingTableDaoImplement implements BookingDaoInterface {
 
@@ -19,7 +26,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		int pstmtvalue = 0;
 
 		String commit = "commit";
-		String insert = "insert into booking_details (user_id, package_id, flight_no, hotel_id,number_of_person,start_date,end_date,total_price) values(?,?,?,?,?,?,?,?)";
+		String insert = "insert into booking_details (user_id, package_id, flight_no, hotel_id,number_of_person,start_date,end_date,total_price,flight_class,hotel_room_type,days_in_night) values(?,?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
 			con = ConnectionUtil.getDBConnect();
@@ -34,7 +41,9 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 			pstmt.setDate(6, java.sql.Date.valueOf(booking.getStartDate()));
 			pstmt.setDate(7, java.sql.Date.valueOf(booking.getEndDate()));
 			pstmt.setDouble(8, booking.getTotalPrice());
-			
+			pstmt.setString(9, booking.getFlightClass());
+			pstmt.setString(10, booking.getHotelRoomType());
+			pstmt.setString(11, booking.getDaysPlan());
 			
 //			System.out.println(insert);
 			pstmtvalue = pstmt.executeUpdate();
@@ -56,28 +65,124 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 	}
 
 	@Override
-	public List<BookingClass> getAllbooking() throws ClassNotFoundException, SQLException {
+	public List<BookingClass> getAllbooking(UserClass user) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		List<BookingClass> bookingDetails = new ArrayList<BookingClass>();
+		Connection con = null;
+		
+		String query = "select * from booking_details where user_id="+user.getId();
+	
+		Statement stmt = null;
+		BookingClass booking = null;
+		
+		try {
+			con = ConnectionUtil.getDBConnect();
+			stmt = con.createStatement();
+		
+		ResultSet rs = stmt.executeQuery(query);
+		
+		while (rs.next()) {
+			   
+			 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14));
+			 bookingDetails.add(booking);
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		finally {
+			ConnectionUtil.closeStatement(stmt, con);
+		}
+
+		return bookingDetails;
 	}
 
 	@Override
-	public BookingClass getbookingById(BookingClass booking) throws ClassNotFoundException, SQLException {
+	public BookingClass getbookingById(int user_id, LocalDate startDate) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		Connection con = null;
+		Statement stmt = null;
+		BookingClass booking=null;
+		String query = "select * from booking_details where to_char(start_date,'yyyy-mm-dd')='"+startDate+"' and user_id="+user_id;
+		
+		try {
+			con = ConnectionUtil.getDBConnect();
+			
+			 stmt =con.createStatement();
+			
+			 ResultSet rs = stmt.executeQuery(query);
+			
+			if(rs.next()) {
+				 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14));		
+		
+				
+		}
+		}	catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closeStatement(stmt, con);
+		}
+		return booking;
 	}
 
 	@Override
-	public boolean updatebooking(String name, String email, long mobileNo, String password)
-			throws ClassNotFoundException, SQLException {
+	public boolean updatebooking(int user_id, LocalDate startDate)
+			 {
 		// TODO Auto-generated method stub
-		return false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int pstmtvalue = 0;
+		String update = "cancel";
+		String query = "update booking_details set status='"+update+"' where user_id="+user_id+"and to_char(start_date,'yyyy-mm-dd')='"+startDate+"'";
+		String commit = "commit";
+		try {
+		
+		con = ConnectionUtil.getDBConnect();
+		pstmt = con.prepareStatement(query);
+		
+		pstmtvalue = pstmt.executeUpdate();
+        pstmt.executeUpdate(commit);
+		
+		}	catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closePreparedStatement(pstmt, con);
+		}
+		return pstmtvalue>0;
 	}
 
 	@Override
-	public boolean deletebooking(BookingClass booking) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deletebooking(int userId, LocalDate startDate) {
+		
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		int del=0;
+		String query = "delete booking_details where user_id="+userId+" and to_char(start_date,'yyyy-mm-dd')='"+startDate+"'";
+		String commit = "commit";
+		
+		try {
+			
+			con = ConnectionUtil.getDBConnect();
+			pstmt = con.prepareStatement(query);
+			
+            del = pstmt.executeUpdate();
+            pstmt.executeUpdate(commit);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closePreparedStatement(pstmt, con);
+		}
+		return del>0;
+
+		
 	}
 
 	@Override

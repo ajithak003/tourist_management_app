@@ -245,7 +245,41 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 	}
 
 
-
+	@Override
+	public FlightClass getSingleFlight(int flightNo)  {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		Statement stmt = null;
+		//PreparedStatement pstmt =null;
+		
+		FlightClass flight= null;
+		
+		String query = "select * from flights_details where flight_no="+flightNo;
+		
+		try {
+			con = ConnectionUtil.getDBConnect();
+			// pstmt = con.prepareStatement(query);
+			
+			 stmt =con.createStatement();
+			
+			 ResultSet rs = stmt.executeQuery(query);
+			
+			if(rs.next()) {
+				flight = new FlightClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5).toLocalDateTime(), rs.getTimestamp(6).toLocalDateTime(),rs.getDouble(7),rs.getDouble(8),rs.getString(9));
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closeStatement(stmt, con);
+		}
+		
+		return flight;
 	
-
+	}
 }

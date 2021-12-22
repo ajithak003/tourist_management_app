@@ -86,10 +86,11 @@ CONSTRAINT pk_hotel_id primary key (hotel_id)
 describe hotel_details;
 
 select * from hotel_details where location='kashmir';
-delete from hotel_details where hotel_id=600
+delete from hotel_details where hotel_id=600;
 select * from hotel_details;
 drop table hotel_details  CASCADE CONSTRAINTS;
-insert into hotel_details(location,hotel_name,room_type_mid_range_price,room_type_premium_price) values('kashmir','white snow',2500,3750);
+insert into hotel_details(location,hotel_name,room_type_mid_range_price,room_type_premium_price) values('kashmir','white snow',3000,4000);
+insert into hotel_details(location,hotel_name,room_type_mid_range_price,room_type_premium_price) values('kashmir','hotel cafe',2500,3750);
 create table booking_details(
 booking_id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 300,
 user_id number not null,
@@ -102,6 +103,9 @@ end_date date  not null,
 total_price number(30) not null,
 status varchar(30) default 'confirmed',
 booking_date TIMESTAMP default sysdate, 
+flight_class varchar (30) not null,
+hotel_room_type varchar(30) not null,
+days_in_night varchar(30) not null,
 check(total_price>0),
 CONSTRAINT pk_booking_id primary key (booking_id),
 CONSTRAINT fk_user_id FOREIGN key (user_id) REFERENCES user_details (user_id),
@@ -137,6 +141,6 @@ select flight_no, flight_name,depature,destination, depature_date_time,arrival_d
 where to_char(depature_date_time,'dd')=21;
 select * from flights_details;
 
-select * from flights_details where destination='kashmir' and to_char(depature_date_time,'dd-mm-yyyy')='21-12-2021';
-
-select * from booking_details inner join 
+--select * from flights_details where destination='kashmir' and to_char(depature_date_time,'dd-mm-yyyy')='21-12-2021';
+--select u.name,u.email_id,p.package_name,f.flight_name,f. from booking_details b inner join user_details u on b.user_id=u.user_id inner join package_modes p on b.package_id = p.package_id
+--inner join flights_details f on b.flight_no = f.flight_no inner join hotel_details h on b.hotel_id = h.hotel_id)as view_booking v

@@ -204,5 +204,37 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public HotelClass getSingleHotel(int hotelId)  {
+		// TODO Auto-generated method stub
+		String query = "select * from hotel_details where hotel_id="+hotelId;
+		Connection con = null;
+		Statement stmt = null; 
+		HotelClass hotel = null;
+		
+		try {
+			con = ConnectionUtil.getDBConnect();
+			stmt = con.createStatement();
+		
+		ResultSet rs = stmt.executeQuery(query);
+		
+		while (rs.next()) {
+			   
+			 hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5));
+			
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		finally {
+			ConnectionUtil.closeStatement(stmt, con);
+		}
+
+		return hotel;
+	}
+	
 
 }

@@ -262,7 +262,8 @@ public class TestMain {
 									int userChoice = 0;
 									do {
 									
-									System.out.println("enther your choice 1.update profile 2.delete accout 3.see your profile 4. booking");
+									System.out.println("enther your choice 1.update profile 2.delete accout 3.see your profile 4. booking \n 5.show ones booking"
+											+ "  6.cancel booking 7.show all booking");
 									 userChoice=Integer.parseInt(sc.nextLine());
 									
 									
@@ -273,7 +274,7 @@ public class TestMain {
 //										update user details
 										UserClassMain userUpdate = new UserClassMain();
 										userUpdate.Update();
-										System.out.println("do u want continue please enter 5");
+										System.out.println("do u want continue please enter 8");
 										userChoice=Integer.parseInt(sc.nextLine());
 										
 										break;	
@@ -284,7 +285,7 @@ public class TestMain {
 										boolean delete = userDao.deleteuser(user);
 										if(delete==true){
 											System.out.println("deleted successfully");
-											System.out.println("do u want continue please enter 4");
+											System.out.println("do u want continue please enter 8");
 											userChoice=Integer.parseInt(sc.nextLine());
 										}
 										else {
@@ -295,7 +296,7 @@ public class TestMain {
 										//System.out.println(userDao.getUserById(user));
 										
 										System.out.println(user);
-										System.out.println("do u want continue please enter 4");
+										System.out.println("do u want continue please enter 8");
 										userChoice=Integer.parseInt(sc.nextLine());
 									break;	
 									
@@ -303,8 +304,23 @@ public class TestMain {
 										
 										BookingMain book = new BookingMain();
 										book.bookingInsert(user);
+									break;
+									case 5:
+										BookingShowMain showBooking = new BookingShowMain();
+										showBooking.show(user);
+										System.out.println("do u want continue please enter8");
+										userChoice=Integer.parseInt(sc.nextLine());
+									case 6:
+										BookingShowMain cancel = new BookingShowMain();
+										cancel.cancelBooking(user);
+										System.out.println("do u want continue please enter 8");
+										userChoice=Integer.parseInt(sc.nextLine());
+									
+									case 7:
+										BookingShowMain show = new BookingShowMain();
+										show.showAllBooking(user);
 									}
-									}while(userChoice==4);
+									}while(userChoice==8);
 									
 									
 								}

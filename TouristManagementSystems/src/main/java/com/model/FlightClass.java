@@ -132,7 +132,7 @@ public class FlightClass {
 		return "FlightClass \n flightName=" + flightName + ",\n depature=" + depature
 				+ ",\n destination=" + destination + ",\n depatureDateTime=" + depatureDateTime.format(format) + ",\n arrivalDateTime="
 				+ arrivalDateTime.format(format) + ",\n businessClassFare=" + businessClassFare + ",\n economicClassFare="
-				+ economicClassFare + ",\n status=" + status + "]";
+				+ economicClassFare + ",\n status=" + status ;
 	}
 
 	@Override
