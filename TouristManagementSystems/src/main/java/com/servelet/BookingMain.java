@@ -49,10 +49,8 @@ public class BookingMain {
 		System.out.println("\n enter the planning date enter ");
 		String planningDate = sc.nextLine(); //"2021-12-21 05:30";
 		LocalDate startDate = LocalDate.parse(planningDate, formatter);
-		
-		String endDate = planningDate.substring(0, 10);
-		
-		
+		String enddates = sc.nextLine(); //"2021-12-21 05:30";
+		LocalDate endDate = LocalDate.parse(enddates, formatter);		
 		
 		PackageModeClass singlePackage=null;
 		for(PackageModeClass p:showALLPackage) {
@@ -63,7 +61,7 @@ public class BookingMain {
 		System.out.println(singlePackage);
 		double totalPrice = 0.0;
 		boolean plan = true;
-		int end =0;
+		
 		String days = null;
 		do {	
 		
@@ -73,19 +71,19 @@ public class BookingMain {
 	       if(daysPlan==1) {
 	    	   days=" Two days night plan";
 	    	   plan=false;
-	    	   end=2;
+	    	 
 	    	   totalPrice = totalPrice+ singlePackage.getPriceTwoDays();
 	       }
 	       else if(daysPlan==2) {
 	    	   days=" Three days night plan";
 	    	   plan=false;
-	    	   end=3;
+	    	 
 	    	   totalPrice = totalPrice + singlePackage.getPriceThreeDays();
 	       }
 	       else if(daysPlan==3) {
 	    	   days=" four days night plan";
 	    	   plan=false;
-	    	   end=4;
+	    	
 	    	   totalPrice = totalPrice + singlePackage.getPricefourDays();
 	       }
 	       else {
@@ -180,15 +178,6 @@ public class BookingMain {
 		
 		}while(roomType);
 		
-		long ONE_DAY_MILLI_SECONDS = (24 * 60 * 60 * 1000)*end;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		Date date = sdf.parse(endDate);
-		
-		 endDate = sdf.format(date.getTime() + ONE_DAY_MILLI_SECONDS);
-		 LocalDate endDates = LocalDate.parse(endDate);
-		 
-
-	       // System.out.println("end date"+endDate+"\n\n");
 	        System.out.println("total amount of 2 adult:   "+totalPrice);
 		 
 		 System.out.println("\n enter the number of person (above 2 person the total amount is increse)!");
@@ -207,7 +196,7 @@ public class BookingMain {
 			 
 			 BookingTableDaoImplement bookDao = new BookingTableDaoImplement();
 			 BookingClass booking=null;
-			 booking = new BookingClass(userDetails.getId(),singlePackage.getPackageId(), singleFlight.getFlightNo(), singleHotel.getHotelId(),noOfPerson,startDate ,endDates,totalPrice,flightClass,hotelRoom,days,location);
+			 booking = new BookingClass(userDetails.getId(),singlePackage.getPackageId(), singleFlight.getFlightNo(), singleHotel.getHotelId(),noOfPerson,startDate ,endDate,totalPrice,flightClass,hotelRoom,days,location);
 			 System.out.println(booking.toString1(booking));
 			boolean book= bookDao.insertbooking(booking);
 			
@@ -226,7 +215,7 @@ public class BookingMain {
 		 else {
 			 
 				long wallet = userDao.showWalletAmount(user);
-				System.out.println(" Sorry! insufficient balance please add amount in your wallent \n Your Wallet Amount :  "+wallet);
+				System.out.println(" Sorry! insufficient balance please add amount on your wallent \n Your Wallet Amount :  "+wallet);
 				System.out.println("do you want to add wallet amount 1.yes or 2.no");
 				int choice = Integer.parseInt(sc.nextLine());
 

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -228,6 +229,45 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		}
 
 		return bookingDetails;
+	}
+	
+	public boolean dateChange(BookingClass booking ,long wallet) {
+		
+		DateTimeFormatter formatter =
+	            DateTimeFormatter.ofPattern("dd-mm-yyyy");
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmtUser = null;
+		int pstmtvalue = 0;
+		String query = "update booking_details set flight_no=?,start_date=?,end_date=? where booking_id= ?";
+		String updateWallet = "update user_details set wallet="+wallet+" where user_id="+booking.getUserId();
+		String commit = "commit";
+		System.out.println(query);
+		System.out.println(updateWallet);
+		try {
+		
+		con = ConnectionUtil.getDBConnect();
+		pstmt = con.prepareStatement(query);
+		pstmt.setInt(1, booking.getFlightNo());
+		pstmt.setDate(2, java.sql.Date.valueOf(booking.getStartDate()));
+		pstmt.setDate(3, java.sql.Date.valueOf(booking.getEndDate()));
+		pstmt.setInt(4, booking.getBookingId());
+		pstmtUser =con.prepareStatement(updateWallet);
+		
+		
+		pstmtvalue = pstmt.executeUpdate();
+		pstmtUser.executeUpdate();
+        pstmt.executeUpdate(commit);
+        pstmtUser.executeUpdate(commit);
+		}	catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closePreparedStatement(pstmt, con);
+		}
+		return pstmtvalue>0;
+		
 	}
 
 	

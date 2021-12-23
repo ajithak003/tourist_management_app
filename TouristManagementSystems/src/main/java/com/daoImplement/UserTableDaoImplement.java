@@ -270,7 +270,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		Connection con = null;
 		long wallet=0;
 		String query = "select wallet from user_details where email_id='"+user.getEmail()+"'";
-		System.out.println(query);
+		//System.out.println(query);
 		Statement stmt = null;
 		try {
 			con = ConnectionUtil.getDBConnect();
@@ -280,7 +280,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		if (rs.next()) {
 			
 			 wallet =rs.getLong(1);
-			System.out.println(wallet); 
+			//System.out.println(wallet); 
 			
 		}
 		
@@ -301,7 +301,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		int wallet=0;
 		String query = "update user_details set wallet="+amount+" where user_id="+userId;
 		String commit ="commit";
-		System.out.println(query);
+		//System.out.println(query);
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionUtil.getDBConnect();

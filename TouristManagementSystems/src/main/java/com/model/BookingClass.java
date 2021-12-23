@@ -297,6 +297,15 @@ public class BookingClass {
 	}
 
 
+	public BookingClass(int userId, int flightNo, LocalDate startDate, LocalDate endDate) {
+		super();
+		this.userId = userId;
+		this.flightNo = flightNo;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
+
 	
 	
 

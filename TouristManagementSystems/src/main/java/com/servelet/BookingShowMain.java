@@ -1,9 +1,11 @@
 	package com.servelet;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,7 +23,7 @@ import com.model.UserClass;
 
 public class BookingShowMain {
 	
-	Scanner sc = new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
 	
 	public void show(UserClass user) {
 		try {
@@ -109,6 +111,17 @@ public class BookingShowMain {
 			else {
 				System.exit(0);
 			}
+			
+			System.out.println("do you want to change tour date plane 1.yes 2.No");
+			int dateChange = Integer.parseInt(sc.nextLine());
+			if(dateChange==1) {
+				UserTableDaoImplement userDao2 = new UserTableDaoImplement();
+				UserClass currentUser = userDao2.getUserById(user);
+				
+				BookingShowMain.dateChange(currentUser);
+			}
+				
+			
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -144,9 +157,98 @@ public class BookingShowMain {
         }catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-			
+        }
+	
+	public static void dateChange(UserClass user) {
+		try {
+		DateTimeFormatter formatter =
+	            DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		System.out.println("Notes : if you want to change toure date 700 will be detected by per memeber  "
+				+ "even if your flight ticket rate less or high\n"
+				+ "1.accept terms and policy 2.exit");
+		int note = Integer.parseInt(sc.nextLine());
+		if(note==1) {
+		System.out.println("\n enter the alrady booking Start date enter ");
+		String oldPlanningDate = sc.nextLine(); //"2021-12-21 05:30";
+		LocalDate oldStartDate = LocalDate.parse(oldPlanningDate, formatter);
+		BookingTableDaoImplement book = new BookingTableDaoImplement();
+		BookingClass booking = book.getbookingById(user.getId(), oldStartDate);
+		
+		System.out.println("\n enter the planning date enter ");
+		String planningDate = sc.nextLine(); //"2021-12-21 05:30";
+		LocalDate startDate = LocalDate.parse(planningDate, formatter);
+		
+		System.out.println("\n enter the return date enter ");
+		String ends = sc.nextLine(); //"2021-12-21 05:30";
+		LocalDate endDate = LocalDate.parse(planningDate, formatter);
+		System.out.println(endDate);
+		
+	//	LocalDate endDates = LocalDate.parse(endDate);
+		
+		int end =0;
+		if(booking.getDaysPlan().equalsIgnoreCase("Two days night plan")) {
+			end=2;
+		}
+		else if(booking.getDaysPlan().equalsIgnoreCase("Three days night plan")) {
+			end=3;
+		}
+		else {
+			end=4;
 		}
 		
+		FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
+		List<FlightClass> flights =flightDao.getFlightByNo(booking.getPackageName(),startDate);
+		for (int i = 0; i < flights.size(); i++) {
+
+			System.out.println(flights.get(i));
+		}	
+			System.out.println("\n choose your depature location given below available flights");
+			String depatureLocation = sc.nextLine();
+			
+			FlightClass singleFlight=null;
+			for(FlightClass f:flights) {
+				if(f.getDepature().equalsIgnoreCase(depatureLocation)) {
+					singleFlight=f;
+				}
+				}
+		
+			int fine = 700 * booking.getNoOfPerson();
+			
+			
+			 if(user.getWallet()>=fine) {
+				 UserTableDaoImplement userWalletDao = new UserTableDaoImplement();
+				 BookingTableDaoImplement bookDao = new BookingTableDaoImplement();				
+				long wallet = userWalletDao.showWalletAmount(user);
+				wallet=(long) (wallet-fine);
+				BookingClass bookClass = new BookingClass(user.getId(),singleFlight.getFlightNo(),startDate,endDate);
+				boolean books= bookDao.dateChange(bookClass,wallet);
+
+				if(books==true) {
+					System.out.println("\n \n successfully date changed \n\n\n"
+							+ "get a amazing trip");
+				}
+				else {
+					System.out.println("\n unable to change a date \n please try again");
+				}
+			 
+		}
+			 else {
+					System.out.println(" Sorry! insufficient balance please add amount on your wallent");
+			 }
+		}
+			 
+		else {
+			System.exit(0);
+		}
+		
+		
+	
+	}catch(Exception e) {
+		System.out.println(e.getMessage());
 	}
+		
+	}
+}
 
 
