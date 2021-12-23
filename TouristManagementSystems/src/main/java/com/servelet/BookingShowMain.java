@@ -1,4 +1,4 @@
-package com.servelet;
+	package com.servelet;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
+import com.daoImplement.AdminTableDaoImplement;
 import com.daoImplement.BookingTableDaoImplement;
 import com.daoImplement.FlightTableDaoImplement;
 import com.daoImplement.HotelTableDaoImplement;
@@ -67,7 +68,9 @@ public class BookingShowMain {
 				LocalDate startDate = LocalDate.parse(startDatestr);
 				
 				BookingTableDaoImplement cancel = new BookingTableDaoImplement();
-				boolean cancelBooking = cancel.updatebooking(user.getId(), startDate);
+				BookingClass book = cancel.getbookingById(user.getId(), startDate);
+				double refundPrice =  user.getWallet()+ book.getTotalPrice();
+				boolean cancelBooking = cancel.updatebooking(user.getId(), startDate,refundPrice);
 				
 				if(cancelBooking==true) {
 					System.out.println("successfully canceled");
@@ -115,5 +118,35 @@ public class BookingShowMain {
 	
 		
 	}
+	
+	public void showAllUserBookings() {
+		
+		BookingTableDaoImplement showAllBooking = new BookingTableDaoImplement();
+		
+        List<BookingClass> booking = showAllBooking.getAllUserBooking();
+        
+        try {
+		for (BookingClass b:booking) {
+             
+			int userId=b.getUserId();
+			AdminTableDaoImplement admin =new AdminTableDaoImplement();
+			//System.out.println(userId);
+		    UserClass user = admin.getUserById(userId);
+			
+				System.out.println("BookingClass \n\nUserName :  "+user.getName()+"\n User Email id :  "+user.getEmail()+"\n Tourist Location="+b.getPackageName()+"\n Booking Date :  "
+				+b.getBookingDate()+"\n startDate=" + b.getStartDate() + "\n endDate=" + b.getEndDate()
+						+ "\n totalPrice=" + b.getTotalPrice() + "\n noOfPerson=" + b.getNoOfPerson() + "\n status=" + b.getStatus()+ 
+						 "\n flightClass=" + b.getFlightClass() + "\n hotelRoomType=" + b.getFlightClass() + "\n daysPlan=" + b.getDaysPlan());
+			
+			
+			
+		}
+        }catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+			
+		}
+		
+	}
 
-}
+

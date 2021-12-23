@@ -27,7 +27,7 @@ public class BookingMain {
 	Scanner sc = new Scanner (System.in);
 	
 	public void bookingInsert(UserClass user) {
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-mm-dd"); 
+		
 		try {
 			//System.out.println(user);
 		UserTableDaoImplement userDao = new UserTableDaoImplement(); 
@@ -201,12 +201,19 @@ public class BookingMain {
 			 totalPrice = price * noOfPerson;
 			 System.out.println(noOfPerson+" total amount "+totalPrice);
 		 }
-		 
+		 UserTableDaoImplement userWalletDao = new UserTableDaoImplement();
+		  
+		 if(user.getWallet()>=totalPrice) {
 			 
 			 BookingTableDaoImplement bookDao = new BookingTableDaoImplement();
-			 BookingClass booking = new BookingClass(userDetails.getId(),singlePackage.getPackageId(), singleFlight.getFlightNo(), singleHotel.getHotelId(),noOfPerson,startDate ,endDates,totalPrice,flightClass,hotelRoom,days);
-			 System.out.println(booking);
+			 BookingClass booking=null;
+			 booking = new BookingClass(userDetails.getId(),singlePackage.getPackageId(), singleFlight.getFlightNo(), singleHotel.getHotelId(),noOfPerson,startDate ,endDates,totalPrice,flightClass,hotelRoom,days,location);
+			 System.out.println(booking.toString1(booking));
 			boolean book= bookDao.insertbooking(booking);
+			
+			long wallet = userDao.showWalletAmount(user);
+			wallet=(long) (wallet-totalPrice);
+			userWalletDao.addWalletAmount(user.getId(),wallet);
 			if(book==true) {
 				System.out.println("\n \n successfully booked \n\n\n"
 						+ "get a amazing trip");
@@ -214,7 +221,37 @@ public class BookingMain {
 			else {
 				System.out.println("\n unable to booking \n please try again");
 			}
-		
+		 }
+		 
+		 else {
+			 
+				long wallet = userDao.showWalletAmount(user);
+				System.out.println(" Sorry! insufficient balance please add amount in your wallent \n Your Wallet Amount :  "+wallet);
+				System.out.println("do you want to add wallet amount 1.yes or 2.no");
+				int choice = Integer.parseInt(sc.nextLine());
+
+						switch(choice) {
+						case 1:
+							
+							System.out.println("enter the added amount:");
+							long add = Long.parseLong(sc.nextLine());
+							if(add>0) {
+							long totalWalletAmount = wallet+add;
+							
+							boolean walletAdd = userWalletDao.addWalletAmount(user.getId(),totalWalletAmount);
+							if(walletAdd) {
+								System.out.println("transaction successfully");
+								long wallets = userDao.showWalletAmount(user);
+								System.out.println("Your Wallet Amount :  "+wallets);	
+							}
+							else
+								System.out.println("transaction failed");
+							}
+							else {
+								System.out.println("please enter a valid amount");
+							}
+		 }
+		 }
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

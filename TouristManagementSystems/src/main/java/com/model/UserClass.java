@@ -9,6 +9,20 @@ public class UserClass {
 	private String email;
 	private long mboNo;
 	private String password;
+	private long wallet;
+	
+	
+	
+	
+	
+	public long getWallet() {
+		return wallet;
+	}
+
+	public void setWallet(long wallet) {
+		this.wallet = wallet;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -17,7 +31,7 @@ public class UserClass {
 		this.id = id;
 	}
 
-	public UserClass(int id, String name, String email, long mboNo, String password) {
+	public UserClass(int id, String name, String email, long mboNo, String password,long wallet) {
 		super();
 		//System.out.println("super class");
 		this.id = id;
@@ -25,6 +39,7 @@ public class UserClass {
 		this.email = email;
 		this.mboNo = mboNo;
 		this.password = password;
+		this.wallet = wallet;
 	}
 
 	
@@ -66,6 +81,7 @@ public class UserClass {
 	public String toString() {
 		return "User : \n name=" + name + ", \n email=" + email + ",\n mobile no=" + mboNo + ",\n password=" + password + "]";
 	}
+	
 
 	@Override
 	public int hashCode() {
@@ -108,6 +124,12 @@ public class UserClass {
 		super();
 		this.email = email;
 	}
+
+	public UserClass(long wallet) {
+		super();
+		this.wallet = wallet;
+	}
+	
 	
 	
 

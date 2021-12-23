@@ -149,7 +149,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		 
 		 if (rs.next()) {
 
-			 userById=new UserClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getString(5));
+			 userById=new UserClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getString(5),rs.getLong(6));
 				
 			}} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -180,7 +180,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		
 		while (rs.next()) {
 
-			UserClass user = new UserClass(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5));
+			UserClass user = new UserClass(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getLong(4), rs.getString(5),rs.getLong(6));
 			 
 			userList.add(user);
 		}
@@ -215,7 +215,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 			ResultSet rs = stmt.executeQuery(validateQuery);
 			if (rs.next()) {
 
-             UserClass=new UserClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getString(5));
+             UserClass=new UserClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getString(5),rs.getLong(6));
 				
 				//System.out.println("login successful");
 			}
@@ -263,6 +263,62 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		
 		
 		return flag;
+	}
+	
+	public long showWalletAmount(UserClass user) {
+		
+		Connection con = null;
+		long wallet=0;
+		String query = "select wallet from user_details where email_id='"+user.getEmail()+"'";
+		System.out.println(query);
+		Statement stmt = null;
+		try {
+			con = ConnectionUtil.getDBConnect();
+			stmt = con.createStatement();
+		
+		ResultSet rs = stmt.executeQuery(query);
+		if (rs.next()) {
+			
+			 wallet =rs.getLong(1);
+			System.out.println(wallet); 
+			
+		}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closeStatement(stmt, con);
+		}
+		return wallet;
+		
+	}
+	
+	public boolean addWalletAmount(int userId,long amount) {
+		
+		Connection con = null;
+		int wallet=0;
+		String query = "update user_details set wallet="+amount+" where user_id="+userId;
+		String commit ="commit";
+		System.out.println(query);
+		PreparedStatement pstmt = null;
+		try {
+			con = ConnectionUtil.getDBConnect();
+			pstmt = con.prepareStatement(query);
+			wallet = pstmt.executeUpdate();
+			 pstmt.executeQuery(commit);
+		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closePreparedStatement(pstmt, con);;
+		}
+		return wallet>0;
+		
 	}
 
 	

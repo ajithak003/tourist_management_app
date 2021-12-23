@@ -172,10 +172,10 @@ public class TestMain {
 									boolean flagadmin = true;
 									do {
 										System.out.println("choose your choice \n 1.show all user 2.add package 3.update package 4.delete package"
-												+ " 5.show all package \n 6. go to flight table \n 7.hotel table");
+												+ " 5.show all package \n 6. go to flight table \n 7.hotel table 8.show all booking");
 
 										String temChoiceadmin = sc.nextLine();
-										if (String.valueOf(temChoiceadmin).matches("[1-7]")) {
+										if (String.valueOf(temChoiceadmin).matches("[1-8]")) {
 											int choiceadmin = Integer.parseInt(temChoiceadmin);
 											flagadmin = false;
 
@@ -216,6 +216,9 @@ public class TestMain {
 												HotelMain hotel=new HotelMain();
 												
 												hotel.hotels();
+											case 8: 
+												BookingShowMain admimBook = new BookingShowMain();
+												admimBook.showAllUserBookings();   
 												
 												default :
 												{
@@ -263,7 +266,7 @@ public class TestMain {
 									do {
 									
 									System.out.println("enther your choice 1.update profile 2.delete accout 3.see your profile 4. booking \n 5.show ones booking"
-											+ "  6.cancel booking 7.show all booking");
+											+ "  6.cancel booking 7.show all booking \n8. add wallet amount and show");
 									 userChoice=Integer.parseInt(sc.nextLine());
 									
 									
@@ -274,7 +277,7 @@ public class TestMain {
 //										update user details
 										UserClassMain userUpdate = new UserClassMain();
 										userUpdate.Update();
-										System.out.println("do u want continue please enter 8");
+										System.out.println("do u want continue please enter 9");
 										userChoice=Integer.parseInt(sc.nextLine());
 										
 										break;	
@@ -285,7 +288,7 @@ public class TestMain {
 										boolean delete = userDao.deleteuser(user);
 										if(delete==true){
 											System.out.println("deleted successfully");
-											System.out.println("do u want continue please enter 8");
+											System.out.println("do u want continue please enter 9");
 											userChoice=Integer.parseInt(sc.nextLine());
 										}
 										else {
@@ -296,7 +299,7 @@ public class TestMain {
 										//System.out.println(userDao.getUserById(user));
 										
 										System.out.println(user);
-										System.out.println("do u want continue please enter 8");
+										System.out.println("do u want continue please enter 9");
 										userChoice=Integer.parseInt(sc.nextLine());
 									break;	
 									
@@ -308,19 +311,28 @@ public class TestMain {
 									case 5:
 										BookingShowMain showBooking = new BookingShowMain();
 										showBooking.show(user);
-										System.out.println("do u want continue please enter8");
+										System.out.println("do u want continue please enter9");
 										userChoice=Integer.parseInt(sc.nextLine());
+										break;
 									case 6:
 										BookingShowMain cancel = new BookingShowMain();
 										cancel.cancelBooking(user);
-										System.out.println("do u want continue please enter 8");
+										System.out.println("do u want continue please enter 9");
 										userChoice=Integer.parseInt(sc.nextLine());
+										break;
 									
 									case 7:
 										BookingShowMain show = new BookingShowMain();
 										show.showAllBooking(user);
+										System.out.println("do u want continue please enter 9");
+										userChoice=Integer.parseInt(sc.nextLine());	
+									break;
+									case 8:
+										UserClassMain wallets = new UserClassMain();
+										wallets.wallet(user);
+										
 									}
-									}while(userChoice==8);
+									}while(userChoice==9);
 									
 									
 								}

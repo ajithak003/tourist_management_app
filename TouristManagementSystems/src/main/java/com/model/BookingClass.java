@@ -22,9 +22,11 @@ public class BookingClass {
 	private String flightClass;
 	private String hotelRoomType;
 	private String daysPlan;
+	private String packageName;
+	private String payment;
 	
 	
-	public BookingClass(int bookingId, int userId, int packageIid, int flightNo, int hotelId, int noOfPerson, LocalDate startDate, LocalDate endDate, double totalPrice, String status, LocalDateTime bookingDate,String flightClass,String hotelRoomType, String daysPlan) {
+	public BookingClass(int bookingId, int userId, int packageIid, int flightNo, int hotelId, int noOfPerson, LocalDate startDate, LocalDate endDate, double totalPrice, String status, LocalDateTime bookingDate,String flightClass,String hotelRoomType, String daysPlan,String packageName,String payment) {
 		super();
 		// TODO Auto-generated constructor stub
 		this.bookingId = bookingId;
@@ -41,12 +43,14 @@ public class BookingClass {
 		this.flightClass = flightClass;
 		this.hotelRoomType = hotelRoomType;
 		this.daysPlan = daysPlan;
+		this.packageName = packageName;
+		this.payment = payment;
 		
 	}
 
 
 	public BookingClass(int userId, int packageIid, int flightNo, int hotelId, int noOfPerson, LocalDate startDate,
-			LocalDate endDate, double totalPrice,String flightClass,String hotelRoomType, String daysPlan) {
+			LocalDate endDate, double totalPrice,String flightClass,String hotelRoomType, String daysPlan,String packageName) {
 		super();
 		this.userId = userId;
 		this.packageIid = packageIid;
@@ -59,10 +63,32 @@ public class BookingClass {
 		this.flightClass = flightClass;
 		this.hotelRoomType = hotelRoomType;
 		this.daysPlan = daysPlan;
+		this.packageName = packageName;
+		
+	}
+	
+	
+	
+	public String getPayment() {
+		return payment;
 	}
 
-	
-	
+
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+
+
+	public String getPackageName() {
+		return packageName;
+	}
+
+
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
+
+
 	public String getDaysPlan() {
 		return daysPlan;
 	}
@@ -211,10 +237,19 @@ public class BookingClass {
 
 	@Override
 	public String toString() {
-		return "BookingClass \n\n noOfPerson=" + noOfPerson + "\n startDate=" + startDate + "\n endDate=" + endDate
-				+ "\n totalPrice=" + totalPrice + "\n status=" + status + "\n bookingDate=" + bookingDate
-				+ "\n flightClass=" + flightClass + "\n hotelRoomType=" + hotelRoomType + "\n daysPlan=" + daysPlan ;
+		return "BookingClass \n\n Tourist Location="+packageName+"\n startDate=" + startDate + "\n endDate=" + endDate
+				+ "\n totalPrice=" + totalPrice + "\n noOfPerson=" + noOfPerson + "\n status=" + status + "\n bookingDate=" + bookingDate
+				+ "\n flightClass=" + flightClass + "\n hotelRoomType=" + hotelRoomType + "\n daysPlan=" + daysPlan+"\n Payment Status :  "+payment;
 	}
+	
+	
+	public String toString1(BookingClass booking) {
+		return "BookingClass \n\n Tourist Location="+packageName+"\n startDate=" + startDate + "\n endDate=" + endDate
+				+ "\n totalPrice=" + totalPrice + "\n noOfPerson=" + noOfPerson + "\n status=" + "confirmed" + 
+				 "\n flightClass=" + flightClass + "\n hotelRoomType=" + hotelRoomType + "\n daysPlan=" + daysPlan+"\n Payment Status :  "+payment ;
+	}
+	
+	
 
 
 	public String toStringbook(UserClass user, PackageModeClass packages, FlightClass flight, HotelClass hotel) {
@@ -228,7 +263,7 @@ public class BookingClass {
 				"\n\n Flight Status :  "+flight.getStatus()+"\n\n\n Hotel Details : \n\n Hotel Name :  "+hotel.getHotelName()+"\n\n Hotel Location : "+hotel.getLocation()+
 				"\n\n Hotel Room Type :  "+hotelRoomType+"\n\n\n Package Details :\n\n Booking Date :  "+bookingDate.format(dateTimeFormat)+"\n\n Tourist Location :  "+packages.getName()+
 				"\n\n Tour Plan Days :  "+daysPlan+"\n\n Tour Start Date : "+startDate.format(dateFormat)+"\n\n Tour End Day :  "+endDate.format(dateFormat)+"\n\n Number Of Person :  "+noOfPerson+
-				"\n\n Package Total Price :  "+totalPrice+"\n\n Package Status :  "+status;
+				"\n\n Package Total Price :  "+totalPrice+"\n\n Package Status :  "+status+"\n\n Payment Status :  "+payment;
 		
 		
 	}
@@ -236,8 +271,8 @@ public class BookingClass {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bookingDate, bookingId, endDate, flightNo, hotelId, noOfPerson, packageIid, startDate,
-				status, totalPrice, userId);
+		return Objects.hash(bookingDate, bookingId, daysPlan, endDate, flightClass, flightNo, hotelId, hotelRoomType,
+				noOfPerson, packageIid, packageName, startDate, status, totalPrice, userId);
 	}
 
 
@@ -251,17 +286,15 @@ public class BookingClass {
 			return false;
 		BookingClass other = (BookingClass) obj;
 		return Objects.equals(bookingDate, other.bookingDate) && bookingId == other.bookingId
-				&& Objects.equals(endDate, other.endDate) && flightNo == other.flightNo && hotelId == other.hotelId
+				&& Objects.equals(daysPlan, other.daysPlan) && Objects.equals(endDate, other.endDate)
+				&& Objects.equals(flightClass, other.flightClass) && flightNo == other.flightNo
+				&& hotelId == other.hotelId && Objects.equals(hotelRoomType, other.hotelRoomType)
 				&& noOfPerson == other.noOfPerson && packageIid == other.packageIid
-				&& Objects.equals(startDate, other.startDate) && Objects.equals(status, other.status)
+				&& Objects.equals(packageName, other.packageName) && Objects.equals(startDate, other.startDate)
+				&& Objects.equals(status, other.status)
 				&& Double.doubleToLongBits(totalPrice) == Double.doubleToLongBits(other.totalPrice)
 				&& userId == other.userId;
 	}
-	
-	
-     
-	
-	
 
 
 	

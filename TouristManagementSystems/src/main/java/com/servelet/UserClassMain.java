@@ -7,6 +7,7 @@ import com.model.UserClass;
 
 public  class UserClassMain {
 	
+	Scanner sc = new Scanner(System.in);
 	
 	public void  Update() {
 		
@@ -90,13 +91,44 @@ public  class UserClassMain {
 		}
 	}
 	
-	public void delete(UserClass deleteuser) {
+	public void wallet(UserClass user) {
 		
-		
-		
-	}
-	
-	
-	
+		UserTableDaoImplement userDao = new UserTableDaoImplement();
+		long wallet = userDao.showWalletAmount(user);
+		System.out.println("Your Wallet Amount :  "+wallet);
+		System.out.println("do you want to add wallet amount 1.yes or 2.no");
+		int choice = Integer.parseInt(sc.nextLine());
 
+				switch(choice) {
+				case 1:
+					UserTableDaoImplement userWalletDao = new UserTableDaoImplement();
+					System.out.println("enter the added amount:");
+					long add = Long.parseLong(sc.nextLine());
+					if(add>0) {
+					long totalWalletAmount = wallet+add;
+					
+					boolean walletAdd = userWalletDao.addWalletAmount(user.getId(),totalWalletAmount);
+					if(walletAdd) {
+						System.out.println("transaction successfully");
+						long wallets = userDao.showWalletAmount(user);
+						System.out.println("Your Wallet Amount :  "+wallets);	
+					}
+					else
+						System.out.println("transaction failed");
+					}
+					else {
+						System.out.println("please enter a valid amount");
+					}
+					break;
+				case 2:
+					System.exit(0);
+					break;
+			    default:
+					
+					System.out.println("invalid answ");
+				}
+	
+	
+	
+	}
 }
