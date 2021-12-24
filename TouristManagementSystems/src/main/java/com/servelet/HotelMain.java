@@ -32,7 +32,7 @@ public class HotelMain {
 			double premiumRangePrice = Double.parseDouble(sc.nextLine());
 			
 			HotelClass hotel = new HotelClass(location,hotelName,midRangePrice,premiumRangePrice);
-			System.out.println(hotel);
+			//System.out.println(hotel);
 			HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
 			boolean insert = hotelDao.insertHotel(hotel);
 			if(insert==true) {

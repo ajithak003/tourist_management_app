@@ -1,12 +1,10 @@
 package com.servelet;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
 import com.daoImplement.PackageModeClassDaoImplement;
 import com.model.PackageModeClass;
-import com.model.UserClass;
 
 public class packageMain {
 	

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class UserFeedbackClass {
 	private int feedbackId;
+	private int userId;
 	private int bookingId;
 	private int packageId;
 	private float rating;
@@ -14,10 +15,11 @@ public class UserFeedbackClass {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserFeedbackClass(int feedbackId, int bookingId, int packageId,  float rating,
+	public UserFeedbackClass(int feedbackId,int userId, int bookingId, int packageId,  float rating,
 			String describtion) {
 		super();
 		this.feedbackId = feedbackId;
+		this.userId = userId;
 		this.bookingId = bookingId;
 		this.packageId = packageId;
 		this.rating = rating;
@@ -25,6 +27,25 @@ public class UserFeedbackClass {
 	}
 
 
+
+	public UserFeedbackClass(int bookingId,int userId, int packageId, float rating, String describtion) {
+		super();
+		this.bookingId = bookingId;
+		this.userId = userId;
+		this.packageId = packageId;
+		this.rating = rating;
+		this.describtion = describtion;
+	}
+	
+	
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	public int getFeedbackId() {
 		return feedbackId;
@@ -66,11 +87,11 @@ public class UserFeedbackClass {
 		this.describtion = describtion;
 	}
 
-	
+
 	@Override
 	public String toString() {
-		return "UserFeedbackClass [feedbackId=" + feedbackId + ", bookingId=" + bookingId + ", packageId=" + packageId
-				+ ", rating=" + rating + ", describtion=" + describtion + "]";
+		return "UserFeedbackClass [feedbackId=" + feedbackId + ", userId=" + userId + ", bookingId=" + bookingId
+				+ ", packageId=" + packageId + ", rating=" + rating + ", describtion=" + describtion + "]";
 	}
 
 	@Override

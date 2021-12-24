@@ -51,7 +51,7 @@ public class FlightMain {
 		String status = sc.nextLine();
 		
 		FlightClass flight = new FlightClass(flightName,depature,destination,depatureTimeDate,arrivalTimeDate,businessClassFare,economicClassFare,status);
-		System.out.println(flight.getArrivalDateTime());
+		//System.out.println(flight.getArrivalDateTime());
 		FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
 		boolean insert = flightDao.insertFlight(flight);
 		if(insert==true) {

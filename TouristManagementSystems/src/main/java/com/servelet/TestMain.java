@@ -219,8 +219,8 @@ public class TestMain {
 												hotel.hotels();
 											case 8: 
 												BookingShowMain admimBook = new BookingShowMain();
-												admimBook.showAllUserBookings();   
-												
+												admimBook.showAllUserBookings();
+											
 												default :
 												{
 													System.out.println("invalid input !");
@@ -267,7 +267,8 @@ public class TestMain {
 									do {
 									
 									System.out.println("enther your choice 1.update profile 2.delete accout 3.see your profile 4. booking \n 5.show ones booking"
-											+ "  6.cancel booking 7.show all booking \n8. add wallet amount and show");
+											+ "  6.cancel booking 7.show all booking \n8. add wallet amount and show"
+											+ "   9.feedback");
 									 userChoice=Integer.parseInt(sc.nextLine());
 									
 									
@@ -278,7 +279,7 @@ public class TestMain {
 //										update user details
 										UserClassMain userUpdate = new UserClassMain();
 										userUpdate.Update();
-										System.out.println("do u want continue please enter 9");
+										System.out.println("do u want continue please enter 10");
 										userChoice=Integer.parseInt(sc.nextLine());
 										
 										break;	
@@ -289,7 +290,7 @@ public class TestMain {
 										boolean delete = userDao.deleteuser(user);
 										if(delete==true){
 											System.out.println("deleted successfully");
-											System.out.println("do u want continue please enter 9");
+											System.out.println("do u want continue please enter 10");
 											userChoice=Integer.parseInt(sc.nextLine());
 										}
 										else {
@@ -300,7 +301,7 @@ public class TestMain {
 										//System.out.println(userDao.getUserById(user));
 										
 										System.out.println(user);
-										System.out.println("do u want continue please enter 9");
+										System.out.println("do u want continue please enter 10");
 										userChoice=Integer.parseInt(sc.nextLine());
 									break;	
 									
@@ -312,28 +313,34 @@ public class TestMain {
 									case 5:
 										BookingShowMain showBooking = new BookingShowMain();
 										showBooking.show(user);
-										System.out.println("do u want continue please enter9");
+										System.out.println("do u want continue please enter10");
 										userChoice=Integer.parseInt(sc.nextLine());
 										break;
 									case 6:
 										BookingShowMain cancel = new BookingShowMain();
 										cancel.cancelBooking(user);
-										System.out.println("do u want continue please enter 9");
+										System.out.println("do u want continue please enter 10");
 										userChoice=Integer.parseInt(sc.nextLine());
 										break;
 									
 									case 7:
 										BookingShowMain show = new BookingShowMain();
 										show.showAllBooking(user);
-										System.out.println("do u want continue please enter 9");
+										System.out.println("do u want continue please enter 10");
 										userChoice=Integer.parseInt(sc.nextLine());	
 									break;
 									case 8:
 										UserClassMain wallets = new UserClassMain();
 										wallets.wallet(user);
-										
+										System.out.println("do u want continue please enter 10");
+										userChoice=Integer.parseInt(sc.nextLine());	
+									case 9:
+										RatingMain rating = new RatingMain();
+										rating.userRating(user);	
+										System.out.println("do u want continue please enter 10");
+										userChoice=Integer.parseInt(sc.nextLine());	
 									}
-									}while(userChoice==9);
+									}while(userChoice==10);
 									
 									
 								}

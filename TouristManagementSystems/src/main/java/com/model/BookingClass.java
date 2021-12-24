@@ -49,8 +49,7 @@ public class BookingClass {
 	}
 
 
-	public BookingClass(int userId, int packageIid, int flightNo, int hotelId, int noOfPerson, LocalDate startDate,
-			LocalDate endDate, double totalPrice,String flightClass,String hotelRoomType, String daysPlan,String packageName) {
+	public BookingClass(int userId, int packageIid, int flightNo, int hotelId, int noOfPerson, LocalDate startDate, double totalPrice,String flightClass,String hotelRoomType, String daysPlan,String packageName) {
 		super();
 		this.userId = userId;
 		this.packageIid = packageIid;
@@ -58,7 +57,6 @@ public class BookingClass {
 		this.hotelId = hotelId;
 		this.noOfPerson = noOfPerson;
 		this.startDate = startDate;
-		this.endDate = endDate;
 		this.totalPrice = totalPrice;
 		this.flightClass = flightClass;
 		this.hotelRoomType = hotelRoomType;
@@ -297,12 +295,13 @@ public class BookingClass {
 	}
 
 
-	public BookingClass(int userId, int flightNo, LocalDate startDate, LocalDate endDate) {
+	public BookingClass(int bookingId, int userId, int flightNo, LocalDate startDate) {
 		super();
+		this.bookingId = bookingId;
 		this.userId = userId;
 		this.flightNo = flightNo;
 		this.startDate = startDate;
-		this.endDate = endDate;
+		
 	}
 
 

@@ -62,6 +62,11 @@ public class BookingShowMain {
 	public void cancelBooking(UserClass user) {
 		
 		try {
+			
+			System.out.println("do you want to cancel your Tourist Package 1.yes 2.no\n"
+					+ "Notes : if you cancel your package 10% of totoal price dected and balance amount refunded 2-3 working days");
+			int cancels = Integer.parseInt(sc.nextLine());
+			if(cancels==1) {
 			UserTableDaoImplement userDao = new UserTableDaoImplement(); 
 				UserClass userDetails = userDao.getUserById(user);
 				
@@ -72,6 +77,7 @@ public class BookingShowMain {
 				BookingTableDaoImplement cancel = new BookingTableDaoImplement();
 				BookingClass book = cancel.getbookingById(user.getId(), startDate);
 				double refundPrice =  user.getWallet()+ book.getTotalPrice();
+				refundPrice = (refundPrice/100)*10;
 				boolean cancelBooking = cancel.updatebooking(user.getId(), startDate,refundPrice);
 				
 				if(cancelBooking==true) {
@@ -80,6 +86,7 @@ public class BookingShowMain {
 				else {
 					System.out.println("unable to cancel your booking please try again later");
 				}
+			}
 				
 		}  catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -164,7 +171,7 @@ public class BookingShowMain {
 		DateTimeFormatter formatter =
 	            DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
-		System.out.println("Notes : if you want to change toure date 700 will be detected by per memeber  "
+		System.out.println("Notes : if you want to change toure date 1000 will be detected by per memeber  "
 				+ "even if your flight ticket rate less or high\n"
 				+ "1.accept terms and policy 2.exit");
 		int note = Integer.parseInt(sc.nextLine());
@@ -179,14 +186,8 @@ public class BookingShowMain {
 		String planningDate = sc.nextLine(); //"2021-12-21 05:30";
 		LocalDate startDate = LocalDate.parse(planningDate, formatter);
 		
-		System.out.println("\n enter the return date enter ");
-		String ends = sc.nextLine(); //"2021-12-21 05:30";
-		LocalDate endDate = LocalDate.parse(planningDate, formatter);
-		System.out.println(endDate);
-		
 	//	LocalDate endDates = LocalDate.parse(endDate);
-		
-		int end =0;
+	    int end=0;
 		if(booking.getDaysPlan().equalsIgnoreCase("Two days night plan")) {
 			end=2;
 		}
@@ -213,7 +214,7 @@ public class BookingShowMain {
 				}
 				}
 		
-			int fine = 700 * booking.getNoOfPerson();
+			int fine = 1000 * booking.getNoOfPerson();
 			
 			
 			 if(user.getWallet()>=fine) {
@@ -221,8 +222,8 @@ public class BookingShowMain {
 				 BookingTableDaoImplement bookDao = new BookingTableDaoImplement();				
 				long wallet = userWalletDao.showWalletAmount(user);
 				wallet=(long) (wallet-fine);
-				BookingClass bookClass = new BookingClass(user.getId(),singleFlight.getFlightNo(),startDate,endDate);
-				boolean books= bookDao.dateChange(bookClass,wallet);
+				BookingClass bookClass = new BookingClass(booking.getBookingId(),user.getId(),singleFlight.getFlightNo(),startDate);
+				boolean books= bookDao.dateChange(bookClass,wallet,end);
 
 				if(books==true) {
 					System.out.println("\n \n successfully date changed \n\n\n"

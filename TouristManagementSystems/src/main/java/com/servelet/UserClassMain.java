@@ -13,7 +13,7 @@ public  class UserClassMain {
 		
 		Scanner sc = new Scanner (System.in);
 		
-		UserClass user = new UserClass();
+		
 		UserTableDaoImplement userDao= new UserTableDaoImplement();
 		String name = null;
 		boolean flagName = true;
@@ -30,13 +30,11 @@ public  class UserClassMain {
 		} while (flagName);
 		String email;
 		boolean flagemail = true;
-		boolean verifi = false;
+		
 		do {
 			System.out.println("enter the email: ");
 			email = sc.nextLine();
-//			if(userDao.emailvalid(email)==false){
-//				System.out.println("this Email id already registered");
-//			}
+
 			if (email.matches("[A-Za-z][A-Za-z0-9]+[@][a-zA-Z]+[.][A-Za-z]{2,3}")) {
 
 				flagemail = false;

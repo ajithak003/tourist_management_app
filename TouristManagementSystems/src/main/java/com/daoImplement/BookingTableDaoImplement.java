@@ -20,14 +20,14 @@ import com.model.UserClass;
 public class BookingTableDaoImplement implements BookingDaoInterface {
 
 	@Override
-	public boolean insertbooking(BookingClass booking) {
+	public boolean insertbooking(BookingClass booking, int end) {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int pstmtvalue = 0;
 
 		String commit = "commit";
-		String insert = "insert into booking_details (user_id, package_id, flight_no, hotel_id,number_of_person,start_date,end_date,total_price,flight_class,hotel_room_type,days_in_night,package_name) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String insert = "insert into booking_details (user_id, package_id, flight_no, hotel_id,number_of_person,start_date,end_date,total_price,flight_class,hotel_room_type,days_in_night,package_name) values(?,?,?,?,?,?,?+?,?,?,?,?,?)";
 		
 		try {
 			con = ConnectionUtil.getDBConnect();
@@ -40,12 +40,14 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 			pstmt.setInt(4, booking.getHotelId());
 			pstmt.setInt(5, booking.getNoOfPerson());
 			pstmt.setDate(6, java.sql.Date.valueOf(booking.getStartDate()));
-			pstmt.setDate(7, java.sql.Date.valueOf(booking.getEndDate()));
-			pstmt.setDouble(8, booking.getTotalPrice());
-			pstmt.setString(9, booking.getFlightClass());
-			pstmt.setString(10, booking.getHotelRoomType());
-			pstmt.setString(11, booking.getDaysPlan());
-			pstmt.setString(12, booking.getPackageName());
+			pstmt.setDate(7, java.sql.Date.valueOf(booking.getStartDate()));
+			pstmt.setInt(8,end);
+			pstmt.setDouble(9, booking.getTotalPrice());
+			pstmt.setString(10, booking.getFlightClass());
+			pstmt.setString(11, booking.getHotelRoomType());
+			pstmt.setString(12, booking.getDaysPlan());
+			pstmt.setString(13, booking.getPackageName());
+			
 			
 //			System.out.println(insert);
 			pstmtvalue = pstmt.executeUpdate();
@@ -231,7 +233,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		return bookingDetails;
 	}
 	
-	public boolean dateChange(BookingClass booking ,long wallet) {
+	public boolean dateChange(BookingClass booking ,long wallet,int end) {
 		
 		DateTimeFormatter formatter =
 	            DateTimeFormatter.ofPattern("dd-mm-yyyy");
@@ -239,26 +241,27 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmtUser = null;
 		int pstmtvalue = 0;
-		String query = "update booking_details set flight_no=?,start_date=?,end_date=? where booking_id= ?";
+		String query = "update booking_details set flight_no=?,start_date=?,end_date=?+? where booking_id= ?";
 		String updateWallet = "update user_details set wallet="+wallet+" where user_id="+booking.getUserId();
 		String commit = "commit";
-		System.out.println(query);
-		System.out.println(updateWallet);
+		
 		try {
 		
 		con = ConnectionUtil.getDBConnect();
 		pstmt = con.prepareStatement(query);
+		pstmtUser =con.prepareStatement(updateWallet);
+		
 		pstmt.setInt(1, booking.getFlightNo());
 		pstmt.setDate(2, java.sql.Date.valueOf(booking.getStartDate()));
-		pstmt.setDate(3, java.sql.Date.valueOf(booking.getEndDate()));
-		pstmt.setInt(4, booking.getBookingId());
-		pstmtUser =con.prepareStatement(updateWallet);
+		pstmt.setDate(3, java.sql.Date.valueOf(booking.getStartDate()));
+		pstmt.setInt(4,end);
+		pstmt.setInt(5, booking.getBookingId());
 		
 		
 		pstmtvalue = pstmt.executeUpdate();
 		pstmtUser.executeUpdate();
-        pstmt.executeUpdate(commit);
-        pstmtUser.executeUpdate(commit);
+       // pstmt.executeUpdate(commit);
+        //pstmtUser.executeUpdate(commit);
 		}	catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
