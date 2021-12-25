@@ -79,7 +79,6 @@ public class UserTableDaoImplement implements UserDaoInterface {
 //		String date1=dateFormatMDY.format(employees.getHire());
 			UserClass user = new UserClass(name,email,mobileNo,password);
 			pstmt.setString(1, user.getName());
-			
 			pstmt.setLong(2, user.getMboNo());
 			pstmt.setString(3, user.getPassword());
 			pstmt.setString(4,user.getEmail() );
@@ -103,7 +102,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		Connection con = null;
 		PreparedStatement pstmt =null;
 		int del=0;
-		String query = "delete user_details where email_id=?";
+		String query = "update user_details set status =? where email_id=?";
 		String commit = "commit";
 		
 		try {
@@ -111,8 +110,8 @@ public class UserTableDaoImplement implements UserDaoInterface {
 			con = ConnectionUtil.getDBConnect();
 			pstmt = con.prepareStatement(query);
            
-            
-            pstmt.setString(1, user.getEmail());
+            pstmt.setString(1, "inactive");
+            pstmt.setString(2, user.getEmail());
 			
             del = pstmt.executeUpdate();
             pstmt.executeUpdate(commit);
@@ -201,7 +200,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 	public UserClass validateUser(String emailId, String password) {
 		// TODO Auto-generated method stub
 
-		String validateQuery = "select * from user_details where email_id='"+emailId+"' and password='"+password+"'";
+		String validateQuery = "select * from user_details where email_id='"+emailId+"' and password='"+password+"' and status='"+"active"+"'";
 		Connection con = null;
 		Statement stmt = null;
 		//System.out.println(validateQuery);
@@ -319,6 +318,35 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		}
 		return wallet>0;
 		
+	}
+	
+	public boolean reRegister(String email) {
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		int del=0;
+		String query = "update user_details set status =? where email_id=?";
+		String commit = "commit";
+		
+		try {
+			
+			con = ConnectionUtil.getDBConnect();
+			pstmt = con.prepareStatement(query);
+           
+            pstmt.setString(1, "active");
+            pstmt.setString(2, email);
+			
+            del = pstmt.executeUpdate();
+            pstmt.executeUpdate(commit);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closePreparedStatement(pstmt, con);
+		}
+		return del>0;
+
 	}
 
 	

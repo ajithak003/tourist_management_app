@@ -2,11 +2,14 @@ package com.servelet;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 import com.daoImplement.BookingTableDaoImplement;
+import com.daoImplement.HotelTableDaoImplement;
 import com.daoImplement.RatingDaoImplement;
 import com.model.BookingClass;
+import com.model.HotelClass;
 import com.model.UserClass;
 import com.model.UserFeedbackClass;
 
@@ -30,21 +33,16 @@ public class RatingMain {
 		if(eligible==true) {
 			
 			System.out.println("please give your rating in points (1.0 to 5.0)");
-			String points = sc.nextLine();
-			float point =0.0f;
-			
-			if((points.matches("[1-5]"))){
-				point=Float.parseFloat(points);
+			 float point=Float.parseFloat(sc.nextLine());
 		
-			
 			System.out.println("How would you describe the amzing experience?");
 			String describe = sc.nextLine();
-			UserFeedbackClass feedBack = new UserFeedbackClass(booking.getBookingId(),user.getId(),booking.getPackageIid(),point,describe);
+			UserFeedbackClass feedBack = new UserFeedbackClass(booking.getBookingId(),user.getId(),booking.getPackageIid(),user.getName(),booking.getPackageName(),point,describe);
 		
 				boolean insert = rating.insertFeedback(feedBack);
 			if(insert==true) {
 				System.out.println("Thank you for your goldan review!");
-			}
+			
 		}
 			else {
 				System.out.println("enter a correct value");
@@ -62,4 +60,28 @@ public class RatingMain {
 	}
 	}
 
+	public void showAllRating() {
+		
+		try {
+			
+			HotelClass showAllFlight = new HotelClass();
+			RatingDaoImplement ratingDao = new RatingDaoImplement();
+
+			List<UserFeedbackClass> rating = ratingDao.getAllFeedback();
+
+			for (int i = 0; i < rating.size(); i++) {
+		
+
+				System.out.println(rating.get(i));
+
+			}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			}
+		
+	}
+	
+	
+	
 }

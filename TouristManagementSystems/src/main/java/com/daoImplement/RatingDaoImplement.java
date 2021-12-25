@@ -8,11 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.connection.ConnectionUtil;
 import com.daoInterface.UserFeedbackDaoInterface;
 import com.model.BookingClass;
+import com.model.HotelClass;
 import com.model.UserClass;
 import com.model.UserFeedbackClass;
 
@@ -26,7 +28,7 @@ public class RatingDaoImplement implements UserFeedbackDaoInterface {
 		PreparedStatement pstmt = null;
 		int pstmtvalue = 0;
 		String commit = "commit";
-		String query = "insert into users_feedback(user_id,booking_id,package_id,rating,describtion) values(?,?,?,?,?)";
+		String query = "insert into users_feedback(user_id,booking_id,package_id,user_name,package_name,rating,describtion) values(?,?,?,?,?,?,?)";
 		
 
 		try {
@@ -38,8 +40,10 @@ public class RatingDaoImplement implements UserFeedbackDaoInterface {
 			pstmt.setInt(1, Feedback.getUserId());
 			pstmt.setInt(2, Feedback.getBookingId());
 			pstmt.setInt(3, Feedback.getPackageId());
-			pstmt.setFloat(4,Feedback.getRating() );
-			pstmt.setString(5, Feedback.getDescribtion());
+			pstmt.setString(4, Feedback.getUserName());
+			pstmt.setString(5, Feedback.getPackageName());
+			pstmt.setFloat(6,Feedback.getRating() );
+			pstmt.setString(7, Feedback.getDescribtion());
 			
 			
 			//System.out.println(query);
@@ -63,7 +67,40 @@ public class RatingDaoImplement implements UserFeedbackDaoInterface {
 	@Override
 	public List<UserFeedbackClass> getAllFeedback() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		Connection con = null;
+		Statement stmt = null;
+		
+		
+		UserFeedbackClass rating= null;
+		
+		List<UserFeedbackClass> ratings = new ArrayList<UserFeedbackClass>();
+
+		String query = "select * from users_feedback";
+		
+		try {
+			con = ConnectionUtil.getDBConnect();
+			
+			 stmt =con.createStatement();
+			
+			 ResultSet rs = stmt.executeQuery(query);
+			
+			while(rs.next()) {
+				rating = new UserFeedbackClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4), rs.getString(5), rs.getString(6),rs.getFloat(7), rs.getString(8));
+				ratings.add(rating);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closeStatement(stmt, con);
+		}
+		
+		return ratings;
+		
 	}
 
 	@Override

@@ -65,11 +65,22 @@ public class TestMain {
 								flagemail = true;
 
 								email = email.trim().toLowerCase();
-								verifi = userDao.emailvalid(email);
+								int otp = (int)(Math.random()*(1000-9990+1)+1000);
+								System.out.println("your otp is : "+otp);
+								int userOtp = Integer.parseInt(sc.nextLine());
+								if(otp==userOtp) {
+							   	verifi = userDao.emailvalid(email);
+								
 								if (verifi == false) {
-									System.out.println("this Email id already registered");
+									 userDao.reRegister(email);
+									 System.out.println("your accout is activated! \n "
+										 		+ "if you want to change mobile no or password login and update your accout");
+									System.exit(0);
 								}
-
+								}
+								else {
+									System.out.println("enter a correct otp");
+								}
 								// System.out.println(email);
 							} else {
 								System.out.println("please enter correct email format like xyz23@gmail.com");
@@ -268,7 +279,7 @@ public class TestMain {
 									
 									System.out.println("enther your choice 1.update profile 2.delete accout 3.see your profile 4. booking \n 5.show ones booking"
 											+ "  6.cancel booking 7.show all booking \n8. add wallet amount and show"
-											+ "   9.feedback");
+											+ "   9.feedback  10. show all ratings");
 									 userChoice=Integer.parseInt(sc.nextLine());
 									
 									
@@ -279,7 +290,7 @@ public class TestMain {
 //										update user details
 										UserClassMain userUpdate = new UserClassMain();
 										userUpdate.Update();
-										System.out.println("do u want continue please enter 10");
+										System.out.println("do u want continue please enter 20");
 										userChoice=Integer.parseInt(sc.nextLine());
 										
 										break;	
@@ -290,8 +301,8 @@ public class TestMain {
 										boolean delete = userDao.deleteuser(user);
 										if(delete==true){
 											System.out.println("deleted successfully");
-											System.out.println("do u want continue please enter 10");
-											userChoice=Integer.parseInt(sc.nextLine());
+											System.exit(0);
+											
 										}
 										else {
 											System.out.println("cant't be deleted");
@@ -301,7 +312,7 @@ public class TestMain {
 										//System.out.println(userDao.getUserById(user));
 										
 										System.out.println(user);
-										System.out.println("do u want continue please enter 10");
+										System.out.println("do u want continue please enter 20");
 										userChoice=Integer.parseInt(sc.nextLine());
 									break;	
 									
@@ -313,34 +324,41 @@ public class TestMain {
 									case 5:
 										BookingShowMain showBooking = new BookingShowMain();
 										showBooking.show(user);
-										System.out.println("do u want continue please enter10");
+										System.out.println("do u want continue please enter20");
 										userChoice=Integer.parseInt(sc.nextLine());
 										break;
 									case 6:
 										BookingShowMain cancel = new BookingShowMain();
 										cancel.cancelBooking(user);
-										System.out.println("do u want continue please enter 10");
+										System.out.println("do u want continue please enter 20");
 										userChoice=Integer.parseInt(sc.nextLine());
 										break;
 									
 									case 7:
 										BookingShowMain show = new BookingShowMain();
 										show.showAllBooking(user);
-										System.out.println("do u want continue please enter 10");
+										System.out.println("do u want continue please enter 20");
 										userChoice=Integer.parseInt(sc.nextLine());	
 									break;
 									case 8:
 										UserClassMain wallets = new UserClassMain();
 										wallets.wallet(user);
-										System.out.println("do u want continue please enter 10");
+										System.out.println("do u want continue please enter 20");
 										userChoice=Integer.parseInt(sc.nextLine());	
 									case 9:
 										RatingMain rating = new RatingMain();
 										rating.userRating(user);	
-										System.out.println("do u want continue please enter 10");
+										System.out.println("do u want continue please enter 20");
 										userChoice=Integer.parseInt(sc.nextLine());	
+										break;
+									case 10:
+										RatingMain ratings = new RatingMain();
+										ratings.showAllRating();
+										System.out.println("do u want continue please enter 20");
+										userChoice=Integer.parseInt(sc.nextLine());	
+										break;
 									}
-									}while(userChoice==10);
+									}while(userChoice==20);
 									
 									
 								}
