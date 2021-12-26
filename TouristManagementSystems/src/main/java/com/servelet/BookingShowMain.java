@@ -76,9 +76,26 @@ public class BookingShowMain {
 				
 				BookingTableDaoImplement cancel = new BookingTableDaoImplement();
 				BookingClass book = cancel.getbookingById(user.getId(), startDate);
+				if(book.getStatus().equalsIgnoreCase("cancel")) {
+					System.out.println("this package already canceled");
+				}
+				else {
+				
 				double refundPrice =  user.getWallet()+ book.getTotalPrice();
 				refundPrice = (refundPrice/100)*10;
-				boolean cancelBooking = cancel.updatebooking(user.getId(), startDate,refundPrice);
+				FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
+			    FlightClass flight = flightDao.getSingleFlight(book.getFlightNo());
+			    int businessSeats = flight.getBusinessClassSeat() ;
+			    int economicSeats =flight.getEconomicClassSeat();
+			    if(book.getFlightClass().equalsIgnoreCase("business class")) {
+			    	businessSeats += book.getNoOfPerson();
+			    }
+			    else {
+			    	economicSeats += +book.getNoOfPerson();
+			    }
+			    
+				boolean cancelBooking = cancel.updatebooking(user.getId(), startDate,refundPrice,businessSeats,economicSeats,book.getFlightNo());
+				
 				
 				if(cancelBooking==true) {
 					System.out.println("successfully canceled");
@@ -86,6 +103,7 @@ public class BookingShowMain {
 				else {
 					System.out.println("unable to cancel your booking please try again later");
 				}
+			}
 			}
 				
 		}  catch (Exception e) {

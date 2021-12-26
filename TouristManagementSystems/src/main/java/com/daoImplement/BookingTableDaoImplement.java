@@ -20,19 +20,21 @@ import com.model.UserClass;
 public class BookingTableDaoImplement implements BookingDaoInterface {
 
 	@Override
-	public boolean insertbooking(BookingClass booking, int end) {
+	public boolean insertbooking(BookingClass booking, int end,int businessClassSeats,int economicClassSeats) {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		int pstmtvalue = 0;
 
 		String commit = "commit";
 		String insert = "insert into booking_details (user_id, package_id, flight_no, hotel_id,number_of_person,start_date,end_date,total_price,flight_class,hotel_room_type,days_in_night,package_name) values(?,?,?,?,?,?,?+?,?,?,?,?,?)";
-		
+		String flight = "update flights_details set business_class_seat_status=?,economic_class_seat_status=? where flight_no=?";
 		try {
 			con = ConnectionUtil.getDBConnect();
 			
 			pstmt = con.prepareStatement(insert);
+			pstmt2 = con.prepareStatement(flight);
            
 			pstmt.setInt(1,booking.getUserId() );
 			pstmt.setInt(2,booking.getPackageIid());
@@ -48,9 +50,14 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 			pstmt.setString(12, booking.getDaysPlan());
 			pstmt.setString(13, booking.getPackageName());
 			
+			pstmt2.setInt(1, businessClassSeats);
+			pstmt2.setInt(2, economicClassSeats);
+			pstmt2.setInt(3, booking.getFlightNo());
+			
 			
 //			System.out.println(insert);
 			pstmtvalue = pstmt.executeUpdate();
+			pstmt2.executeUpdate();
 			
 			//System.out.println(user.getEmail());
 			pstmt.executeQuery(commit);
@@ -134,27 +141,34 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 	}
 
 	@Override
-	public boolean updatebooking(int user_id, LocalDate startDate,double refundPrice)
+	public boolean updatebooking(int user_id, LocalDate startDate,double refundPrice,int businessSeats,int economicSeats,int flightNo)
 			 {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmtUser = null;
+		PreparedStatement pstmtflight =null;
 		int pstmtvalue = 0;
 		String update = "cancel";
 		String query = "update booking_details set status='"+update+"',payment_details='"+"payment refunded"+"' where user_id="+user_id+"and to_char(start_date,'yyyy-mm-dd')='"+startDate+"'";
 		String wallet = "update user_details set wallet="+refundPrice+"where user_id="+user_id;
+		String flight = "update flights_details set business_class_seat_status="+businessSeats+",economic_class_seat_status="+economicSeats+"where flight_no="+flightNo;
+
 		String commit = "commit";
 		try {
 		
 		con = ConnectionUtil.getDBConnect();
 		pstmt = con.prepareStatement(query);
 		pstmtUser =con.prepareStatement(wallet);
+		pstmtflight = con.prepareStatement(flight);
 		
 		pstmtvalue = pstmt.executeUpdate();
+		pstmt.executeUpdate(commit);
 		pstmtUser.executeUpdate();
-        pstmt.executeUpdate(commit);
-        pstmtUser.executeUpdate(commit);
+		 pstmtUser.executeUpdate(commit);
+		pstmtflight.executeUpdate();
+		pstmtflight.executeUpdate(commit);
+       
 		}	catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -170,6 +184,8 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		
 		Connection con = null;
 		PreparedStatement pstmt =null;
+		
+		
 		int del=0;
 		String query = "delete booking_details where user_id="+userId+" and to_char(start_date,'yyyy-mm-dd')='"+startDate+"'";
 		String commit = "commit";
@@ -179,8 +195,11 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 			con = ConnectionUtil.getDBConnect();
 			pstmt = con.prepareStatement(query);
 			
+			
             del = pstmt.executeUpdate();
             pstmt.executeUpdate(commit);
+		
+           
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

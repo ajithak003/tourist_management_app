@@ -17,6 +17,8 @@ public class FlightClass {
 	private double businessClassFare;
 	private double economicClassFare;
 	private String status;
+	private int businessClassSeat;
+	private int economicClassSeat;
 	
 	public FlightClass() {
 		super();
@@ -24,7 +26,7 @@ public class FlightClass {
 	}
 
 	public FlightClass(int flightNo, String flightName, String depature, String destination, LocalDateTime depatureDateTime,
-			LocalDateTime arrivalDateTime, double businessClassFare, double economicClassFare, String status) {
+			LocalDateTime arrivalDateTime, double businessClassFare, double economicClassFare, String status,int businessClassSeat, int economicClassSeat) {
 		super();
 		this.flightNo = flightNo;
 		this.flightName = flightName;
@@ -35,10 +37,12 @@ public class FlightClass {
 		this.businessClassFare = businessClassFare;
 		this.economicClassFare = economicClassFare;
 		this.status = status;
+		this.businessClassSeat = businessClassSeat;
+		this.economicClassSeat = economicClassSeat;
 	}
 
 	public FlightClass(String flightName, String depature, String destination, LocalDateTime depatureDateTime,
-			LocalDateTime arrivalDateTime, double businessClassFare, double economicClassFare, String status) {
+			LocalDateTime arrivalDateTime, double businessClassFare, double economicClassFare, String status,int businessClassSeat, int economicClassSeat) {
 		super();
 		this.flightName = flightName;
 		this.depature = depature;
@@ -48,6 +52,27 @@ public class FlightClass {
 		this.businessClassFare = businessClassFare;
 		this.economicClassFare = economicClassFare;
 		this.status = status;
+		this.businessClassSeat = businessClassSeat;
+		this.economicClassSeat = economicClassSeat;
+	}
+	
+	
+	
+
+	public int getBusinessClassSeat() {
+		return businessClassSeat;
+	}
+
+	public void setBusinessClassSeat(int businessClassSeat) {
+		this.businessClassSeat = businessClassSeat;
+	}
+
+	public int getEconomicClassSeat() {
+		return economicClassSeat;
+	}
+
+	public void setEconomicClassSeat(int economicClassSeat) {
+		this.economicClassSeat = economicClassSeat;
 	}
 
 	public int getFlightNo() {
@@ -132,7 +157,7 @@ public class FlightClass {
 		return "FlightClass \n flightName=" + flightName + ",\n depature=" + depature
 				+ ",\n destination=" + destination + ",\n depatureDateTime=" + depatureDateTime.format(format) + ",\n arrivalDateTime="
 				+ arrivalDateTime.format(format) + ",\n businessClassFare=" + businessClassFare + ",\n economicClassFare="
-				+ economicClassFare + ",\n status=" + status ;
+				+ economicClassFare + ",\n status=" + status+"\n business class seat availability= "+businessClassSeat+"\n economic class seat availablity="+economicClassSeat ;
 	}
 
 	@Override

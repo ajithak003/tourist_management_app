@@ -48,8 +48,12 @@ public class FlightMain {
 		double economicClassFare = Double.parseDouble(sc.nextLine());
 		System.out.println("enter status");
 		String status = sc.nextLine();
+		System.out.println("enter business class seats no:");
+		int businessClassSeats = Integer.parseInt(sc.nextLine());
+		System.out.println("enter economic class seats no:");
+		int economicClassSeats = Integer.parseInt(sc.nextLine());
 		
-		FlightClass flight = new FlightClass(flightName,depature,destination,depatureTimeDate,arrivalTimeDate,businessClassFare,economicClassFare,status);
+		FlightClass flight = new FlightClass(flightName,depature,destination,depatureTimeDate,arrivalTimeDate,businessClassFare,economicClassFare,status,businessClassSeats,economicClassSeats);
 		//System.out.println(flight.getArrivalDateTime());
 		FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
 		boolean insert = flightDao.insertFlight(flight);
@@ -95,8 +99,12 @@ public class FlightMain {
 			double economicClassFare = Double.parseDouble(sc.nextLine());
 			System.out.println("enter status");
 			String status = sc.nextLine();
+			System.out.println("enter business class seats no:");
+			int businessClassSeats = Integer.parseInt(sc.nextLine());
+			System.out.println("enter economic class seats no:");
+			int economicClassSeats = Integer.parseInt(sc.nextLine());
 			
-			FlightClass flight = new FlightClass(flightNo,flightName,depature,destination,depatureTimeDate,arrivalTimeDate,businessClassFare,economicClassFare,status);
+			FlightClass flight = new FlightClass(flightName,depature,destination,depatureTimeDate,arrivalTimeDate,businessClassFare,economicClassFare,status,businessClassSeats,economicClassSeats);
 			//System.out.println(flight.getArrivalDateTime());
 			FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
 			boolean update = flightDao.updateFlight(flight);

@@ -111,14 +111,16 @@ public class BookingMain {
 			String flightClass = null;
 			System.out.println("\n enter the 1. business class 2.economic class");
 			int flightClassRate = Integer.parseInt(sc.nextLine());
-
+            String seats=null;
 			if (flightClassRate == 1) {
 				flightClass = "business class";
 				totalPrice = totalPrice + singleFlight.getBusinessClassFare();
+				seats = "business";
 
 			} else if (flightClassRate == 2) {
 				flightClass = "economic class";
 				totalPrice = totalPrice + singleFlight.getEconomicClassFare();
+				seats = "economic";
 
 			} else {
 				System.out.println("please enter correct value");
@@ -178,6 +180,14 @@ public class BookingMain {
 				totalPrice = price * noOfPerson;
 				System.out.println(noOfPerson + " total amount " + totalPrice);
 			}
+			 int businessClassSeats = singleFlight.getBusinessClassSeat();
+	            int economicClassSeats = singleFlight.getEconomicClassSeat();
+			if(seats=="business") {
+				businessClassSeats = businessClassSeats-noOfPerson;
+			}
+			else {
+				economicClassSeats = economicClassSeats - noOfPerson;
+			}
 			//UserTableDaoImplement userWalletDao = new UserTableDaoImplement();
 		//	long currentWallet = userDao.showWalletAmount(user);
 
@@ -189,13 +199,13 @@ public class BookingMain {
 						singleFlight.getFlightNo(), singleHotel.getHotelId(), noOfPerson, startDate, totalPrice,
 						flightClass, hotelRoom, days, location);
 				System.out.println(booking.toString1(booking));
-				boolean book = bookDao.insertbooking(booking, end);
+				boolean book = bookDao.insertbooking(booking, end,businessClassSeats,economicClassSeats);
 
 				long wallet = userDao.showWalletAmount(userDetails);
 				wallet = (long) (wallet - totalPrice);
 				userDao.addWalletAmount(userDetails.getId(), wallet);
 				if (book == true) {
-					System.out.println("\n \n successfully booked \n\n\n" + "get a amazing trip");
+					System.out.println("\n \n successfully booked \n\n" + "get a amazing trip");
 				} else {
 
 					System.out.println("\n unable to booking \n please try again");

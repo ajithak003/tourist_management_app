@@ -34,7 +34,8 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 //		SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
 		
 		String commit = "commit";
-		String insert = "insert into flights_details (flight_name,depature,destination,depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status) values(?,?,?,?,?,?,?,?)";
+		String insert = "insert into flights_details (flight_name,depature,destination,depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status,business_class_seat_status,economic_class_seat_status)"
+				+ " values(?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
 			con = ConnectionUtil.getDBConnect();
@@ -54,6 +55,8 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 			pstmt.setDouble(6, flight.getBusinessClassFare());
 			pstmt.setDouble(7, flight.getEconomicClassFare());
 			pstmt.setString(8, flight.getStatus());
+			pstmt.setInt(9, flight.getBusinessClassSeat());
+			pstmt.setInt(10, flight.getEconomicClassSeat());
 			
 //			System.out.println(insert);
 			pstmtvalue = pstmt.executeUpdate();
@@ -87,7 +90,8 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
 		
 		String commit = "commit";
-		String insert = "update flights_details set flight_name=?,depature=?,destination=?,depature_date_time=?,arrival_date_time=?,business_class_fare=?,economic_class_fare=?,status=? where flight_no=?";
+		String insert = "update flights_details set flight_name=?,depature=?,destination=?,depature_date_time=?,arrival_date_time=?,business_class_fare=?,economic_class_fare=?,status=?,business_class_seat_status=?,economic_class_seat_status=?"
+				+ " where flight_no=?";
 		
 		try {
 			con = ConnectionUtil.getDBConnect();
@@ -107,7 +111,9 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 			pstmt.setDouble(6, flight.getBusinessClassFare());
 			pstmt.setDouble(7, flight.getEconomicClassFare());
 			pstmt.setString(8, flight.getStatus());
-			pstmt.setInt(9, flight.getFlightNo());
+			pstmt.setInt(9, flight.getBusinessClassSeat());
+			pstmt.setInt(10, flight.getEconomicClassSeat());
+			pstmt.setInt(11, flight.getFlightNo());
 			
 //			System.out.println(insert);
 			pstmtvalue = pstmt.executeUpdate();
@@ -166,7 +172,8 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		List<FlightClass> flightDetails = new ArrayList<FlightClass>();
 		Connection con = null;
 		//System.out.println("connection");
-		String query = "select flight_no, flight_name,depature,destination, depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status from flights_details";
+		String query = "select * from flights_details";
+		//String query = "select flight_no, flight_name,depature,destination, depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status from flights_details";
 		//select flight_no, flight_name,depature,destination,to_char(depature_date_time,'dd-mm-yyyy hh:mm') as depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status from flights_details ;
 		Statement stmt = null;
 		
@@ -178,7 +185,7 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		
 		while (rs.next()) {
 			   
-			FlightClass flight = new  FlightClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5).toLocalDateTime(), rs.getTimestamp(6).toLocalDateTime(),rs.getDouble(7),rs.getDouble(8),rs.getString(9));
+			FlightClass flight = new  FlightClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5).toLocalDateTime(), rs.getTimestamp(6).toLocalDateTime(),rs.getDouble(7),rs.getDouble(8),rs.getString(9),rs.getInt(10),rs.getInt(11));
 			flightDetails.add(flight);
 			
 		}
@@ -221,7 +228,7 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 			 ResultSet rs = stmt.executeQuery(query);
 			
 			while(rs.next()) {
-				flight = new FlightClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5).toLocalDateTime(), rs.getTimestamp(6).toLocalDateTime(),rs.getDouble(7),rs.getDouble(8),rs.getString(9));
+				flight = new FlightClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5).toLocalDateTime(), rs.getTimestamp(6).toLocalDateTime(),rs.getDouble(7),rs.getDouble(8),rs.getString(9),rs.getInt(10),rs.getInt(11));
 				flights.add(flight);
 			}
 			
@@ -265,7 +272,7 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 			 ResultSet rs = stmt.executeQuery(query);
 			
 			if(rs.next()) {
-				flight = new FlightClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5).toLocalDateTime(), rs.getTimestamp(6).toLocalDateTime(),rs.getDouble(7),rs.getDouble(8),rs.getString(9));
+				flight = new FlightClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5).toLocalDateTime(), rs.getTimestamp(6).toLocalDateTime(),rs.getDouble(7),rs.getDouble(8),rs.getString(9),rs.getInt(10),rs.getInt(11));
 				
 			}
 			
