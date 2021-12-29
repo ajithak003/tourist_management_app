@@ -27,6 +27,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		int pstmtvalue = 0;
 		String commit = "commit";
 		String query = "insert into user_details(name,email_id,mobile_no,password) values(?,?,?,?)";
+		System.out.println(user.getName());
 		
 
 		try {
@@ -41,7 +42,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 			pstmt.setString(4, user.getPassword());
 			
 			
-			//System.out.println(query);
+			
 			pstmtvalue = pstmt.executeUpdate();
 			
 			//System.out.println(user.getEmail());

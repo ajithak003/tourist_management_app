@@ -1,4 +1,4 @@
-package com.servelet;
+package com.controler;
 
 import java.util.List;
 import java.util.Scanner;

@@ -1,5 +1,5 @@
 
-package com.servelet;
+package com.controler;
 
 import java.sql.SQLException;
 
