@@ -121,6 +121,13 @@ public class BookingShowMain {
 			BookingTableDaoImplement showAllBooking = new BookingTableDaoImplement();
 			
             List<BookingClass> booking = showAllBooking.getAllbooking(userDetails);
+           
+            
+            if(booking==null) {
+            	System.out.println("no booking this particular date");
+            }
+            
+            else if(booking!=null) {
 			
 			for (int i = 0; i < booking.size(); i++) {
 
@@ -147,7 +154,7 @@ public class BookingShowMain {
 			}
 				
 			
-		
+            }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

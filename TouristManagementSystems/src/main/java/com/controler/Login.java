@@ -1,19 +1,23 @@
 package com.controler;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.daoImplement.AdminTableDaoImplement;
 import com.daoImplement.UserTableDaoImplement;
 import com.model.AdminClass;
 import com.model.UserClass;
 
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpServlet;
+
+
+
+
 
 
 
@@ -24,10 +28,10 @@ public class Login extends HttpServlet {
 	 
 		public void service(HttpServletRequest req,HttpServletResponse res) {
 			 Scanner sc = new Scanner (System.in);
+			 HttpSession session=req.getSession();
 		try {
 			UserTableDaoImplement userDao = new UserTableDaoImplement();
 			AdminTableDaoImplement adminDao = new AdminTableDaoImplement();
-			PrintWriter pw=res.getWriter();  
 			
 			adminDao = new AdminTableDaoImplement();
 			userDao = new UserTableDaoImplement();
@@ -49,13 +53,14 @@ public class Login extends HttpServlet {
 					 admin = adminDao.validateAdmin(email, password);
 					if (admin == null) {
 						System.out.println("user name and password mismatch");
-						HttpSession session=req.getSession();
+						
 						session.setAttribute("error", "user name and password mismatch");
 					    req.getRequestDispatcher("login.jsp").forward(req,res); 
 					} else if (admin != null) {
 						res.sendRedirect("AdminPage.jsp");
 						System.out.println("Welcom " + admin.getName());
-						 
+						session.setAttribute("welcom",admin.getName() );
+						req.getRequestDispatcher("UserPage.jsp").forward(req,res); 
 				
 					}
 					}
@@ -64,17 +69,20 @@ public class Login extends HttpServlet {
 				System.out.println(password);
 				
 				UserClass user = userDao.validateUser(email, password);
-
+				
 				if (user == null) {
 					System.out.println("user name and password mismatch");
 					
-					HttpSession session=req.getSession();
+					
 					session.setAttribute("error", "user name and password mismatch");
 				    req.getRequestDispatcher("login.jsp").forward(req,res); 
 
 				} else if (user != null) {
 					res.sendRedirect("UserPage.jsp");
 					System.out.println("Welcom " + user.getName());
+					session.setAttribute("welcom",user.getName() );
+					req.getRequestDispatcher("UserPage.jsp").forward(req,res); 
+					
 				}
 				
 					} catch (Exception e) {

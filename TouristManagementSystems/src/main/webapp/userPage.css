@@ -14,50 +14,81 @@ body{
       background-repeat: no-repeat;
 }
 h1{
-    color:crimson;
+   
+    color:rgb(241, 11, 57);
     text-align: center;
     font-weight: bold;
-    font-size: 100px;
+    font-size: 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
 }
+#link{
+    width: 100%;
+    background: black;
+    height: 75px;
 
+}
 
 ul{
+   
     list-style: none;
-    background-color: black;
-    height: 50px;
-    padding-inline: 10px;
+    padding: 0;
+    margin: 0;
+    float: left;
+    position: relative;
+    left: 160px;
+}
 
-}
-li{
-    display: inline-block;
-    line-height: 2px;
-    width :220px; ;
-    padding: 24px;
-    word-spacing: 4px;
-    position:sticky;
-    left: 100px;
+ul li{
+    float: left;
+    margin-top: 10px;
     
-}
-a{
+     }
+
+ul li a{
+    width: 150px;
+    color: white;
+    display: block;
     text-decoration: none;
-    color: blanchedalmond;
- 
+    font-size: 20px;text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align: center;
 }
 a:hover{
-    color:aqua
+    background: cornsilk;
+    color:mediumblue;
 }
-.search input{
-           
-    height: 25px;
-    position: absolute  ;
-    left: 80px;
-}
-.search button{
 
-    height: 25px;
-    position: absolute  ;
-    left: 200px;    
+ul li ul{
+    background: #000033;
 }
 
 
+ul li ul li{
+    float: none;
+    position: relative;
+    left: 0px;
+}
+ul li ul{
+   display: none;
+   position: relative;
+   left: 0px;
+}
+
+ul li:hover ul {
+    display: block;
+    
+}
+
+span{
+    position: absolute;
+    right: 100px;
+    color: bisque;
+   font-size: 20px;
+   top: 30px;
+   font-weight: bold;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

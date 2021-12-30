@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,14 +13,14 @@
        position: relative;
        top: 130px;
    }
-   
-    </style>
-   
+   </style>
 </head>
 <body>
 
 <form  name="otp" id="otp" action="otp">
-                  
+               
+  
+
             <% String error=(String)session.getAttribute("error");
             if(error!=null) {%>
             <h2><%=session.getAttribute("error") %></h2>
@@ -34,7 +32,8 @@
             <h2><%=session.getAttribute("success") %></h2>
            
             <%} session.removeAttribute("success"); %>
-             
+            
+            
             
     </form>
 

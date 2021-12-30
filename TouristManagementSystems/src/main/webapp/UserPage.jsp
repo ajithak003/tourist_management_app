@@ -15,20 +15,34 @@
 </head>
 
 <body>
-
+       <h1>Tourist Management</h1><span>welcome  
+       <% String error=(String)session.getAttribute("welcom");
+            if(error!=null) {%>
+           <%=session.getAttribute("welcom") %>
+           
+            <%} session.removeAttribute("welcom"); %>
+       </span>
+       <br>
 
     <div id="link">
         <ul>
             <li><a href="#">Home</a></li>
             <li ><a href="#">Book Package</a></li>
-            <li><a href="#">Popular Places</a></li>
+            <li><a href="#">Popular Places</a>
+                <ul>
+                <li><a href="#">Kashmir</a>
+                <li><a href="#">maldives</a>
+                <li><a href="#"></a>
+                <li><a href="#">Popular Places</a>
+                </ul>
+            </li>
             <li ><a href="#">My Booking</a></li>
             <li><a href="#">Help</a></li>
             <li><a href="index.html">Logout</a></li>
         </ul>
     </div>
 
-    <h1>Tourist Management</h1>
+   
    <br><br>
    <div class="search">
        <input type="search" name="" id="">

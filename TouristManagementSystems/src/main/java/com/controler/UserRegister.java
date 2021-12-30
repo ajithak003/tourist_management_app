@@ -1,19 +1,21 @@
 package com.controler;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
-import com.daoImplement.AdminTableDaoImplement;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.daoImplement.UserTableDaoImplement;
-import com.model.AdminClass;
+
+import com.daoImplement.UserTableDaoImplement;
 import com.model.UserClass;
 
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+
+
 
 @WebServlet(urlPatterns = {"/register", "/otp"})
 
@@ -22,12 +24,12 @@ public class UserRegister extends HttpServlet {
 
 	Scanner sc = new Scanner(System.in);
 
-	public void doPost(HttpServletRequest req, HttpServletResponse res) {
+	public void service(HttpServletRequest req, HttpServletResponse res) {
 
 		try {
 
 			UserTableDaoImplement userDao = new UserTableDaoImplement();
-			PrintWriter pw = res.getWriter();
+			
 
 			String name = req.getParameter("FullName");
 			System.out.println(name);
@@ -53,7 +55,7 @@ public class UserRegister extends HttpServlet {
 					userDao.reRegister(email);
 					System.out.println("your accout is activated! \n "
 							+ "if you want to change mobile no or password login and update your accout");
-					res.sendRedirect("otp.jsp");
+					//res.sendRedirect("otp.jsp");
 					session.setAttribute("error", "your accout is activated! \n "
 							+ "if you want to change mobile no or password login and update your accout");
 					req.getRequestDispatcher("otp.jsp");

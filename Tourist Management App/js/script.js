@@ -1,11 +1,3 @@
-function register() {
-
-     document.getElementById("register").style.visibility = "visible";
-     document.getElementById("login").style.visibility = "hidden";
-     console.log("success!");
-
-}
-
 
 function success() {
      document.getElementById("success").style.visibility = "visible";

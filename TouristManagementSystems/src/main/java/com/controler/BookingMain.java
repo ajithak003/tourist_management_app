@@ -56,35 +56,14 @@ public class BookingMain {
 			}
 			System.out.println(singlePackage);
 			double totalPrice = 0.0;
-			boolean plan = true;
-			int end = 0;
-			String days = null;
-			do {
-
+			
 				System.out.println(
-						"\n enter the choice 1. 2 days night plan \n 2. 3 days night plan 3. 4 days night plan");
+						"\n enter the days in night");
 				int daysPlan = Integer.parseInt(sc.nextLine());
+				String days =daysPlan+" days night";
+				
 
-				if (daysPlan == 1) {
-					days = " Two days night plan";
-					end = 2;
-					plan = false;
-
-					totalPrice = totalPrice + singlePackage.getPriceTwoDays();
-				} else if (daysPlan == 2) {
-					days = " Three days night plan";
-					plan = false;
-					end = 3;
-					totalPrice = totalPrice + singlePackage.getPriceThreeDays();
-				} else if (daysPlan == 3) {
-					days = " four days night plan";
-					plan = false;
-					end = 4;
-					totalPrice = totalPrice + singlePackage.getPricefourDays();
-				} else {
-					System.out.println("\n enter the correct value");
-				}
-			} while (plan);
+					totalPrice = totalPrice + singlePackage.getPriceOneDays()*daysPlan;
 
 			// System.out.println(totalPrice);
 
@@ -195,11 +174,12 @@ public class BookingMain {
 
 				BookingTableDaoImplement bookDao = new BookingTableDaoImplement();
 				BookingClass booking = null;
+				
 				booking = new BookingClass(userDetails.getId(), singlePackage.getPackageId(),
 						singleFlight.getFlightNo(), singleHotel.getHotelId(), noOfPerson, startDate, totalPrice,
 						flightClass, hotelRoom, days, location);
 				System.out.println(booking.toString1(booking));
-				boolean book = bookDao.insertbooking(booking, end,businessClassSeats,economicClassSeats);
+				boolean book = bookDao.insertbooking(booking, daysPlan,businessClassSeats,economicClassSeats);
 
 				long wallet = userDao.showWalletAmount(userDetails);
 				wallet = (long) (wallet - totalPrice);

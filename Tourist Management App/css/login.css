@@ -10,7 +10,7 @@ body{
 
 .loginbox{
     border: 2px solid;
-    background-color:cornsilk;
+    background-color:lavenderblush;
     border-radius: 20px;
     padding:30px;
      width: 290px;
@@ -65,6 +65,3 @@ a{
     text-decoration: none;
 }
 
-#register{
-    visibility: hidden;
-}

@@ -17,11 +17,7 @@ public class packageMain {
 		System.out.println("enter package name:");
 		String packageName =  sc.nextLine();
 		System.out.println("enter two days package price");
-		double twoDayPrice = Double.parseDouble(sc.nextLine());
-		System.out.println("enter three days package price");
-		double threeDayPrice = Double.parseDouble(sc.nextLine());
-		System.out.println("enter four days package price");
-		double fourDayPrice = Double.parseDouble(sc.nextLine());
+		double oneDayPrice = Double.parseDouble(sc.nextLine());
 		System.out.println("enter season");
 		String season = sc.nextLine();
 		System.out.println("enter the protocol:");
@@ -29,7 +25,7 @@ public class packageMain {
 		System.out.println("enter the description: ");
 		String description = sc.nextLine();
 		
-		PackageModeClass  packageModel = new PackageModeClass(packageName, twoDayPrice, threeDayPrice, fourDayPrice, season, protocol, description);
+		PackageModeClass  packageModel = new PackageModeClass(packageName, oneDayPrice, season, protocol, description);
 		    // System.out.println(packageModel);
 
 		
@@ -62,11 +58,7 @@ public class packageMain {
 		System.out.println("enter package name:");
 		String packageName =  sc.nextLine();
 		System.out.println("enter two days package price");
-		double twoDayPrice = Double.parseDouble(sc.nextLine());
-		System.out.println("enter two days package price");
-		double threeDayPrice = Double.parseDouble(sc.nextLine());
-		System.out.println("enter two days package price");
-		double fourDayPrice = Double.parseDouble(sc.nextLine());
+		double oneDayPrice = Double.parseDouble(sc.nextLine());
 		System.out.println("enter season");
 		String season = sc.nextLine();
 		System.out.println("enter the protocol:");
@@ -74,7 +66,7 @@ public class packageMain {
 		System.out.println("enter the description: ");
 		String description = sc.nextLine();
 		PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
-		PackageModeClass packages = new PackageModeClass(packageId,packageName, twoDayPrice, threeDayPrice, fourDayPrice, season, protocol, description);
+		PackageModeClass packages = new PackageModeClass(packageId,packageName, oneDayPrice, season, protocol, description);
 			boolean update = packageDao.updatePackage(packages);
 			if(update==true){
 				System.out.println("update successfull");
@@ -137,6 +129,7 @@ public List<PackageModeClass> showAllUserPackage() {
 	PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
 
 	packages = packageDao.getAllPackage();
+	
 	// System.out.println("second");
 //	for (int i = 0; i < packages.size(); i++) {
 //
