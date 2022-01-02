@@ -27,13 +27,11 @@
     <div id="link">
         <ul>
             <li><a href="#">Home</a></li>
-            <li ><a href="#">Book Package</a></li>
-            <li><a href="#">Popular Places</a>
+            <li ><a href="papularPlaces.jsp">Book Package</a></li>
+            <li><a href="">Popular Places</a>
                 <ul>
                 <li><a href="#">Kashmir</a>
                 <li><a href="#">maldives</a>
-                <li><a href="#"></a>
-                <li><a href="#">Popular Places</a>
                 </ul>
             </li>
             <li ><a href="#">My Booking</a></li>

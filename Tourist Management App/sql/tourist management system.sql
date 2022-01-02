@@ -11,8 +11,8 @@ describe user_details;
 select * from user_details;
 
 alter table user_details add status varchar(30) default 'active';
-drop table users_details;oacle
-
+drop table users_details;
+update user_details set wallet =400000 where user_id = 1040;
 create table admin_details(
 admin_id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 1,
 name varchar(100) not null,
@@ -45,8 +45,8 @@ CONSTRAINT pk_package_id primary key (package_id)
 
 --alter table package_modes rename column package_price_2n to package_price_1n;
 
-insert into package_modes(package_name,package_price_1n,season,protocols,description) values('kashmir',2000,3000,4000,'winter');
-update user_details set package_name='kashmir',package_price_2n=3000,package_price_3n=5500,package_price_4n=7500,season=snow,protocols=' No restriction on interstate travel as per latest Guidelines issued by the state government
+insert into package_modes(package_name,package_price_1n,season,protocols,description) values('usa',2000,3000,4000,'sprin');
+update user_details set package_name='maldives',package_price_2n=3000,package_price_3n=5500,package_price_4n=7500,season=snow,protocols=' No restriction on interstate travel as per latest Guidelines issued by the state government
 ' ,description='Jammu and Kashmir is home to several valleys such as the Kashmir Valley, Chenab Valley, Sindh Valley and Lidder Valley. Some major tourist attractions in Jammu and Kashmir are Srinagar, the Mughal Gardens, Gulmarg, Pahalgam, Patnitop and Jammu.
 'where package_id=100;
 describe package_modes;
@@ -68,8 +68,10 @@ check(business_class_fare>0),
 check(economic_class_fare>0),
 CONSTRAINT pk_flight_no primary key (flight_no)
 );
-update flights_details set business_class_fare = 10000,economic_class_fare=7200 where flight_no  = 200;
-
+update flights_details set business_class_seat_status = 4 where flight_no  = 221;
+insert into flights_details (flight_name,depature,destination,depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status,
+business_class_seat_status,economic_class_seat_status)values('spiejet' ,'bangalour','kashmir',to_date('03-01-2022 09:30','dd-mm-yyyy hh24:mi'),
+to_date('03-01-2022 19:30','dd-mm-yyyy hh24:mi'),4000,3000,available,2,2);
 select * from flights_details;
 describe flights_details;
 drop table flights_details CASCADE CONSTRAINTS;

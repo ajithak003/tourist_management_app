@@ -4,17 +4,153 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>susPwd</title>
-    <link rel="stylesheet" href="/css/forget.css">
+    <title>popularPlaces</title>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    
+}
+
+/* .place{
+    border: 3px solid;
+    position: absolute;
+    width: 99%;
+    padding-left: 40px;
+    padding: 25px;
+    height: 500px;
+} */
+.firstrowimg{
+    width: 300px;
+    height: 400px;
+}
+h2{
+    top: 450px;
+    left: 85px;
+    font-size: 30px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.box{
+    position: relative;
+    margin-left: 350px;
+    margin-top: 2px;
+    border: 3px solid;   
+}
+
+p{
+    font-weight: bold;
+}
+h3{
+    font-weight: bold;
+}
+.first{
+    position: relative;
+    top:10px ;
+}
+</style>
+
 </head>
 <body>
-    <div id="success">
-        <div class="container">
-        <h1 >Sucessfully created👍</h1>
+
        
-        <a href="login.html">Go to login page</a>
-    </div>
-    </div>
+       
+    <table cellspacing="29px" class="table">
+     <%
+     PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
+		ResultSet rs = packageDao.getAllPackage();
+		
+					while(rs.next()){
+				%>
+
+        <!-- firstrow images -->
+
+                    
+                    <div class="box">
+                
+        
+                    <h3>Location : </h3>
+               
+                <p><%=rs.getString(2)%></p>
+            
+                    <h3>One Day night <br> Package Place  </h3>
+                
+                <p><%=rs.getDouble(3)%></p>
+                
+                
+                
+                    <h3>Season : </h3>
+                
+                <p><%=rs.getString(4)%></p>
+                
+                
+                
+                    <h3>Tourist Protocols : </h3>
+                
+    
+                <p><%=rs.getString(5)%></p>
+               
+                    <p><%=rs.getString(6)%></p>
+            </div>
+            <div class="first">
+        
+                <a href="#">
+                    <img class="firstrowimg" src="/images/kerala/1.png" alt="">
+                   
+                </a>
+            </div>   
+                
+            <% } %>
+            <!-- firstrow images -->
+            <div class="place">
+                <table class="details" cellspacing="30px" cellpadding=""></table>
+                <tr>
+                
+                    <td>
+                        
+                            <a href="#">
+                                <img class="firstrowimg" src="/images/kerala/1.png" alt="">
+                               
+                            </a>
+                            
+                    </td>
+                </div>
+                    <div class="hr"></div>
+                    <div class="box">
+                        
+                 
+                        <h3>Location : </h3>
+                    
+                    <p><%=rs.getString(2)%></p>
+                   
+                        <h3>One Day night <br> Package Place  </h3>
+                    <p><%=rs.getDouble(3)%></p>
+                    
+                        <h3>Season : </h3>
+                    <p><%=rs.getString(4)%></p>
+                   
+                        <h3>Tourist Protocols : </h3>
+                   <p><%=rs.getString(5)%></p>
+                    
+                        <p><%=rs.getString(6)%></p>
+                    
+                </div>
+            </td>
+
+            </tr>
+            <tr>
+                <h2>Kashmir</h2>  
+            </tr>
+        </div>
+    </table>
+            
+            
+                
+          
+            
 
 </body>
 </html>

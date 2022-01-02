@@ -16,15 +16,13 @@
 }
 body{
     background-color:cornsilk;
+
 }
-.place{
-    border: 3px solid;
-    position: absolute;
-    width: 99%;
-    padding-left: 40px;
-    padding: 25px;
-    height: 500px;
+h1{
+    text-align: center;
+    font-size: 60px;
 }
+
 .firstrowimg{
     position: absolute;
     width: 300px;
@@ -37,32 +35,19 @@ h2{
     font-size: 30px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-.hr{
-    border: 3px solid;
-    position: absolute;
-    height: 500px;
-    width: 400px;
-    border-bottom: none;
-    border-top: none;
-    border-left: none;
+a img{
+    width: 1000px;
 }
-.box{
-    border: 3px solid;
-    position: absolute;
-    height: 500px;
-    width: 900px;
-    left: 400px;
-    border-bottom: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    
-   
-    
+.firstrowimg{
+    width: 1150px;
+    margin-left: 7%;
+    height: 400px;
 }
+
 .details{
     position: absolute;
-    left: 420px;
+    left: 70px;
+    top: 500px;
 }
 p{
     font-weight: bold;
@@ -70,27 +55,70 @@ p{
 h3{
     font-weight: bold;
 }
+.btn{
+    position: relative;
+    top: 800px;
+    margin-left: 50%;
+    margin-bottom: 30px;
+}
+input ,button{
+    height: 40px;
+    width: 180px;
+    border-radius: 15px;
+    border: 2px solid;
+}
+#button{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    border-radius: 20px;
+    border: none;
+    left: 25%;
+    top: 820px;
+}
+#container{
+    height: 1100px;
+}
+label{
+    position: relative;
+    top: 780px;
+    left: 26px;
+    padding-left: 140px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.data{
+    position: relative;
+    top: 810px;
+    left: 110px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 28px;
+}
+#select{
+    position: relative;
+    left: 170px;
+    width: 100px;
+}
+
 </style>
 
-</head>
+</head> 
 <body>
-       
-    <table cellspacing="29px" class="table">
-
-        <!-- firstrow images -->
-        <div class="place">
-        <tr>
-            <td>
-                
-                    <a href="#">
-                        <img class="firstrowimg" src="/images/kerala/1.png" alt="">
+    <div id="container">
+    <h1>kashmir</h1>
+    <br>
+                   <a href="#">
+                        <img class="firstrowimg" src="/images/maldives/1.png" alt="">
                        
                     </a>
-                    
-            </td>
-        </div>
-            <div class="hr"></div>
-            <div class="box">
+                      
+            
+      
+           
+            <br>
                 <table class="details" cellspacing="30px" cellpadding="">
          <tr>   
             <td>
@@ -122,14 +150,34 @@ h3{
                 <p>Known as 'Paradise on Earth', Jammu and Kashmir is one of India's most favoured tourist destinations. The state is popular for its picturesque beauty, ...</p>
             </td>
             </tr>
+            
         </table>
-        </div>
-            <tr>
-                <h2>Kashmir</h2>  
-            </tr>
-        
        
-            </table>
+         
+        <table>
+            <tr>
+                <td><label for="">start Date</label></td>
+                <td><label for="">No of person</label></td>
+                <td><label for="">No of days in night</label></td>
+            </tr>
+            <tr>
+                <td><input type="date" name="startdate" id="startdate" class="data"></td>
+                <td> <input type="text" name="noofperson" class="data"></td>
+                <td>
+                   <select name="noofdays" id="select" class="data">
+                      <option value="Twodays">2N</option>
+                      <option value="threedays">3N</option>
+                      <option value="fourdays">4N</option>
+                      <option value="fivedays">5N</option>
+                   </select> 
+                </td>
+                <td><input type="button" value="Book Place" class="btn" id="button" ></td>
+            </tr>
+ 
+        </table>
+      
+       
+    </div>
 
 </body>
 </html>
