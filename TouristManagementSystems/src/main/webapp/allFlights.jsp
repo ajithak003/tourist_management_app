@@ -113,6 +113,7 @@ body{
      DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
      DateTimeFormatter format =
     	     DateTimeFormatter.ofPattern("dd-MM-yyyy");
+     
      BookingClass booking =(BookingClass) session.getAttribute("booking");
    
     String depDate = request.getParameter("startdate") ;
@@ -148,7 +149,7 @@ body{
         <div class="container">
          <h2><%=flight.getFlightName()%></h2>
          <div>
-         <img src="plane.png" alt="">
+         <img src="https://pngimg.com/uploads/plane/plane_PNG5248.png" alt="">
         </div>
         <div class="depature">
         
@@ -168,14 +169,14 @@ body{
             	
             	 flightClass = "business class";
             %>
-                <input type="radio" name="price" id="Business" value="<%=flight.getBusinessClassFare() %>"<%=flight.getBusinessClassFare() %>"><label for="">Business Class <span><%=flight.getBusinessClassFare() %></span></label>
+                <input type="radio" name="price" id="Business" value="<%=flight.getBusinessClassFare() %>" required><label for="">Business Class <span><%=flight.getBusinessClassFare() %></span></label>
                <%} 
                 if(flight.getEconomicClassSeat()>=noOfPerson){ 
                 	 
                 	 flightClass = "economic class";
                 %>
                 
-                <input type="radio" name="price" id="Economic" value="<%=flight.getEconomicClassFare() %>"<%=flight.getEconomicClassFare() %>"><label for="" id="Economic">Economic Class <span><%=flight.getEconomicClassFare() %></span></label>
+                <input type="radio" name="price" id="Economic" value="<%=flight.getEconomicClassFare() %>" required><label for="" id="Economic">Economic Class <span><%=flight.getEconomicClassFare() %></span></label>
                  <%} %>
             </p>
        
@@ -184,7 +185,7 @@ body{
         
         
              <!-- <input type="button" value="Book" id="button"> -->
-             <button id="button" name= "flightno" value="<%=flight.getFlightNo()%>">Book</button>
+             <button id="button" name= "flightno" value="<%=flight.getFlightNo()%>">Book flight</button>
         </div>
      
     </div>

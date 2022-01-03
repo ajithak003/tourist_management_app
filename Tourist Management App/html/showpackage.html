@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>popularPlaces</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>popularPlaces</title>
 <style>
     *{
     margin: 0;
@@ -105,56 +105,58 @@ label{
 
 </style>
 
-</head> 
-<body>
-    <div id="container">
-    <h1>kashmir</h1>
-    <br>
-                   <a href="#">
-                        <img class="firstrowimg" src="/images/maldives/1.png" alt="">
-                       
-                    </a>
-                      
-            
-      
-           
-            <br>
-                <table class="details" cellspacing="30px" cellpadding="">
-         <tr>   
-            <td>
-                <h3>Location : </h3>
-            </td>
-            <td><p>kashmir</p></td>
-            </tr>
-            <tr>
-            <td>
-                <h3>One Day night <br> Package Place  </h3>
-            </td>
-            <td><p>5000</p></td>
-            </tr>
-            <tr>
-            <td>
-                <h3>Season : </h3>
-            </td>
-            <td><p>winder</p></td>
-            </tr>
-            <tr>
-            <td>
-                <h3>Tourist Protocols : </h3>
-            </td>
 
-            <td><p>No restriction on interstate travel as per latest Guidelines issued by the state government</p></td>
-            </tr>
-            <tr>
-            <td>
-                <p>Known as 'Paradise on Earth', Jammu and Kashmir is one of India's most favoured tourist destinations. The state is popular for its picturesque beauty, ...</p>
-            </td>
-            </tr>
-            
-        </table>
-       
-         
-        <table>
+</head>
+<body>
+
+	
+     <form action="allFlights.jsp">
+	<div id="container">
+	
+		<h1 name="place"><%=packages.getName()%></h1>
+		<br> <a href="#"> <img class="firstrowimg"
+			src="/images/maldives/1.png" alt="">
+
+		</a> <br><br>
+		<table class="details" cellspacing="30px" cellpadding="">
+			<tr>
+				<td>
+					<h3>Location :</h3>
+				</td>
+				<td><p><%=packages.getName()%></p></td>
+			</tr>
+			<tr>
+				<td>
+					<h3>
+						One Day night <br> Package Place
+					</h3>
+				</td>
+				
+				<td><p><%=packages.getPriceOneDays() %></p></td>
+			</tr>
+			<tr>
+				<td>
+					<h3>Season :</h3>
+				</td>
+				<td><p><%=packages.getSeason() %></p></td>
+			</tr>
+			<tr>
+				<td>
+					<h3>Tourist Protocols :</h3>
+				</td>
+
+				<td><p><%=packages.getProtocols() %></p></td>
+			</tr>
+			<tr>
+				<td>
+					<p><%=packages.getDescription()%></p>
+				</td>
+			</tr>
+
+		</table>
+
+
+            <table>
             <tr>
                 <td><label for="">start Date</label></td>
                 <td><label for="">No of person</label></td>
@@ -165,19 +167,24 @@ label{
                 <td> <input type="text" name="noofperson" class="data"></td>
                 <td>
                    <select name="noofdays" id="select" class="data">
-                      <option value="Twodays">2N</option>
-                      <option value="threedays">3N</option>
-                      <option value="fourdays">4N</option>
-                      <option value="fivedays">5N</option>
+                      <option value="2 days plan">2N</option>
+                      <option value="3 days plan">3N</option>
+                      <option value="4 days plan">4N</option>
+                      <option value="5 days plan">5N</option>
                    </select> 
                 </td>
-                <td><input type="button" value="Book Place" class="btn" id="button" ></td>
+                <td>
+                <button value="Book Place" class="btn" id="button">Book Place</button>
+                </td>
             </tr>
  
         </table>
-      
-       
-    </div>
+		
+	</div>
+	</form>
+	
+	
+	
 
 </body>
 </html>

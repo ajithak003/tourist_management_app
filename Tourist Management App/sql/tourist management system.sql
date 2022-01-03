@@ -68,10 +68,10 @@ check(business_class_fare>0),
 check(economic_class_fare>0),
 CONSTRAINT pk_flight_no primary key (flight_no)
 );
-update flights_details set business_class_seat_status = 4 where flight_no  = 221;
+update flights_details set economic_class_seat_status  = 40 where flight_no  = 221;
 insert into flights_details (flight_name,depature,destination,depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status,
 business_class_seat_status,economic_class_seat_status)values('spiejet' ,'bangalour','kashmir',to_date('03-01-2022 09:30','dd-mm-yyyy hh24:mi'),
-to_date('03-01-2022 19:30','dd-mm-yyyy hh24:mi'),4000,3000,available,2,2);
+to_date('03-01-2022 19:30','dd-mm-yyyy hh24:mi'),4000,3000,available,40,40);
 select * from flights_details;
 describe flights_details;
 drop table flights_details CASCADE CONSTRAINTS;

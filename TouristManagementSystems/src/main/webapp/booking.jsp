@@ -79,13 +79,20 @@
         double totalPrice = booking.getTotalPrice()+hotelPrice;
         System.out.println(totalPrice);
         
-        int days = Integer.parseInt(booking.getDaysPlan().substring(0, 1));
-    	System.out.println(days);
-        
         HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
         HotelClass hotel = hotelDao.getSingleHotel(Integer.parseInt(hotelId));
        // System.out.println(hotel);
         session.setAttribute("singlehotel", hotel);
+        String hotelRoomType = null;
+        String room = null;
+        if(hotel.getPremiumPrice()==hotelPrice){
+        	hotelRoomType = "premimum room";
+        	room = "premimum room";
+        }
+        else{
+        	 hotelRoomType = "mid range room"; 
+        	 room = "Standard Room";
+        }
         
         UserClass user = (UserClass) session.getAttribute("user");
       //  System.out.println(user);
@@ -189,11 +196,11 @@
         </tr>
         <tr>
             <td>Room Type : </td>
-            <td><%=booking.getHotelRoomType() %></td>
+            <td><%=room %></td>
         </tr>
         <tr>
             <td>Hotel One Day Night Price : </td>
-            <td><%=hotelPrice %></td>
+            <td><%= hotelPrice %></td>
         </tr>
         <tr>
             <td><h3>Package Total Price</h3> </td>
@@ -204,37 +211,15 @@
 
 
 <% 
- // System.out.println(seats);
-if (user.getWallet() >=totalPrice ) {
-	UserTableDaoImplement userDao = new UserTableDaoImplement();
-	BookingTableDaoImplement bookDao = new BookingTableDaoImplement();
-	BookingClass bookings = null;
-	
-	booking = new BookingClass(user.getId(), packages.getPackageId(),
+ 
+BookingClass bookings = new BookingClass(user.getId(), packages.getPackageId(),
 			flight.getFlightNo(), hotel.getHotelId(), booking.getNoOfPerson(),booking.getStartDate(), totalPrice,
-			booking.getFlightClass(),booking.getHotelRoomType(),booking.getDaysPlan(),booking.getPackageName());
-	System.out.println(booking.toString1(booking));
-	  int businessClassSeats = 0;
-	  int economicClassSeats = 0;
-	  if(booking.getFlightClass().equalsIgnoreCase("business class")){
-		  businessClassSeats = flight.getBusinessClassSeat() - booking.getNoOfPerson();
-	  }
-	  else{
-		  economicClassSeats= flight.getEconomicClassSeat() - booking.getNoOfPerson();
-	  }
+			booking.getFlightClass(),hotelRoomType,booking.getDaysPlan(),booking.getPackageName());
 	
-	boolean book = bookDao.insertbooking(booking, days,businessClassSeats,economicClassSeats);
+	session.setAttribute("confirmbooking", bookings);
+	
+	
 
-	long wallet = userDao.showWalletAmount(user);
-	wallet = (long) (wallet - totalPrice);
-	userDao.addWalletAmount(user.getId(), wallet);
-	if (book == true) {
-		System.out.println("\n \n successfully booked \n\n" + "get a amazing trip");
-	} else {
-
-		System.out.println("\n unable to booking \n please try again");
-	}
-} 
 %>
 </div>
 </form>

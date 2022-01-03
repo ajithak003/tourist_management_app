@@ -17,9 +17,9 @@
 <div id="link" >
 <ul >
 <li><a href="#">Home</a></li>
-<li><a href="popularPlaces.html" >Popular Places</a></li>
-<li><a href="#">Book Package</a></li>
-<li><a href="#" >Help</a></li>
+<li><a href="papularPlaces.jsp" >Popular Places</a></li>
+<li><a href="papularPlaces.jsp">Book Package</a></li>
+<li><a href="#" >Ratings</a></li>
 <li><a href="login.jsp" >Login</a></li>
 
 </ul>

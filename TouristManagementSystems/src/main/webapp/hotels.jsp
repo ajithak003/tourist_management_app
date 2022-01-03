@@ -146,13 +146,13 @@ for (int i = 0; i < hotels.size(); i++) {
             	
             	 hotelRoomType = "mid range room"; 
             %>
-        <input type="radio" name="hotelprice" id="Normal" value="<%=hotel.getMidRangePrice() %>"><label for="">Normal Room <span><%=hotel.getMidRangePrice()%></span></label>
+        <input type="radio" name="hotelprice" id="Normal" value="<%=hotel.getMidRangePrice() %>" required><label for="">Normal Room <span><%=hotel.getMidRangePrice()%></span></label>
         <%} 
                 { 
                 	 
                 	hotelRoomType = "premimum room";
                 %>
-        <input type="radio" name="hotelprice" id="Premium" value="<%=hotel.getPremiumPrice() %>"><label for="" id="Premium">Premium Room<span><%=hotel.getPremiumPrice()%></span></label>
+        <input type="radio" name="hotelprice" id="Premium" value="<%=hotel.getPremiumPrice() %>" required><label for="" id="Premium">Premium Room <span><%=hotel.getPremiumPrice()%></span></label>
        <%} %>
     </p>    
 </div>

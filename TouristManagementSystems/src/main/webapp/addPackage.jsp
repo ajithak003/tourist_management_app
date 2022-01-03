@@ -40,15 +40,30 @@ input{
     border: 3px solid;
     height: 25px;
     width: 222px;
+     font-size: 16px;
+    
+    font-weight: bold;
 }
 textarea{
     border: 3px solid;
 }
-
+button{
+    height: 30px;
+    width: 150px;
+    margin-left: 70%;
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: cyan;
+    font-size: 18px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    border:none
+}
 
     </style>
 </head>
 <body>
+<form action="addpackage">
     <h1>Add Tourist Package</h1>
     <br><br><br>
 
@@ -61,21 +76,39 @@ textarea{
      
       <tr>
      <td> <label for="price">Package one day night price : </label></td>
-     <td> <input type="text" name="packageonedayprice" id="packageonedayprice"></td>
+     <td> <input type="text" name="packageonedayprice" id="packageonedayprice" required></td>
      </tr>
       <tr>
 <td><label for="season">current season :</label></td>
-     <td> <input type="text" name="season" id="season"></td>
+     <td> <input type="text" name="season" id="season" required></td>
       </tr>
       <tr>
      <td> <label for="protocol">current tourist protocols :</label></td>
-      <td><textarea name="" id="" cols="30" rows="3"></textarea></td>
+      <td><textarea name="protocol" id="" cols="30" rows="3" required></textarea></td>
       </tr>
       <tr>
      <td> <label for="description">Tourist Place Description :</label></td>
-      <td><textarea name="description" id="description" cols="30" rows="3"></textarea></td>
+      <td><textarea name="description" id="description" cols="30" rows="3" required></textarea></td>
     </tr>
     </table>
+    <button >Add Package</button>
     </div>
+   <%-- <% String data=(String)session.getAttribute("addpackage");
+   if(data.equals("true")){%>
+         <script type="text/javascript">
+         alert("Added Successful");
+         </script>
+         <%} 
+         
+         if(data.equals("false")){%>
+         <script type="text/javascript">
+         alert("Data not inserted! please enter the correctr values");
+         </script>
+         <%} %> --%>
+         
+    <script >
+    
+    </script>
+    </form>
 </body>
 </html>

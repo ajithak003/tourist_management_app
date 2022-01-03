@@ -81,7 +81,8 @@ public class Login extends HttpServlet {
 					res.sendRedirect("UserPage.jsp");
 					//System.out.println("Welcom " + user.getName());
 					session.setAttribute("user", user);
-					session.setAttribute("welcom",user.getName() );
+					session.setAttribute("welcom",user.getName());
+					session.setAttribute("wallet", "none");
 					req.getRequestDispatcher("UserPage.jsp").forward(req,res); 
 					
 				}

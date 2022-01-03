@@ -181,7 +181,7 @@ label{
                 <td><label for="">No of days in night</label></td>
             </tr>
             <tr>
-                <td></td>
+                <td><input type="date" name="startdate" id="startdate" class="data"></td>
                 <td> <input type="text" name="noofperson" class="data"></td>
                 <td>
                    <select name="noofdays" id="select" class="data">
@@ -197,7 +197,7 @@ label{
             </tr>
  
         </table>
-		<input type="date" name="startdate" id="startdate" class="data">
+		
 	</div>
 	</form>
 	
@@ -209,4 +209,24 @@ label{
 	
 
 </body>
+
+<script>
+
+today();
+function today(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var max = today.setMonth( today.getMonth() + 1 );
+maxdate = today.getFullYear() + '-' + 0+(today.getMonth() + 1) + '-'+ 0+today.getDate()  ;
+mindate =yyyy + '-' + mm + '-'+ dd  ;
+document.getElementById("startdate").setAttribute("max",maxdate);
+console.log(maxdate);
+console.log(mindate);
+document.getElementById("startdate").setAttribute("min",mindate);
+}
+
+</script>
+
 </html>

@@ -34,9 +34,9 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 //		String date1=dateFormatMDY.format(employees.getHire());
 			pstmt.setString(1, Packages.getName());
 			pstmt.setDouble(2, Packages.getPriceOneDays());
-			pstmt.setString(5, Packages.getSeason());
-			pstmt.setString(6, Packages.getProtocols());
-			pstmt.setString(7, Packages.getDescription());
+			pstmt.setString(3, Packages.getSeason());
+			pstmt.setString(4, Packages.getProtocols());
+			pstmt.setString(5, Packages.getDescription());
 			
 //			System.out.println(insert);
 			pstmtvalue = pstmt.executeUpdate();

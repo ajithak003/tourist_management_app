@@ -28,14 +28,19 @@
         <ul>
             <li><a href="#">Home</a></li>
             <li ><a href="papularPlaces.jsp">Book Package</a></li>
-            <li><a href="">Popular Places</a>
-                <ul>
+            <li><a href="papularPlaces.jsp">Popular Places</a>
+               <!--  <ul>
                 <li><a href="#">Kashmir</a>
                 <li><a href="#">maldives</a>
-                </ul>
+                </ul> -->
             </li>
-            <li ><a href="#">My Booking</a></li>
-            <li><a href="#">Help</a></li>
+            <li >><a href="#">My Booking</a></li>
+            <li >><a href="#">More</a>
+            <ul>
+            <a href="#"><li>Profile</li></a>
+           <a href="wallet.jsp"> <li>Wallet Topup</li></a>
+            </ul>
+            </li>
             <li><a href="index.html">Logout</a></li>
         </ul>
     </div>
