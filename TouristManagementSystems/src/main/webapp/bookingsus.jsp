@@ -14,29 +14,49 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+body{
+ background-color:ivory;
+}
+h1{
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color:rgb(25, 141, 25);
+    text-align: center;
+    margin-top: 18%;
+}
+h2,a{
+    text-align: center;
+    text-decoration: none;
+}
+</style>
 </head>
 <body>
 
 <% 
-UserClass user = (UserClass) session.getAttribute("user");
+UserClass users = (UserClass) session.getAttribute("user");
+UserTableDaoImplement userDao = new UserTableDaoImplement(); 
+UserClass user = userDao.getUserById(users);
+
+
 BookingClass booking = (BookingClass) session.getAttribute("confirmbooking");
 FlightClass flight = (FlightClass) session.getAttribute("singleflight");
 
 int days = Integer.parseInt(booking.getDaysPlan().substring(0, 1));
-System.out.println(days);
+//System.out.println(days);
 
-  System.out.println(user.getWallet() );
+//  System.out.println(user.getWallet() );
   
   
 if (user.getWallet() >=booking.getTotalPrice() ) {
-	UserTableDaoImplement userDao = new UserTableDaoImplement();
 	BookingTableDaoImplement bookDao = new BookingTableDaoImplement();
 	BookingClass bookings = null;
 	
 	BookingClass confirmBooking = new BookingClass(user.getId(), booking.getPackageIid(),
 			booking.getFlightNo(), booking.getHotelId(), booking.getNoOfPerson(),booking.getStartDate(), booking.getTotalPrice(),
 			booking.getFlightClass(),booking.getHotelRoomType(),booking.getDaysPlan(),booking.getPackageName());
-	System.out.println(booking.toString1(booking));
+	//System.out.println(booking.toString1(booking));
 	  int businessClassSeats = 0;
 	  int economicClassSeats = 0;
 	  if(booking.getFlightClass().equalsIgnoreCase("business class")){
@@ -63,6 +83,7 @@ else {
 	}
 
 %>
-        <h1>Booking Successful</h1>
+        <h1>Booking Successful !</h1>
+        <h2><a href="UserPage.jsp">GoTo Home</a></h2>
 </body>
 </html>

@@ -141,7 +141,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 	}
 
 	@Override
-	public boolean updatebooking(int user_id, LocalDate startDate,double refundPrice,int businessSeats,int economicSeats,int flightNo)
+	public boolean updatebooking(int user_id, LocalDate startDate,double refundPrice,int businessSeats,int economicSeats,int flightNo, int bookinId)
 			 {
 		// TODO Auto-generated method stub
 		Connection con = null;
@@ -150,9 +150,10 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		PreparedStatement pstmtflight =null;
 		int pstmtvalue = 0;
 		String update = "cancel";
-		String query = "update booking_details set status='"+update+"',payment_details='"+"payment refunded"+"' where user_id="+user_id+"and to_char(start_date,'yyyy-mm-dd')='"+startDate+"'";
+		String query = "update booking_details set status='"+update+"',payment_details='"+"payment refunded"+"' where user_id="+user_id+"and to_char(start_date,'yyyy-mm-dd')='"+startDate+"' and booking_id="+bookinId;
+		System.out.println(query);
 		String wallet = "update user_details set wallet="+refundPrice+"where user_id="+user_id;
-		String flight = "update flights_details set business_class_seat_status="+businessSeats+",economic_class_seat_status="+economicSeats+"where flight_no="+flightNo;
+		String flight = "update flights_details set business_class_seat_status=?,economic_class_seat_status=? where flight_no=?";
 
 		String commit = "commit";
 		try {
@@ -161,6 +162,9 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		pstmt = con.prepareStatement(query);
 		pstmtUser =con.prepareStatement(wallet);
 		pstmtflight = con.prepareStatement(flight);
+		pstmtflight.setInt(1, businessSeats);
+		pstmtflight.setInt(2, economicSeats);
+		pstmtflight.setInt(3, flightNo);
 		
 		pstmtvalue = pstmt.executeUpdate();
 		pstmt.executeUpdate(commit);
@@ -252,35 +256,59 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		return bookingDetails;
 	}
 	
-	public boolean dateChange(BookingClass booking ,long wallet,int end) {
+	public boolean dateChange(BookingClass booking ,double wallet,int end,int newFlightbSeat, int newFlighteSeat,int oldFlightbSeat,int oldFlighteSeat,int newFlightNo, int bookingId) {
 		
 		DateTimeFormatter formatter =
 	            DateTimeFormatter.ofPattern("dd-mm-yyyy");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmtUser = null;
-		int pstmtvalue = 0;
-		String query = "update booking_details set flight_no=?,start_date=?,end_date=?+? where booking_id= ?";
-		String updateWallet = "update user_details set wallet="+wallet+" where user_id="+booking.getUserId();
-		String commit = "commit";
+		PreparedStatement pstmtoldflight = null;
+		PreparedStatement pstmtnewflight = null;
 		
+		int pstmtvalue = 0;
+		String query = "update booking_details set flight_no=?,start_date=?,end_date=?+? where booking_id=?";
+		String updateWallet = "update user_details set wallet="+wallet+" where user_id="+booking.getUserId();
+		String newFlight = "update flights_details set business_class_seat_status  ="+newFlightbSeat+",economic_class_seat_status="+newFlighteSeat+" where flight_no  ="+newFlightNo;
+		String oldFlight = "update flights_details set business_class_seat_status  ="+oldFlightbSeat+",economic_class_seat_status="+oldFlighteSeat+" where flight_no  ="+booking.getFlightNo();
+		String commit = "commit";
+		System.out.println(query);
+		System.out.println(updateWallet); 
+		System.out.println(newFlight);
+		System.out.println(oldFlight);
 		try {
 		
 		con = ConnectionUtil.getDBConnect();
 		pstmt = con.prepareStatement(query);
 		pstmtUser =con.prepareStatement(updateWallet);
+		pstmtoldflight = con.prepareStatement(oldFlight);
+		pstmtnewflight = con.prepareStatement(newFlight);
 		
-		pstmt.setInt(1, booking.getFlightNo());
+		System.out.println(newFlightNo);
+		pstmt.setInt(1, newFlightNo);
+		System.out.println(booking.getStartDate());
 		pstmt.setDate(2, java.sql.Date.valueOf(booking.getStartDate()));
+		System.out.println(booking.getStartDate());
 		pstmt.setDate(3, java.sql.Date.valueOf(booking.getStartDate()));
+		System.out.println(end);
 		pstmt.setInt(4,end);
-		pstmt.setInt(5, booking.getBookingId());
+		System.out.println( bookingId);
+		pstmt.setInt(5, bookingId);
 		
 		
 		pstmtvalue = pstmt.executeUpdate();
+		 pstmt.executeUpdate(commit);
+		 
 		pstmtUser.executeUpdate();
-       // pstmt.executeUpdate(commit);
-        //pstmtUser.executeUpdate(commit);
+		pstmtUser.executeUpdate(commit);
+		
+		pstmtoldflight.executeUpdate();
+		pstmtoldflight.executeUpdate(commit);
+		
+		pstmtnewflight.executeUpdate();
+		pstmtnewflight.executeUpdate(commit);
+		
+        //
 		}	catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -290,6 +318,36 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		}
 		return pstmtvalue>0;
 		
+	}
+	
+	public BookingClass getSingleBookingById(int bookingId) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		Statement stmt = null;
+		BookingClass booking=null;
+		String query = "select * from booking_details where booking_id="+bookingId;
+		
+		try {
+			
+			con = ConnectionUtil.getDBConnect();
+			
+			 stmt =con.createStatement();
+			
+			 ResultSet rs = stmt.executeQuery(query);
+			
+			if(rs.next()) {
+				 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16));		
+		
+				
+		}
+		}	catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closeStatement(stmt, con);
+		}
+		return booking;
 	}
 
 	

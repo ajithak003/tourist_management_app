@@ -212,7 +212,7 @@ label{
 
 <script>
 
-today();
+/* today();
 function today(){
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -225,7 +225,7 @@ document.getElementById("startdate").setAttribute("max",maxdate);
 console.log(maxdate);
 console.log(mindate);
 document.getElementById("startdate").setAttribute("min",mindate);
-}
+} */
 
 </script>
 

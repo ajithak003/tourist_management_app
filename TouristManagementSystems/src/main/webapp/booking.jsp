@@ -71,13 +71,13 @@
    BookingClass booking =(BookingClass) session.getAttribute("bookingsflight"); 
    
         String hotelId = request.getParameter("hotelid");
-        System.out.println(hotelId);
+       // System.out.println(hotelId);
         
             
         double hotelPrice = Double.parseDouble(request.getParameter("hotelprice"));
         
         double totalPrice = booking.getTotalPrice()+hotelPrice;
-        System.out.println(totalPrice);
+      //  System.out.println(totalPrice);
         
         HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
         HotelClass hotel = hotelDao.getSingleHotel(Integer.parseInt(hotelId));

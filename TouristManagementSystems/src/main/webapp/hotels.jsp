@@ -103,7 +103,7 @@
         int flightNo = Integer.parseInt(flightNoStr);
         
         double flightFare = Double.parseDouble (request.getParameter("price"));
-        System.out.println(flightFare);
+        //System.out.println(flightFare);
         
         
         FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
@@ -112,7 +112,7 @@
        // System.out.println(flight);
        double totalPrice = (booking.getTotalPrice()+flightFare) * booking.getNoOfPerson();
        
-       System.out.println(totalPrice);
+      // System.out.println(totalPrice);
        
         session.setAttribute("flight", flight);
        
@@ -169,7 +169,7 @@ for (int i = 0; i < hotels.size(); i++) {
       BookingClass bookings = new  BookingClass( booking.getUserId(),booking.getPackageIid(),booking.getFlightNo(),0,booking.getNoOfPerson(),booking.getStartDate(),totalPrice,booking.getFlightClass(),hotelRoomType,booking.getDaysPlan(),booking.getPackageName()); 
 		session.setAttribute("bookingsflight",bookings);
 		
-		System.out.println("hotelpage "+bookings); %>
+		//System.out.println("hotelpage "+bookings); %>
 		
 		</form>
 </body>

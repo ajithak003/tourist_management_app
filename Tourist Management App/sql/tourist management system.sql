@@ -12,7 +12,7 @@ select * from user_details;
 
 alter table user_details add status varchar(30) default 'active';
 drop table users_details;
-update user_details set wallet =400000 where user_id = 1040;
+update user_details set wallet =200000 where user_id = 1040;
 create table admin_details(
 admin_id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 1,
 name varchar(100) not null,
@@ -68,7 +68,7 @@ check(business_class_fare>0),
 check(economic_class_fare>0),
 CONSTRAINT pk_flight_no primary key (flight_no)
 );
-update flights_details set economic_class_seat_status  = 40 where flight_no  = 221;
+    update flights_details set business_class_seat_status  = 40 where flight_no  = 221;
 insert into flights_details (flight_name,depature,destination,depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status,
 business_class_seat_status,economic_class_seat_status)values('spiejet' ,'bangalour','kashmir',to_date('03-01-2022 09:30','dd-mm-yyyy hh24:mi'),
 to_date('03-01-2022 19:30','dd-mm-yyyy hh24:mi'),4000,3000,available,40,40);
@@ -98,7 +98,7 @@ drop table hotel_details  CASCADE CONSTRAINTS;
 insert into hotel_details(location,hotel_name,room_type_mid_range_price,room_type_premium_price) values('kashmir','white snow',3000,4000);
 insert into hotel_details(location,hotel_name,room_type_mid_range_price,room_type_premium_price) values('kashmir','hotel cafe',2500,3750);
 create table booking_details(
-booking_id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 300,
+  NUMBER GENERATED ALWAYS AS IDENTITY START WITH 300,
 user_id number not null,
 package_id number not null,
 flight_no number not null,

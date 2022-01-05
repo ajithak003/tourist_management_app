@@ -56,6 +56,7 @@
          if(data.equals("low")){%>
          <script type="text/javascript">
          alert("Insufficient balance ! please Topup");
+         session.setAttribute("wallet", "none");
          </script>
          <%} %>
          

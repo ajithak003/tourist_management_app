@@ -84,8 +84,7 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int pstmtvalue = 0;
-		SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MM-yyyy");
-		SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
+		System.out.println(flight);
 		
 		String commit = "commit";
 		String insert = "update flights_details set flight_name=?,depature=?,destination=?,depature_date_time=?,arrival_date_time=?,business_class_fare=?,economic_class_fare=?,status=?,business_class_seat_status=?,economic_class_seat_status=?"

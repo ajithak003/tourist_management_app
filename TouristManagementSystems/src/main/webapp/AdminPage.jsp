@@ -19,7 +19,9 @@
             if(error!=null) {%>
            <%=session.getAttribute("welcom") %>
            
-            <%} session.removeAttribute("welcom"); %>
+            <%} session.removeAttribute("welcom");
+            
+            session.setAttribute("updateflight", "none");%>
   </span>
   <br>
 <div id="link" >
@@ -37,7 +39,7 @@
 <li ><a href="#" >flights</a>
   <ul class="list">
     <li><a href="addFlight.jsp">Add flight</a></li>
-    <li><a href="#">show all flight</a></li>
+    <li><a href="showAllFlight.jsp">show all flight</a></li>
   </ul></li>
   <li></li>
   <li><a href="">Hotels</a>

@@ -34,14 +34,14 @@
                 <li><a href="#">maldives</a>
                 </ul> -->
             </li>
-            <li >><a href="#">My Booking</a></li>
+            <li >><a href="showAllBooking.jsp">My Booking</a></li>
             <li >><a href="#">More</a>
             <ul>
             <a href="#"><li>Profile</li></a>
            <a href="wallet.jsp"> <li>Wallet Topup</li></a>
             </ul>
             </li>
-            <li><a href="index.html">Logout</a></li>
+            <li><a href="index.jsp">Logout</a></li>
         </ul>
     </div>
 

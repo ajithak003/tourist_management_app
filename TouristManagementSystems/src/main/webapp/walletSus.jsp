@@ -22,8 +22,9 @@ h1{
     text-align: center;
     margin-top: 18%;
 }
-h2{
+h2,a{
     text-align: center;
+    text-decoration: none;
 }
 span{
     color:crimson;
@@ -47,13 +48,13 @@ span{
     <h1>Transaction Successful</h1>
     <h2>Your wallet Amount : <span><%=newUser.getWallet() %></span></h2>
     <br><br>
-    <h2><a href="index.jsp">Go To Home</a></h2>
+    <h2><a href="UserPage.jsp">Go To Home</a></h2>
     <%} 
    else{
 	   %>
 	   <h1>Transaction failed👍</h1>
 	    <h2>Your wallet Amount : <span><%=user.getWallet() %></span></h2>
-	    <h2><a href="index.jsp">Go To Home</a></h2>
+	    <h2><a href="UserPage.jsp">Go To Home</a></h2>
  <%} %>
 </body>
 </html>

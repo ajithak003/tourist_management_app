@@ -1,6 +1,9 @@
+<%@page import="com.ajith.model.FlightClass"%>
+<%@page import="com.ajith.daoImplement.FlightTableDaoImplement"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
+    
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +19,7 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color:wheat;
+  background-color:azure;
   
 }
 
@@ -66,60 +69,70 @@ button{
     </style>
 </head>
 <body>
-<form action="addflight">
     <div class="container">
-    <h1>Add Flight</h1>
+    <h1>Update Flight</h1>
     <br><br><br>
+     
+     <form action="updateflight">
+    
+    
+    <% int flightNo = Integer.parseInt(request.getParameter("flightno"));
+       System.out.print(flightNo);
+    
+       FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
+       FlightClass flight = flightDao.getSingleFlight(flightNo);
+    %>
 
     <div class="addpackage">
         <table cellspacing="20px" cellpadding="30px">  
             <tr>
      <td><label for="location">Flight Name : </label></td> 
-     <td> <input type="text" name="flightname" id="flightname" required></td> 
+     <td> <input type="text" name="flightname" id="flightname" value="<%=flight.getFlightName() %>" required></td> 
     </tr>
      
       <tr>
      <td> <label for="depature">Depature Location : </label></td>
-     <td> <input type="text" name="Depature" id="Depature" required></td>
+     <td> <input type="text" name="Depature" id="Depature" value="<%=flight.getDepature()%>"></td>
      </tr>
       <tr>
 <td><label for="destination">destination Location :</label></td>
-     <td> <input type="text" name="destination" id="destination" required></td>
+     <td> <input type="text" name="destination" id="destination" value="<%=flight.getDestination()%>"></td>
       </tr>
       <tr>
           <td><label>Depature Date And Time</label></td>
-          <td><input type="datetime-local" name="DepatureDate" id="Depature Date" required></td>
+          <td><input type="datetime-local" name="DepatureDate" id="Depature Date" value="<%=flight.getDepatureDateTime()%>"></td>
       </tr>
       <tr>
         <td><label>Arrival Date And Time</label></td>
-        <td><input type="datetime-local" name="ArrivalDate" id="Arrival Date" required> </td>
+        <td><input type="datetime-local" name="ArrivalDate" id="Arrival Date" value="<%=flight.getArrivalDateTime()%>"></td>
     </tr>
       <tr>
      <td> <label for="">Business Class Fare  :</label></td>
-      <td><input type="text" name="businessclassfare" id="businessclassfare" pattern="[0-9]{2,10}" required></td>
+      <td><input type="text" name="businessclassfare" id="businessclassfare" value="<%=flight.getBusinessClassFare()%>" pattern="[0-9]{2,10}" ></td>
       </tr>
       <tr>
         <td> <label for="">Economic Class Fare  :</label></td>
-         <td><input type="text" name="economicclassfare" id="economicclassfare" pattern="[0-9]{2,10}" required></td>
+         <td><input type="text" name="economicclassfare" id="economicclassfare" value="<%=flight.getEconomicClassFare()%>" pattern="[0-9]{2,10}" ></td>
          </tr>
 
       <tr>
      <td> <label for=" ">Status :</label></td>
-      <td><input type="text" name="status" id="status" cols="30" rows="3" required></td>
+      <td><input type="text" name="status" id="status" cols="30" rows="3" value="<%=flight.getStatus()%>"></td>
     </tr>
 </tr>
 <tr>
 <td> <label for="">Business Class Seats Count  :</label></td>
-<td><input type="text" name="businessclassseat" id="businessclassseatr" required pattern="[0-9]{2,3}"></td>
+<td><input type="text" name="businessclassseat" id="businessclassseat" value="<%=flight.getBusinessClassSeat()%>" pattern="[0-9]{2,3}" ></td>
 </tr>
 <tr>
   <td> <label for="">Economic Class Seats Count  :</label></td>
-   <td><input type="text" name="economicclassseat" id="economicclassseat" required pattern="[0-9]{2,3}"></td>
+   <td><input type="text" name="economicclassseat" id="economicclassseat" value="<%=flight.getEconomicClassSeat()%>" pattern="[0-9]{2,3}"></td>
    </tr>
     </table>
-    <button >Add Flight</button>
-    </div>
+    
+    <button name="flightno" value="<%=flight.getFlightNo()%>">Update Flight</button>
     </div>
     </form>
+    </div>
 </body>
 </html>
