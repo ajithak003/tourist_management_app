@@ -24,7 +24,7 @@ h1{
 }
 .addpackage{
     border: 3px solid;
-    height: 450px;
+    height: 480px;
     width: 45%;
     position: absolute;
     left: 27%;
@@ -65,7 +65,7 @@ button{
 <body>
 <form action="addpackage">
     <h1>Add Tourist Package</h1>
-    <br><br><br>
+  <h2><a href="AdminPage.jsp">Go To Home</a></h2>
 
     <div class="addpackage">
         <table cellspacing="20px" cellpadding="30px">  
@@ -90,25 +90,12 @@ button{
      <td> <label for="description">Tourist Place Description :</label></td>
       <td><textarea name="description" id="description" cols="30" rows="3" required></textarea></td>
     </tr>
+    <tr>
+    <td>Add Images URL : </td>
+    <td> <input type="file" name="packageimage" id="packageimage" required> </td>
+    </tr>
     </table>
     <button >Add Package</button>
-    </div>
-   <%-- <% String data=(String)session.getAttribute("addpackage");
-   if(data.equals("true")){%>
-         <script type="text/javascript">
-         alert("Added Successful");
-         </script>
-         <%} 
-         
-         if(data.equals("false")){%>
-         <script type="text/javascript">
-         alert("Data not inserted! please enter the correctr values");
-         </script>
-         <%} %> --%>
-         
-    <script >
-    
-    </script>
     </form>
 </body>
 </html>

@@ -24,22 +24,26 @@ public class addPackage extends HttpServlet {
 		PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
 		
 		String packagename = req.getParameter("packagename");
-		System.out.println(packagename);
+		//System.out.println(packagename);
 		
 		double packageOneDayPrice = Double.parseDouble(req.getParameter("packageonedayprice"));
-		System.out.println(packageOneDayPrice);
+		//System.out.println(packageOneDayPrice);
 		
 		String season = req.getParameter("season");
-		System.out.println(season);
+		//System.out.println(season);
 		
 		String protocol = req.getParameter("protocol");
-		System.out.println(protocol);
+		//System.out.println(protocol);
 		
 		String description = req.getParameter("description");
-		System.out.println(description);
+		//System.out.println(description);
 		
-		PackageModeClass packages = new PackageModeClass(packagename,packageOneDayPrice,season,protocol,description);
-		System.out.println(packages);
+		String image = req.getParameter("packageimage");
+		//System.out.println(image);
+
+		
+		PackageModeClass packages = new PackageModeClass(packagename,packageOneDayPrice,season,protocol,description,image);
+		//ystem.out.println(packages);
 		boolean pack = packageDao.insertPackage(packages);
 		
 		HttpSession session = req.getSession();

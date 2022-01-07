@@ -99,20 +99,21 @@
     <br><br>
     
     <% BookingClass booking =(BookingClass) session.getAttribute("bookings"); 
+    System.out.println(booking);
         String flightNoStr = request.getParameter("flightno");
         int flightNo = Integer.parseInt(flightNoStr);
         
         double flightFare = Double.parseDouble (request.getParameter("price"));
-        //System.out.println(flightFare);
+        System.out.println(flightFare);
         
         
         FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
         FlightClass flight = flightDao.getSingleFlight(flightNo);
         session.setAttribute("singleflight", flight);
-       // System.out.println(flight);
+        System.out.println(flight);
        double totalPrice = (booking.getTotalPrice()+flightFare) * booking.getNoOfPerson();
        
-      // System.out.println(totalPrice);
+       System.out.println(totalPrice);
        
         session.setAttribute("flight", flight);
        
@@ -125,13 +126,14 @@ for (int i = 0; i < hotels.size(); i++) {
 			
 			
 	HotelClass hotel = hotels.get(i);
-			
+	
+	System.out.println(hotel);	
         
     %>
     
     <div class="container">
     <div>
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGnVg5ts-PU7WOv2_i3N2e88vjVnRhAGiNXQ&usqp=CAU" alt="">
+<img src="<%=hotel.getImage() %>" alt="">
 <div class="name">
     <h3>Hotel Name : </h3>
     <h3 class="hotelname"><%=hotel.getHotelName()%></h3>

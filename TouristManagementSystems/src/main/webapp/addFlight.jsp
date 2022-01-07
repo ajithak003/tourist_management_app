@@ -69,6 +69,7 @@ button{
 <form action="addflight">
     <div class="container">
     <h1>Add Flight</h1>
+      <h2><a href="AdminPage.jsp">Go To Home</a></h2>
     <br><br><br>
 
     <div class="addpackage">
@@ -121,5 +122,8 @@ button{
     </div>
     </div>
     </form>
+    
+  
 </body>
+
 </html>

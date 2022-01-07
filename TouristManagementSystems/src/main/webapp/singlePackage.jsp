@@ -118,13 +118,13 @@ label{
 
 	<%
 	String location = request.getParameter("location");
-	
+	System.out.println(location);
 	PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
 	PackageModeClass packages = packageDao.getSinglePackage(location.toLowerCase());
 	session.setAttribute("singlepackages", packages);
 	UserClass user = (UserClass) session.getAttribute("user");
 	int userId = user.getId();
-	//System.out.println(userId);
+	System.out.println(userId);
 	double totalPrice = packages.getPriceOneDays();
 	%>
      <form action="allFlights.jsp">
@@ -133,7 +133,7 @@ label{
 	<%String place=packages.getName();%>
 		<h1 name="place"><%=packages.getName()%></h1>
 		<br> <a href="#"> <img class="firstrowimg"
-			src="/images/maldives/1.png" alt="">
+			src="/images/goa/1.png" alt="">
 
 		</a> <br><br>
 		<table class="details" cellspacing="30px" cellpadding="">
@@ -212,7 +212,7 @@ label{
 
 <script>
 
-/* today();
+/*  today();
 function today(){
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -225,8 +225,8 @@ document.getElementById("startdate").setAttribute("max",maxdate);
 console.log(maxdate);
 console.log(mindate);
 document.getElementById("startdate").setAttribute("min",mindate);
-} */
-
+}  */
+ 
 </script>
 
 </html>

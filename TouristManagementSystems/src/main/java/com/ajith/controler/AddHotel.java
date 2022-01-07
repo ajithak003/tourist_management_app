@@ -30,10 +30,11 @@ public class AddHotel extends HttpServlet {
 		double premiumRoom = Double.parseDouble (req.getParameter("premiumprice"));
 		System.out.println(premiumRoom);
 		
+		String image = req.getParameter("hotelimage");
 		
-		HotelClass packages = new HotelClass(hotelname,hotelLocation,normalRoom,premiumRoom);
+		HotelClass hotel = new HotelClass(hotelname,hotelLocation,normalRoom,premiumRoom,image);
 		//System.out.println(hotelDao);
-		boolean hotels = hotelDao.insertHotel(packages);
+		boolean hotels = hotelDao.insertHotel(hotel);
 		
 		HttpSession session = req.getSession();
 		if(hotels==true) {

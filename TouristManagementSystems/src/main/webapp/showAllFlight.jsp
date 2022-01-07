@@ -40,6 +40,7 @@
 <body>
 
     <h1>Show All Flight</h1>
+     <h2><a href="AdminPage.jsp">Go To Home</a></h2>
     <br><br>
     <table cellpading="30px" cellspacing="30px"    >
         <th>Flight No</th>
@@ -59,15 +60,25 @@
 <%          
       String data=(String)session.getAttribute("updateflight");
 
-      if(data.equals("true")){%>
-      <script type="text/javascript">
-      alert("successfully updated");
-      <% } else if(data.equals("false")){ %>
-      alert("can't be updated");
-      
-   <%  } session.setAttribute("updateflight", "none");%>
-   
-</script>
+       if(data.equals("true")){%>
+         <script type="text/javascript">
+         alert("successfully updated");
+         
+         </script>
+         <%} 
+     else if(data.equals("false")){ %>
+     <script type="text/javascript">
+     alert("can't be updated");
+     </script> 
+  <%  } else if(data.equals("delete")){%>
+  <script type="text/javascript">
+  alert("successfully deleted");
+  </script><%} else if(data.equals("canotdelete")){ %>
+  alert("can't be deleted");
+   </script> 
+<%  }
+  session.setAttribute("updateflight", "none");%> 
+     
 
 
 <%
@@ -94,9 +105,12 @@
             <td><%=singleFlight.getBusinessClassSeat() %></td>
             <td><%=singleFlight.getEconomicClassSeat() %></td>
             <td><a href="updateFlight.jsp?flightno=<%=singleFlight.getFlightNo() %>">Edit</a></td>
-            <td><a href="#">Delete</a></td>
+            <td><a href="deleteFlight.jsp?flightno=<%=singleFlight.getFlightNo() %>">Delete</a></td>
         </tr>
-        <%} %>
+        <%
+       }%>
     </table>
+   
+   
 </body>
 </html>

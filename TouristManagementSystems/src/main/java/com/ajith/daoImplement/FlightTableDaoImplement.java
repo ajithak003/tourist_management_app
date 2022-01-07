@@ -137,7 +137,7 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		Connection con = null;
 		PreparedStatement pstmt =null;
 		int del=0;
-		String query = "delete flights_details where flight_no=?";
+		String query = "update flights_details set status =? where flight_no=?";
 		String commit = "commit";
 		
 		try {
@@ -145,8 +145,8 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 			con = ConnectionUtil.getDBConnect();
 			pstmt = con.prepareStatement(query);
            
-            
-            pstmt.setInt(1,flightNo);
+            pstmt.setString(1,"inactive" );
+            pstmt.setInt(2,flightNo);
 			
             del = pstmt.executeUpdate();
             pstmt.executeUpdate(commit);
@@ -169,7 +169,7 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		List<FlightClass> flightDetails = new ArrayList<FlightClass>();
 		Connection con = null;
 		//System.out.println("connection");
-		String query = "select * from flights_details";
+		String query = "select * from flights_details where status='"+"available"+"'";
 		//String query = "select flight_no, flight_name,depature,destination, depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status from flights_details";
 		//select flight_no, flight_name,depature,destination,to_char(depature_date_time,'dd-mm-yyyy hh:mm') as depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status from flights_details ;
 		Statement stmt = null;
@@ -212,7 +212,7 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		
 		List<FlightClass> flights = new ArrayList<FlightClass>();
 
-		String query = "select * from flights_details where destination='"+location+"' and to_char(depature_date_time,'yyyy-mm-dd')='"+startDate+"'";
+		String query = "select * from flights_details where destination='"+location+"' and to_char(depature_date_time,'yyyy-mm-dd')='"+startDate+"' and status='"+"available"+"'";
 				
 		String commit = "commit";
 		
@@ -258,6 +258,7 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		
 		FlightClass flight= null;
 		
+		//String query = "select * from flights_details where flight_no="+flightNo+" and status='"+"available"+"'";
 		String query = "select * from flights_details where flight_no="+flightNo;
 		
 		try {

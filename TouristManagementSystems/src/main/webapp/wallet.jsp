@@ -1,3 +1,4 @@
+<%@page import="com.ajith.daoImplement.UserTableDaoImplement"%>
 <%@page import="com.ajith.model.UserClass"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -51,6 +52,9 @@
         
         UserClass user = (UserClass) session.getAttribute("user");
         
+        UserTableDaoImplement userDao = new UserTableDaoImplement();
+        UserClass newUser = userDao.getSingleUserById(user.getId());
+        
         String data=(String)session.getAttribute("wallet");
         
          if(data.equals("low")){%>
@@ -58,16 +62,18 @@
          alert("Insufficient balance ! please Topup");
          session.setAttribute("wallet", "none");
          </script>
-         <%} %>
+         <%} 
+         
+         session.setAttribute("newUser", newUser);%>
          
          <form action="walletSus.jsp">
     <div class="container">
            
-           <h3>Your Wallet Amount : <span><%=user.getWallet() %></span></h2></h3>
+           <h3>Your Wallet Amount : <span><%=newUser.getWallet() %></span></h2></h3>
             <br>
             <h4>Topup Wallet</h4>
             <br>
-            <input type="text" name="amount" id="amount" required placeholder="Rs.  Enter amount">
+            <input type="text" name="amount" id="amount" required placeholder="Rs.  Enter amount" min='0'>
             <br><br><br>
             <button>PROCEED TO TOPUP</button>
     </div>

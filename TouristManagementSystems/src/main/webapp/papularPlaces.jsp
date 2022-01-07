@@ -1,3 +1,5 @@
+<%@page import="com.ajith.model.PackageModeClass"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.sql.ResultSet" %>
@@ -33,42 +35,17 @@ body{
    background-color:rgb(248, 237, 221);
 }
 
-
-.slideimg {
-    position: sticky;
-    width: 80%;
-    height: 400px;
-    left: 10%;
-}
-.prev{
-    position: absolute;
-    left: 12%;
-    top: 150px;
-    font-size: x-large;
-}
-.next{
-    position: absolute;
-    left: 86%;
-    top: 150px;
-    right: 20px;
-    font-size: x-large;
-}
-.next:hover,.prev:hover{
-    height: 15x;
-    width: 10px;
-    background-color: gray;
-}
-h1{
+ h1{
     position: absolute;
     top: 300px;
     left: 30%;
     background-color:black;
     border-radius: 25%;
     color: white;
-}
+} 
 .firsrrow{
     padding-left: 20%;
-}
+}	
 
 .firstrowimg{
     
@@ -80,7 +57,7 @@ h1{
 
 }
 .table{
-    left: 10px;
+    left: 0px;
 }
 h2{
     text-align: center;
@@ -105,22 +82,24 @@ second{
 
        <%
      PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
-		ResultSet rs = packageDao.getAllPackage();
+       List<PackageModeClass> packages = packageDao.getAllPackage();
 		
-					for(int i=1; rs.next();i++){
+					for(int i=0; i<packages.size();i++){
+						
+						PackageModeClass rs = packages.get(i);
 			%>
 
-        <%if(i%5==0) {%>
+        <%if(i%4==0) {%>
         <tr>
         <%} %>
         
               
             <td>
                 <div class="firstrow">
-                    <a href="singlePackage.jsp?location=<%=rs.getString(2) %>">
-                        <img class="firstrowimg" src="/images/kerala/1.png" alt="">
+                    <a href="singlePackage.jsp?location=<%=rs.getName() %>">
+                        <img class="firstrowimg" src="<%=rs.getImage() %>" alt="">
                     </a>
-                    <h2 name="location"><%=rs.getString(2) %></h2>
+                    <h2 name="location"><%=rs.getName()%></h2>
                 </div>
             </td>
 

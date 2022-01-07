@@ -25,7 +25,7 @@ h1{
 }
 .addpackage{
     border: 3px solid;
-    height: 510px;
+    height: 550px;
     width: 45%;
     position: absolute;
     left: 27%;
@@ -66,6 +66,7 @@ button{
 <body>
 <form action="addhotel">
     <h1>Add Hotels</h1>
+        <h2><a href="AdminPage.jsp">Go To Home</a></h2>
     <br><br><br>
 <div class="container">
     <div class="addpackage">
@@ -87,11 +88,15 @@ button{
      <td> <label for="">Premium Room One Day Price :</label></td>
       <td><input type="text" name="premiumprice" id="premiumprice" required pattern="[0-9]{2,10}"></td>
       </tr>
-      
+      <tr>
+    <td>Add Images URL : </td>
+    <td> <input type="file" name="hotelimage" id="hotelimage" required> </td>
+    </tr>
     </table>
     <button >Add hotel</button>
     </div>
 </div>
 </form>
+
 </body>
 </html>

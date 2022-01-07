@@ -350,6 +350,39 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		return booking;
 	}
 
-	
+	public boolean endDateCheck(BookingClass booking) {
+		Connection con = null;
+	    PreparedStatement pstmt =null;		
+        String query = "select * from booking_details where booking_id=? and ?>SYSDATE";
+        			
+		boolean flag = false;
+		
+				
+		try {
+			con = ConnectionUtil.getDBConnect();
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, booking.getBookingId());
+			pstmt.setDate(2, java.sql.Date.valueOf(booking.getEndDate()));
+
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			
+			int result = rs.getInt(1);
+			 flag =true;
+			
+		}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			
+		} finally {
+			ConnectionUtil.closePreparedStatement(pstmt, con);;
+		}
+		
+		
+		return flag;
+	}
+
 	
 }

@@ -34,17 +34,17 @@ span{
 <body>
 
 <%  
-    UserClass user = (UserClass) session.getAttribute("user");
+    UserClass user = (UserClass) session.getAttribute("newUser");
    UserTableDaoImplement userDao = new UserTableDaoImplement();
    String amounts = request.getParameter("amount");
    long amount = Long.parseLong(amounts);
+   if(amount>0){
    long totalAmount = user.getWallet()+ amount;
    boolean wallet = userDao.addWalletAmount(user.getId(), totalAmount);
    if(wallet==true){
    UserClass newUser = userDao.getUserById(user);
    
 %>
-
     <h1>Transaction Successful</h1>
     <h2>Your wallet Amount : <span><%=newUser.getWallet() %></span></h2>
     <br><br>
@@ -52,9 +52,16 @@ span{
     <%} 
    else{
 	   %>
-	   <h1>Transaction failedüëç</h1>
+	   <h1>Transaction failedü</h1>
 	    <h2>Your wallet Amount : <span><%=user.getWallet() %></span></h2>
 	    <h2><a href="UserPage.jsp">Go To Home</a></h2>
- <%} %>
+ <%}}
+   else{%>
+      <h1>Enter the Correct Values</h1>
+       <h2><a href="UserPage.jsp">Go To Home</a></h2>
+      <%  
+      request.getRequestDispatcher("wallet.jsp");
+   } %>
+   
 </body>
 </html>

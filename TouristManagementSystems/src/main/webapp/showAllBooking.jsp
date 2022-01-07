@@ -1,3 +1,4 @@
+<%@page import="com.ajith.daoImplement.RatingDaoImplement"%>
 <%@page import="java.text.Format"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.ajith.model.FlightClass"%>
@@ -134,6 +135,20 @@
         font-size: 20px;
         font-weight: bold;
     }
+    .rate{
+        height: 40px;
+        width: 150px;
+        position: relative;
+        margin-left: 530px;
+        top: -40px;
+        border-radius: 15px;
+        background-color:midnightblue;
+        color: floralwhite;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+    
+    }  	
 
 
 </style>
@@ -141,9 +156,10 @@
 </head>
 <body>
 <div class="container"> 
-              
+               <h2><a href="AdminPage.jsp">Go To Home</a></h2>
         <div>
               <h1 >My Trips</h1>
+              
               <br><br>
 
 <%   
@@ -161,7 +177,14 @@
     	
     	HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
         HotelClass hotel = hotelDao.getSingleHotel(singlebooking.getHotelId());
-%>
+        
+        RatingDaoImplement ratingDao = new RatingDaoImplement();
+        boolean rating = ratingDao.endDateCheck(singlebooking);
+        
+        boolean cancel = bookingDao.endDateCheck(singlebooking);
+        System.out.println(cancel);
+
+    %>
     <form action="showallbooking">
        
                <div class="box">
@@ -181,7 +204,7 @@
                </div>
                
                 <div class="location">
-                    <h2><%=flight.getDepature() %>  - <%=flight.getDestination() %></h2>
+                    <h2><%=flight.getDepature() %>  -  <%=flight.getDestination() %></h2>
                 </div>
                <div class="hotel">
                  
@@ -197,9 +220,14 @@
             </table>
            
             <div >
-            
+                 <% if(cancel==true){ %>
                  <button class="cancel"  ><a href="cancelTrip.jsp?bookingid=<%=singlebooking.getBookingId()%>"> Cancel</a></button>
+                 
                 <button class="datechange"><a href="terms.jsp?bookingid=<%=singlebooking.getBookingId() %>">Change Date</a></button>
+                <%} %>
+                <%if(rating==true) {%>
+                 <button class="rate"><a href="rating.jsp?bookingid=<%=singlebooking.getBookingId() %>">Rate Now</a></button>
+                <%} %>
             </div>
         </div>
            <br><br>

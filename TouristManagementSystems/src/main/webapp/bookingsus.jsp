@@ -57,8 +57,8 @@ if (user.getWallet() >=booking.getTotalPrice() ) {
 			booking.getFlightNo(), booking.getHotelId(), booking.getNoOfPerson(),booking.getStartDate(), booking.getTotalPrice(),
 			booking.getFlightClass(),booking.getHotelRoomType(),booking.getDaysPlan(),booking.getPackageName());
 	//System.out.println(booking.toString1(booking));
-	  int businessClassSeats = 0;
-	  int economicClassSeats = 0;
+	  int businessClassSeats = flight.getBusinessClassSeat();
+	  int economicClassSeats = flight.getEconomicClassSeat();
 	  if(booking.getFlightClass().equalsIgnoreCase("business class")){
 		  businessClassSeats = flight.getBusinessClassSeat() - booking.getNoOfPerson();
 	  }

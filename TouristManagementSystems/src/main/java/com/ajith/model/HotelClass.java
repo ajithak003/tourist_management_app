@@ -9,24 +9,27 @@ public class HotelClass {
 	private String hotelName;
 	private double midRangePrice;
 	private double premiumPrice;
+	private String image;
 	public HotelClass() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public HotelClass(int hotelId, String location, String hotelName, double midRangePrice, double premiumPrice) {
+	public HotelClass(int hotelId, String location, String hotelName, double midRangePrice, double premiumPrice, String image) {
 		super();
 		this.hotelId = hotelId;
 		this.location = location;
 		this.hotelName = hotelName;
 		this.midRangePrice = midRangePrice;
 		this.premiumPrice = premiumPrice;
+		this.image = image;
 	}
-	public HotelClass(String location, String hotelName, double midRangePrice, double premiumPrice) {
+	public HotelClass(String location, String hotelName, double midRangePrice, double premiumPrice,String image) {
 		super();
 		this.location = location;
 		this.hotelName = hotelName;
 		this.midRangePrice = midRangePrice;
 		this.premiumPrice = premiumPrice;
+		this.image = image;
 	}
 	public int getHotelId() {
 		return hotelId;
@@ -57,6 +60,13 @@ public class HotelClass {
 	}
 	public void setPremiumPrice(double primiumPrice) {
 		this.premiumPrice = primiumPrice;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	@Override
 	public String toString() {

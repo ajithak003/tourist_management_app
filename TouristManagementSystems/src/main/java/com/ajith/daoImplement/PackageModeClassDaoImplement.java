@@ -24,7 +24,7 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 		PreparedStatement pstmt = null;
 		int pstmtvalue = 0;
 		String commit = "commit";
-		String insert = "insert into package_modes(package_name,package_price_1n,season,protocols,description) values(?,?,?,?,?)";
+		String insert = "insert into package_modes(package_name,package_price_1n,season,protocols,description,image) values(?,?,?,?,?,?)";
 		
 		try {
 			con = ConnectionUtil.getDBConnect();
@@ -37,6 +37,7 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 			pstmt.setString(3, Packages.getSeason());
 			pstmt.setString(4, Packages.getProtocols());
 			pstmt.setString(5, Packages.getDescription());
+			pstmt.setString(6, Packages.getImage());
 			
 //			System.out.println(insert);
 			pstmtvalue = pstmt.executeUpdate();
@@ -62,22 +63,24 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 		Connection con = null;
 		int update=0;
 		String commit = "commit";
-		String query = "update package_modes set package_name=?,package_price_1n=?,season=?,protocols=?,description=? where package_id=?";
+		String query = "update package_modes set package_name=?,package_price_1n=?,season=?,protocols=?,description=?, image=? where package_id=?";
 		PreparedStatement pstmt = null;
 		
 		try {
 			con = ConnectionUtil.getDBConnect();
 			pstmt = con.prepareStatement(query);
 			
+			System.out.println("dao page "+packages.getPackageId());
 
 //		String date1=dateFormatMDY.format(employees.getHire());
 			
 			pstmt.setString(1, packages.getName());
 			pstmt.setDouble(2, packages.getPriceOneDays());
-			pstmt.setString(5, packages.getSeason());
-			pstmt.setString(6, packages.getProtocols());
-			pstmt.setString(7, packages.getDescription());
-			pstmt.setInt(8, packages.getPackageId());
+			pstmt.setString(3, packages.getSeason());
+			pstmt.setString(4, packages.getProtocols());
+			pstmt.setString(5, packages.getDescription());
+			pstmt.setString(6, packages.getImage());
+			pstmt.setInt(7, packages.getPackageId());
 			//System.out.println(packages.getPackageId());
 //			System.out.println("execute");
 		    update = pstmt.executeUpdate();
@@ -97,31 +100,34 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 
 
 	@Override
-	public ResultSet getAllPackage() throws SQLException {
+	public List<PackageModeClass> getAllPackage()  {
 		// TODO Auto-generated method stub
 		
 		List<PackageModeClass> packageList = new ArrayList<PackageModeClass>();
 		Connection con = null;
-		String query = "select * from package_modes";
-
+		String query = "select * from package_modes where status='"+"active"+"'";
+		//System.out.println(query);
+		try {
 		Statement stmt = null;
 		con=ConnectionUtil.getDBConnect();
 		stmt = con.createStatement();
 		
 		ResultSet rs = stmt.executeQuery(query);
-		return rs;
-//		while (rs.next()) {
-//			PackageModeClass packages = new  PackageModeClass(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getString(5),rs.getString(6));
-//			System.out.println(packages);
-//			packageList.add(packages);
-//		}
-//		
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			//e.printStackTrace();
-//			System.out.println(e.getMessage());
-//		}
-	
+		
+		while (rs.next()) {
+			PackageModeClass packages = new  PackageModeClass(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8));
+			//System.out.println(packages);
+			packageList.add(packages);
+		}
+		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+		return packageList;
 		
 	}
 
@@ -132,21 +138,20 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 		PreparedStatement pstmt = null;
 		PackageModeClass packageById=null;
 		
-		
-		String query ="select * from package_modes where package_name=?";
+		System.out.println(PackageName);
+		String query ="select * from package_modes where package_name='"+PackageName+"'";
+		System.out.println(query);
 		try {
 		 con = ConnectionUtil.getDBConnect();
 		 pstmt = con.prepareStatement(query);
-		 
-		 pstmt.setString(1,PackageName);
 		 
 		 ResultSet rs = pstmt.executeQuery(query);
 		
 		 
 		 if (rs.next()) {
 
-			 packageById=new  PackageModeClass(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getString(5),rs.getString(6));
-				
+			 packageById=new  PackageModeClass(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8));
+				System.out.println(packageById);
 			}} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
@@ -159,13 +164,13 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 
 	
 	@Override
-	public boolean deletePackage(int packageId) {
+	public boolean deletePackage(String location) {
 		// TODO Auto-generated method stub
 
 		Connection con = null;
 		PreparedStatement pstmt =null;
 		int del=0;
-		String query = "delete package_modes where package_id=?";
+		String query = "update package_modes set status=? where package_name=?";
 		String commit = "commit";
 		
 		try {
@@ -173,8 +178,8 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 			con = ConnectionUtil.getDBConnect();
 			pstmt = con.prepareStatement(query);
            
-            
-            pstmt.setInt(1,packageId);
+            pstmt.setString(1, "inactive");
+            pstmt.setString(2,location);
 			
             del = pstmt.executeUpdate();
             pstmt.executeUpdate(commit);
@@ -207,8 +212,8 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 		
 		
 		
-		String query ="select * from package_modes where package_name='"+location+"'";
-		
+		String query ="select * from package_modes where package_name='"+location+"' and status='"+"active"+"'";
+		System.out.println(query);
 		try {
 			
 		 con = ConnectionUtil.getDBConnect();
@@ -219,7 +224,8 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 		 
 		 if (rs.next()) {
 
-			 packages=new  PackageModeClass(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getString(5),rs.getString(6));
+			 packages=new  PackageModeClass(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8));
+			 System.out.println("single "+packages);
 
 		 }} catch (Exception e) {
 				// TODO Auto-generated catch block

@@ -9,14 +9,5 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>SampleSerlet</display-name>
-    <servlet-name>SampleSerlet</servlet-name>
-    <servlet-class>com.controler.SampleSerlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SampleSerlet</servlet-name>
-    <url-pattern>/SampleSerlet</url-pattern>
-  </servlet-mapping>
+  
 </web-app>

@@ -22,17 +22,21 @@
             <%} session.removeAttribute("welcom");
             
             session.setAttribute("updateflight", "none");%>
+            
+            <% session.setAttribute("hotel", "none"); %>
+            
+            <% session.setAttribute("adminpackage", "none"); %>
   </span>
   <br>
 <div id="link" >
 <ul>
-<li><a href="#">Home</a>
+<li><a href="index.jsp">Home</a>
 </li>
-<li><a href="papularPlaces.jsp" >Popular Places</a></li>
+<li><a href="showAllPlaces.jsp" >Popular Places</a></li>
 <li ><a href="#" >Package</a>
 <ul class="list"> 
   <li><a href="addPackage.jsp">Add Package</a></li>
-  <li><a href="#">show all package</a></li>
+  <li><a href="showAllAdminPackages.jsp">show all package</a></li>
 </ul></li>
 
 
@@ -45,16 +49,16 @@
   <li><a href="">Hotels</a>
     <ul class="list">
     <li><a href="addHotel.jsp">Add hotel</a></li>
-    <li><a href="#">show all hotel</a></li>
+    <li><a href="showAllHotel.jsp">show all hotel</a></li>
   </ul>
   </li>
   <li ><a href="#" >More</a>
     <ul class="list">
       <li><a href="#">View User List</a></li>
-      <li><a href="#">view all booking</a></li>
-      <li><a href="#">view all feedback</a></li>
+      <li><a href="showAllUserBooking.jsp">view all booking</a></li>
+      <li><a href="showAllRating.jsp">view all feedback</a></li>
     </ul></li>
-<li><a href="index.html" >Logout</a></li>
+<li><a href="index.jsp" >Logout</a></li>
 
 </ul>
 

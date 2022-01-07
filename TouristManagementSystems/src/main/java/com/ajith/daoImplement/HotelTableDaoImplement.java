@@ -24,7 +24,7 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		int pstmtvalue = 0;
 
 		String commit = "commit";
-		String insert = "insert into hotel_details (location, hotel_name, room_type_mid_range_price, room_type_premium_price) values(?,?,?,?)";
+		String insert = "insert into hotel_details (location, hotel_name, room_type_mid_range_price, room_type_premium_price,image) values(?,?,?,?,?)";
 		
 		try {
 			con = ConnectionUtil.getDBConnect();
@@ -35,6 +35,7 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 			pstmt.setString(2,hotel.getHotelName());
 			pstmt.setDouble(3,hotel.getMidRangePrice());
 			pstmt.setDouble(4, hotel.getPremiumPrice());
+			pstmt.setString(5, hotel.getImage());
 			
 //			System.out.println(insert);
 			pstmtvalue = pstmt.executeUpdate();
@@ -64,7 +65,7 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		PreparedStatement pstmt = null;
 		int pstmtvalue = 0;
 		String commit = "commit";
-		String update = "update hotel_details set location=?,hotel_name=?,room_type_mid_range_price=?,room_type_premium_price=? where hotel_id=?";
+		String update = "update hotel_details set location=?,hotel_name=?,room_type_mid_range_price=?,room_type_premium_price=?, image=? where hotel_id=?";
 		
 		try {
 			con = ConnectionUtil.getDBConnect();
@@ -75,8 +76,8 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 			pstmt.setString(2,hotel.getHotelName());
 			pstmt.setDouble(3,hotel.getMidRangePrice());
 			pstmt.setDouble(4, hotel.getPremiumPrice());
-			pstmt.setInt(5, hotel.getHotelId());
-//			
+			pstmt.setString(5, hotel.getImage());
+			pstmt.setInt(6, hotel.getHotelId());
 			pstmtvalue = pstmt.executeUpdate();
 			
 			
@@ -98,7 +99,7 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		Connection con = null;
 		PreparedStatement pstmt =null;
 		int del=0;
-		String query = "delete hotel_details where hotel_id=?";
+		String query = "update hotel_details set status=? where hotel_id=?";
 		String commit = "commit";
 		
 		try {
@@ -106,8 +107,8 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 			con = ConnectionUtil.getDBConnect();
 			pstmt = con.prepareStatement(query);
            
-            
-            pstmt.setInt(1,hotelId);
+            pstmt.setString(1, "inactive");
+            pstmt.setInt(2,hotelId);
 			
             del = pstmt.executeUpdate();
             pstmt.executeUpdate(commit);
@@ -128,7 +129,7 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		List<HotelClass> hotelDetails = new ArrayList<HotelClass>();
 		Connection con = null;
 		//System.out.println("connection");
-		String query = "select * from hotel_details";
+		String query = "select * from hotel_details where status='"+"active"+"'";
 		Statement stmt = null;
 		
 		try {
@@ -139,9 +140,9 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		
 		while (rs.next()) {
 			   
-			HotelClass hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5));
+			HotelClass hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5),rs.getString(6));
 			hotelDetails.add(hotel);
-			
+			System.out.println(hotel);
 		}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -167,7 +168,8 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		
 		List<HotelClass> hotels = new ArrayList<HotelClass>();
 
-		String query = "select * from hotel_details where location='"+location+"'";
+		String query = "select * from hotel_details where location='"+location+"' and status='"+"active"+"'";
+		System.out.println(query);
 				
 		String commit = "commit";
 		
@@ -180,7 +182,7 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 			 ResultSet rs = stmt.executeQuery(query);
 			
 			while(rs.next()) {
-				hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5));
+				hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5),rs.getString(6));
 				hotels.add(hotel);
 				
 			}
@@ -208,7 +210,7 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 	@Override
 	public HotelClass getSingleHotel(int hotelId)  {
 		// TODO Auto-generated method stub
-		String query = "select * from hotel_details where hotel_id="+hotelId;
+		String query = "select * from hotel_details where hotel_id="+hotelId+" and status='"+"active"+"'";
 		Connection con = null;
 		Statement stmt = null; 
 		HotelClass hotel = null;
@@ -221,7 +223,7 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		
 		while (rs.next()) {
 			   
-			 hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5));
+			 hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5),rs.getString(6));
 			
 		}
 		} catch (SQLException e) {

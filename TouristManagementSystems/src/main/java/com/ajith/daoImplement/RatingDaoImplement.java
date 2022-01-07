@@ -75,7 +75,7 @@ public class RatingDaoImplement implements UserFeedbackDaoInterface {
 		
 		List<UserFeedbackClass> ratings = new ArrayList<UserFeedbackClass>();
 
-		String query = "select * from users_feedback";
+		String query = "select * from users_feedback where status='"+"active"+"'";
 		
 		try {
 			con = ConnectionUtil.getDBConnect();

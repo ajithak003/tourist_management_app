@@ -26,31 +26,25 @@
 
     <div id="link">
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="index.jsp">Home</a></li>
             <li ><a href="papularPlaces.jsp">Book Package</a></li>
             <li><a href="papularPlaces.jsp">Popular Places</a>
-               <!--  <ul>
-                <li><a href="#">Kashmir</a>
-                <li><a href="#">maldives</a>
-                </ul> -->
             </li>
             <li >><a href="showAllBooking.jsp">My Booking</a></li>
             <li >><a href="#">More</a>
             <ul>
-            <a href="#"><li>Profile</li></a>
+            <a href="profile.jsp"><li>Profile</li></a>
            <a href="wallet.jsp"> <li>Wallet Topup</li></a>
             </ul>
             </li>
+            <li><a href ="showAllRating.jsp">Ratings</a></li>
             <li><a href="index.jsp">Logout</a></li>
         </ul>
     </div>
 
    
    <br><br>
-   <div class="search">
-       <input type="search" name="" id="">
-       <button type="submit">submit</button>
-   </div>
+   
     
 
 </body>

@@ -32,7 +32,7 @@ public class HotelMain {
 			System.out.println("enter hotel room primium range price");
 			double premiumRangePrice = Double.parseDouble(sc.nextLine());
 			
-			HotelClass hotel = new HotelClass(location,hotelName,midRangePrice,premiumRangePrice);
+			HotelClass hotel = new HotelClass(location,hotelName,midRangePrice,premiumRangePrice,null);
 			//System.out.println(hotel);
 			HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
 			boolean insert = hotelDao.insertHotel(hotel);
@@ -64,7 +64,7 @@ public class HotelMain {
 				System.out.println("enter hotel room primium range price");
 				double primiumRangePrice = Double.parseDouble(sc.nextLine());
 				
-				HotelClass hotel = new HotelClass(hotelId,hotelName,location,midRangePrice,primiumRangePrice);
+				HotelClass hotel = new HotelClass(hotelId,hotelName,location,midRangePrice,primiumRangePrice,null);
 				
 				HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
 				boolean insert = hotelDao.updateHotel(hotel);

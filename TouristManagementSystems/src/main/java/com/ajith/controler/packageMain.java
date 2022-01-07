@@ -25,7 +25,7 @@ public class packageMain {
 		System.out.println("enter the description: ");
 		String description = sc.nextLine();
 		
-		PackageModeClass  packageModel = new PackageModeClass(packageName, oneDayPrice, season, protocol, description);
+		PackageModeClass  packageModel = new PackageModeClass(packageName, oneDayPrice, season, protocol, description,null);
 		    // System.out.println(packageModel);
 
 		
@@ -66,7 +66,7 @@ public class packageMain {
 		System.out.println("enter the description: ");
 		String description = sc.nextLine();
 		PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
-		PackageModeClass packages = new PackageModeClass(packageId,packageName, oneDayPrice, season, protocol, description);
+		PackageModeClass packages = new PackageModeClass(packageId,packageName, oneDayPrice, season, protocol, description,null);
 			boolean update = packageDao.updatePackage(packages);
 			if(update==true){
 				System.out.println("update successfull");
@@ -86,11 +86,11 @@ public class packageMain {
 		
 public void delete(){
 	try {
-	System.out.println("enter the package id");
-	int packageId = Integer.parseInt(sc.nextLine());
+	System.out.println("enter the package name");
+	String packageName = sc.nextLine();
         
 	PackageModeClassDaoImplement packages = new PackageModeClassDaoImplement();
-	boolean delete = packages.deletePackage(packageId);
+	boolean delete = packages.deletePackage(packageName);
 	if(delete==true){
 		System.out.println("delete successfull");
 	}
