@@ -177,7 +177,7 @@ public class BookingMain {
 				
 				booking = new BookingClass(userDetails.getId(), singlePackage.getPackageId(),
 						singleFlight.getFlightNo(), singleHotel.getHotelId(), noOfPerson, startDate, totalPrice,
-						flightClass, hotelRoom, days, location);
+						flightClass, hotelRoom, days, location,0);
 				System.out.println(booking.toString1(booking));
 				boolean book = bookDao.insertbooking(booking, daysPlan,businessClassSeats,economicClassSeats);
 

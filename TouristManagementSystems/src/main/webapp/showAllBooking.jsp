@@ -36,7 +36,7 @@
     }
     .box{
         border: 3px solid;
-        height: 460px;
+        height: 500px;
         width: 750px;
         margin-left: 290px; 
         border-radius: 20px;
@@ -149,7 +149,12 @@
         border: none;
     
     }  	
-
+ .see{
+        text-align: center;
+    }
+    .see, span{
+        color: black;
+    }
 
 </style>
 
@@ -182,7 +187,7 @@
         boolean rating = ratingDao.endDateCheck(singlebooking);
         
         boolean cancel = bookingDao.endDateCheck(singlebooking);
-        System.out.println(cancel);
+        //System.out.println(cancel);
 
     %>
     <form action="showallbooking">
@@ -230,6 +235,7 @@
                 <%} %>
             </div>
         </div>
+         <h3 class="see"><a href="showSingleBooking.jsp?bookingid=<%=singlebooking.getBookingId()%>"><span>SEE DETAILS</span></a></h3>
            <br><br>
        <%} %> 
        </form>

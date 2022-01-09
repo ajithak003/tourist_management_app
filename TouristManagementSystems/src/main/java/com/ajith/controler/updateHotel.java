@@ -17,35 +17,35 @@ public class updateHotel extends HttpServlet{
 			HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
 		
 		String hotelname = req.getParameter("hotelname");
-		System.out.println(hotelname);
+		//System.out.println(hotelname);
 		
 		String hotelLocation = req.getParameter("hotellocation");
-		System.out.println(hotelLocation);
+		//System.out.println(hotelLocation);
 		
 	   double normalRoom = Double.parseDouble(req.getParameter("standardprice"));
-		System.out.println(normalRoom);
+		//System.out.println(normalRoom);
 		
 		double premiumRoom = Double.parseDouble (req.getParameter("premiumprice"));
-		System.out.println(premiumRoom);
+		//System.out.println(premiumRoom);
 		
 		int hotelid = Integer.parseInt(req.getParameter("hotelid"));
 		
 		String image = req.getParameter("hotelimage");
 		
 		
-		HotelClass hotel = new HotelClass(hotelid,hotelname,hotelLocation,normalRoom,premiumRoom,image);
+		HotelClass hotel = new HotelClass(hotelid,hotelLocation,hotelname,normalRoom,premiumRoom,image);
 		//System.out.println(hotelDao);
 		boolean hotels = hotelDao.updateHotel(hotel);
 		
 		HttpSession session = req.getSession();
 		if(hotels==true) {
-			System.out.println("update success");
+			//System.out.println("update success");
 			session.setAttribute("hotel", "true");
 			req.getRequestDispatcher("showAllHotel.jsp").forward(req,res);
 			
 		}
 		else {
-			System.out.println("update invalid");
+			//System.out.println("update invalid");
 			session.setAttribute("hotel", "false");
 			req.getRequestDispatcher("showAllHotel.jsp").forward(req,res);
 		}

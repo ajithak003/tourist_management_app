@@ -15,7 +15,7 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color:silver;
+  background-color:aquamarine;
   
 }
 
@@ -49,7 +49,7 @@ textarea{
 }
 button{
     height: 30px;
-    width: 150px;
+    width: 200px;
     margin-left: 70%;
     margin-top: 20px;
     border-radius: 20px;

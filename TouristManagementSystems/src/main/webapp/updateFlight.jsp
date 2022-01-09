@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>add package</title>
+    <title>update package</title>
     <style>
       *{
   
@@ -77,7 +77,7 @@ button{
     
     
     <% int flightNo = Integer.parseInt(request.getParameter("flightno"));
-       System.out.print(flightNo);
+      // System.out.print(flightNo);
     
        FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
        FlightClass flight = flightDao.getSingleFlight(flightNo);
@@ -91,7 +91,7 @@ button{
     </tr>
      
       <tr>
-     <td> <label for="depature">Depature Location : </label></td>
+     <td> <label for="depature">Departure Location : </label></td>
      <td> <input type="text" name="Depature" id="Depature" value="<%=flight.getDepature()%>"></td>
      </tr>
       <tr>
@@ -99,7 +99,7 @@ button{
      <td> <input type="text" name="destination" id="destination" value="<%=flight.getDestination()%>"></td>
       </tr>
       <tr>
-          <td><label>Depature Date And Time</label></td>
+          <td><label>Departure Date And Time</label></td>
           <td><input type="datetime-local" name="DepatureDate" id="Depature Date" value="<%=flight.getDepatureDateTime()%>"></td>
       </tr>
       <tr>
@@ -119,7 +119,6 @@ button{
      <td> <label for=" ">Status :</label></td>
       <td><input type="text" name="status" id="status" cols="30" rows="3" value="<%=flight.getStatus()%>"></td>
     </tr>
-</tr>
 <tr>
 <td> <label for="">Business Class Seats Count  :</label></td>
 <td><input type="text" name="businessclassseat" id="businessclassseat" value="<%=flight.getBusinessClassSeat()%>" pattern="[0-9]{2,3}" ></td>

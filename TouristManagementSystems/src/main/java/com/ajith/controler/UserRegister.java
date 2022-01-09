@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ajith.daoImplement.UserTableDaoImplement;
+import com.ajith.exception.UserDefineException;
 import com.ajith.model.UserClass;
 
 
@@ -20,7 +21,7 @@ import com.ajith.model.UserClass;
 
 public class UserRegister extends HttpServlet {
 
-	Scanner sc = new Scanner(System.in);
+
 
 	public void service(HttpServletRequest req, HttpServletResponse res) {
 
@@ -50,37 +51,55 @@ public class UserRegister extends HttpServlet {
 				verifi = userDao.emailvalid(email);
 
 				if (verifi == false) {
-					userDao.reRegister(email);
-					System.out.println("your accout is activated! \n "
-							+ "if you want to change mobile no or password login and update your accout");
-					//res.sendRedirect("otp.jsp");
-					session.setAttribute("error", "your accout is activated! \n "
-							+ "if you want to change mobile no or password login and update your accout");
-					req.getRequestDispatcher("otp.jsp");
-					
-					//res.sendRedirect("login.jsp");
+					throw new UserDefineException();
 
 				}
+		
 			else {
-				System.out.println("enter a correct otp");
+				if (email.contains("@admin")) {
+					
+					//System.out.println("notallow");
+					session.setAttribute("notallow", "Not allowed '@admin' !");
+					try {
+						res.sendRedirect("Register.jsp");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else {
 				
 			UserClass userinsert = new UserClass(name, email, mboilNo, password);
-			System.out.println(userinsert);
+			//System.out.println(userinsert);
 			boolean boo = userDao.insertUser(userinsert);
 			if (boo) {
-				System.out.println("Successfully Register");
-				res.sendRedirect("otp.jsp");
+				//System.out.println("Successfully Register");
+				
 				session.setAttribute("success", "Successfully Register");
-				req.getRequestDispatcher("otp.jsp");
-				
-				
+				try {
+					res.sendRedirect("otp.jsp");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 			}
 			}
-		} catch (IOException e) {
+		} catch (UserDefineException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+			HttpSession session = req.getSession();
+			//System.out.println("error");
+			session.setAttribute("error", e.reregister());
+			try {
+				res.sendRedirect("Register.jsp");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+		
+		
 	}
 
-}
+	}}

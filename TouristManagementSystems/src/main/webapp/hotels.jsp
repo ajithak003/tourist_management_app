@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>All Hotels</title>
 </head>
 <style>
     body{
@@ -99,21 +99,28 @@
     <br><br>
     
     <% BookingClass booking =(BookingClass) session.getAttribute("bookings"); 
-    System.out.println(booking);
+    //System.out.println(booking);
         String flightNoStr = request.getParameter("flightno");
         int flightNo = Integer.parseInt(flightNoStr);
         
         double flightFare = Double.parseDouble (request.getParameter("price"));
-        System.out.println(flightFare);
+        //System.out.println(flightFare);
         
         
         FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
         FlightClass flight = flightDao.getSingleFlight(flightNo);
         session.setAttribute("singleflight", flight);
-        System.out.println(flight);
+        String flightClass="";
+        if(flightFare==flight.getBusinessClassFare()){
+        	flightClass = "business class";
+        }
+        else{
+        	 flightClass = "economic class";
+        }
+       // System.out.println(flight);
        double totalPrice = (booking.getTotalPrice()+flightFare) * booking.getNoOfPerson();
        
-       System.out.println(totalPrice);
+       //System.out.println(totalPrice);
        
         session.setAttribute("flight", flight);
        
@@ -127,13 +134,13 @@ for (int i = 0; i < hotels.size(); i++) {
 			
 	HotelClass hotel = hotels.get(i);
 	
-	System.out.println(hotel);	
+	//System.out.println(hotel);	
         
     %>
     
     <div class="container">
     <div>
-<img src="<%=hotel.getImage() %>" alt="">
+<img src="<%=hotel.getImage()%>" alt="">
 <div class="name">
     <h3>Hotel Name : </h3>
     <h3 class="hotelname"><%=hotel.getHotelName()%></h3>
@@ -146,13 +153,13 @@ for (int i = 0; i < hotels.size(); i++) {
     <p>
     <%  {
             	
-            	 hotelRoomType = "mid range room"; 
+            	
             %>
         <input type="radio" name="hotelprice" id="Normal" value="<%=hotel.getMidRangePrice() %>" required><label for="">Normal Room <span><%=hotel.getMidRangePrice()%></span></label>
         <%} 
                 { 
                 	 
-                	hotelRoomType = "premimum room";
+                	
                 %>
         <input type="radio" name="hotelprice" id="Premium" value="<%=hotel.getPremiumPrice() %>" required><label for="" id="Premium">Premium Room <span><%=hotel.getPremiumPrice()%></span></label>
        <%} %>
@@ -168,7 +175,7 @@ for (int i = 0; i < hotels.size(); i++) {
 			 
 			 
 			// System.out.println(totalPrice);
-      BookingClass bookings = new  BookingClass( booking.getUserId(),booking.getPackageIid(),booking.getFlightNo(),0,booking.getNoOfPerson(),booking.getStartDate(),totalPrice,booking.getFlightClass(),hotelRoomType,booking.getDaysPlan(),booking.getPackageName()); 
+      BookingClass bookings = new  BookingClass( booking.getUserId(),booking.getPackageIid(),booking.getFlightNo(),0,booking.getNoOfPerson(),booking.getStartDate(),totalPrice,flightClass,"",booking.getDaysPlan(),booking.getPackageName(),0); 
 		session.setAttribute("bookingsflight",bookings);
 		
 		//System.out.println("hotelpage "+bookings); %>

@@ -22,18 +22,13 @@
 <body>
 
 <form  name="otp" id="otp" action="otp">
-                  
-            <% String error=(String)session.getAttribute("error");
-            if(error!=null) {%>
-            <h2><%=session.getAttribute("error") %></h2>
-           
-            <%} session.removeAttribute("error"); %>
             
             <% String success=(String)session.getAttribute("success");
             if(success!=null) {%>
             <h2><%=session.getAttribute("success") %></h2>
            
             <%} session.removeAttribute("success"); %>
+            <h2><a href="login.jsp">Login</a></h2>
              
             
     </form>

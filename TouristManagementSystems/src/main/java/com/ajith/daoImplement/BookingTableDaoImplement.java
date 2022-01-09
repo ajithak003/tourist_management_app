@@ -28,7 +28,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		int pstmtvalue = 0;
 
 		String commit = "commit";
-		String insert = "insert into booking_details (user_id, package_id, flight_no, hotel_id,number_of_person,start_date,end_date,total_price,flight_class,hotel_room_type,days_in_night,package_name) values(?,?,?,?,?,?,?+?,?,?,?,?,?)";
+		String insert = "insert into booking_details (user_id, package_id, flight_no, hotel_id,number_of_person,start_date,end_date,total_price,flight_class,hotel_room_type,days_in_night,package_name,no_of_room) values(?,?,?,?,?,?,?+?,?,?,?,?,?,?)";
 		String flight = "update flights_details set business_class_seat_status=?,economic_class_seat_status=? where flight_no=?";
 		try {
 			con = ConnectionUtil.getDBConnect();
@@ -49,6 +49,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 			pstmt.setString(11, booking.getHotelRoomType());
 			pstmt.setString(12, booking.getDaysPlan());
 			pstmt.setString(13, booking.getPackageName());
+			pstmt.setDouble(14, booking.getNoOfRoom());
 			
 			pstmt2.setInt(1, businessClassSeats);
 			pstmt2.setInt(2, economicClassSeats);
@@ -94,7 +95,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		
 		while (rs.next()) {
 			   
-			 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16));
+			 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16),rs.getDouble(17));
 			 bookingDetails.add(booking);
 		}
 		} catch (SQLException e) {
@@ -126,7 +127,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 			 ResultSet rs = stmt.executeQuery(query);
 			
 			if(rs.next()) {
-				 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16));		
+				 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16),rs.getDouble(17));		
 		
 				
 		}
@@ -151,7 +152,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		int pstmtvalue = 0;
 		String update = "cancel";
 		String query = "update booking_details set status='"+update+"',payment_details='"+"payment refunded"+"' where user_id="+user_id+"and to_char(start_date,'yyyy-mm-dd')='"+startDate+"' and booking_id="+bookinId;
-		System.out.println(query);
+		//System.out.println(query);
 		String wallet = "update user_details set wallet="+refundPrice+"where user_id="+user_id;
 		String flight = "update flights_details set business_class_seat_status=?,economic_class_seat_status=? where flight_no=?";
 
@@ -241,7 +242,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		
 		while (rs.next()) {
 			   
-			 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16));
+			 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16),rs.getDouble(17));
 			 bookingDetails.add(booking);
 		}
 		} catch (SQLException e) {
@@ -272,10 +273,10 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		String newFlight = "update flights_details set business_class_seat_status  ="+newFlightbSeat+",economic_class_seat_status="+newFlighteSeat+" where flight_no  ="+newFlightNo;
 		String oldFlight = "update flights_details set business_class_seat_status  ="+oldFlightbSeat+",economic_class_seat_status="+oldFlighteSeat+" where flight_no  ="+booking.getFlightNo();
 		String commit = "commit";
-		System.out.println(query);
-		System.out.println(updateWallet); 
-		System.out.println(newFlight);
-		System.out.println(oldFlight);
+		//System.out.println(query);
+		//System.out.println(updateWallet); 
+		//System.out.println(newFlight);
+		//System.out.println(oldFlight);
 		try {
 		
 		con = ConnectionUtil.getDBConnect();
@@ -284,15 +285,15 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		pstmtoldflight = con.prepareStatement(oldFlight);
 		pstmtnewflight = con.prepareStatement(newFlight);
 		
-		System.out.println(newFlightNo);
+		//System.out.println(newFlightNo);
 		pstmt.setInt(1, newFlightNo);
-		System.out.println(booking.getStartDate());
+		//System.out.println(booking.getStartDate());
 		pstmt.setDate(2, java.sql.Date.valueOf(booking.getStartDate()));
-		System.out.println(booking.getStartDate());
+		//System.out.println(booking.getStartDate());
 		pstmt.setDate(3, java.sql.Date.valueOf(booking.getStartDate()));
-		System.out.println(end);
+		//System.out.println(end);
 		pstmt.setInt(4,end);
-		System.out.println( bookingId);
+		//System.out.println( bookingId);
 		pstmt.setInt(5, bookingId);
 		
 		
@@ -336,7 +337,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 			 ResultSet rs = stmt.executeQuery(query);
 			
 			if(rs.next()) {
-				 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16));		
+				 booking = new BookingClass(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6), rs.getDate(7).toLocalDate(),rs.getDate(8).toLocalDate(),rs.getDouble(9),rs.getString(10),rs.getTimestamp(11).toLocalDateTime(),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16),rs.getDouble(17));		
 		
 				
 		}

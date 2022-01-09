@@ -140,9 +140,9 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		
 		while (rs.next()) {
 			   
-			HotelClass hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5),rs.getString(6));
+			HotelClass hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5),rs.getString(7));
 			hotelDetails.add(hotel);
-			System.out.println(hotel);
+			//System.out.println(hotel);
 		}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -169,7 +169,7 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		List<HotelClass> hotels = new ArrayList<HotelClass>();
 
 		String query = "select * from hotel_details where location='"+location+"' and status='"+"active"+"'";
-		System.out.println(query);
+		//System.out.println(query);
 				
 		String commit = "commit";
 		
@@ -182,8 +182,9 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 			 ResultSet rs = stmt.executeQuery(query);
 			
 			while(rs.next()) {
-				hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5),rs.getString(6));
+				hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5),rs.getString(7));
 				hotels.add(hotel);
+				//System.out.println("dao "+hotel);
 				
 			}
 			
@@ -223,7 +224,7 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 		
 		while (rs.next()) {
 			   
-			 hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5),rs.getString(6));
+			 hotel = new HotelClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getDouble(5),rs.getString(7));
 			
 		}
 		} catch (SQLException e) {

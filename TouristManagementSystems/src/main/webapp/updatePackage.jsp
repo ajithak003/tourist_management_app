@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>add package</title>
+    <title>update package</title>
     <style>
     *{
   
@@ -18,7 +18,7 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color:silver;
+  background-color:azure;
   
 }
 
@@ -71,11 +71,11 @@ button{
     <br><br><br>
     
     <% String PackageName = request.getParameter("packagname");
-        System.out.println(PackageName);
+       // System.out.println(PackageName);
     PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
     PackageModeClass  packages = packageDao.getPackageByNo(PackageName);
     
-    System.out.println("jsp page "+packages.getDescription());
+  //  System.out.println("jsp page "+packages.getDescription());
     
     %>
     
@@ -103,12 +103,15 @@ button{
      <td> <label for="description">Tourist Place Description :</label></td>
       <td><textarea name="description" id="description" value="<%=packages.getDescription() %>" cols="30" rows="3" ><%=packages.getDescription() %></textarea></td>
     </tr>
-     <td>Add Images URL : </td>
+    <tr>
+     <td> <label for="image">Add Image URL :</label> </td>
     <td> <input type="file" name="packageimage" id="packageimage" required> </td>
     </tr>
     </table>
     <button name ="packageid" value="<%=packages.getPackageId()%>">Update Package</button>
-    </form>
     </div>
+    </form>
+   
+    
 </body>
 </html> 

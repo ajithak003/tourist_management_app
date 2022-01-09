@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
+    <title>showAllPlaces</title>
         <!DOCTYPE html>
         <html lang="en">
 
@@ -114,7 +114,7 @@ second{
 						PackageModeClass rs = packages.get(i);
 			%>
 
-        <%if(i%5==0) {%>
+        <%if(i%4==0) {%>
         <tr>
         <%} %>
         
@@ -122,7 +122,7 @@ second{
             <td>
                 <div class="firstrow">
                     
-                        <img class="firstrowimg" src="/images/kerala/1.png" alt="">
+                        <img class="firstrowimg" src="<%=rs.getImage() %>" alt="">
                     
                     <h2 name="location"><%=rs.getName()%></h2>
                 </div>

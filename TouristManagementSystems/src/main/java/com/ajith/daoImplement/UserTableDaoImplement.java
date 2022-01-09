@@ -27,7 +27,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		int pstmtvalue = 0;
 		String commit = "commit";
 		String query = "insert into user_details(name,email_id,mobile_no,password) values(?,?,?,?)";
-		System.out.println(user.getName());
+		//System.out.println(user.getName());
 		
 
 		try {
@@ -321,11 +321,12 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		
 	}
 	
-	public boolean reRegister(String email) {
+	public UserClass reRegister(String email) {
 		Connection con = null;
 		PreparedStatement pstmt =null;
+		 UserClass user = null;
 		int del=0;
-		String query = "update user_details set status =? where email_id=?";
+		String query = "select * user_details from  where email_id=?";
 		String commit = "commit";
 		
 		try {
@@ -333,12 +334,17 @@ public class UserTableDaoImplement implements UserDaoInterface {
 			con = ConnectionUtil.getDBConnect();
 			pstmt = con.prepareStatement(query);
            
-            pstmt.setString(1, "active");
-            pstmt.setString(2, email);
+           
+            pstmt.setString(1, email);
 			
-            del = pstmt.executeUpdate();
-            pstmt.executeUpdate(commit);
-			
+            ResultSet rs = pstmt.executeQuery(query);
+    		
+   		 
+   		 if (rs.next()) {
+
+   			user = new UserClass(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getString(5),rs.getLong(6));
+   				
+   			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -346,7 +352,7 @@ public class UserTableDaoImplement implements UserDaoInterface {
 		} finally {
 			ConnectionUtil.closePreparedStatement(pstmt, con);
 		}
-		return del>0;
+		return user;
 
 	}
 	

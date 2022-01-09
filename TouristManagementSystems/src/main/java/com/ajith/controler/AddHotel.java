@@ -19,16 +19,16 @@ public class AddHotel extends HttpServlet {
 			HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
 		
 		String hotelname = req.getParameter("hotelname");
-		System.out.println(hotelname);
+		//System.out.println(hotelname);
 		
 		String hotelLocation = req.getParameter("hotellocation");
-		System.out.println(hotelLocation);
+		//System.out.println(hotelLocation);
 		
 	   double normalRoom = Double.parseDouble(req.getParameter("standardprice"));
-		System.out.println(normalRoom);
+		//System.out.println(normalRoom);
 		
 		double premiumRoom = Double.parseDouble (req.getParameter("premiumprice"));
-		System.out.println(premiumRoom);
+		//System.out.println(premiumRoom);
 		
 		String image = req.getParameter("hotelimage");
 		
@@ -38,12 +38,12 @@ public class AddHotel extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		if(hotels==true) {
-			System.out.println("insert success");
+			//System.out.println("insert success");
 			req.getRequestDispatcher("addHotel.jsp").forward(req,res);
 			session.setAttribute("addHotel", "true");
 		}
 		else {
-			System.out.println("insert invalid");
+			//System.out.println("insert invalid");
 			session.setAttribute("addHotel", "false");
 		}
 		}catch(Exception e) {

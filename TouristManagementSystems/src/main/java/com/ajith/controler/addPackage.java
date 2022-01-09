@@ -48,12 +48,12 @@ public class addPackage extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		if(pack==true) {
-			System.out.println("insert success");
+			//System.out.println("insert success");
 			req.getRequestDispatcher("addPackage.jsp").forward(req,res);
 			session.setAttribute("addpackage", "true");
 		}
 		else {
-			System.out.println("insert invalid");
+			//System.out.println("insert invalid");
 			session.setAttribute("addpackage", "false");
 		}
 		}catch(Exception e) {

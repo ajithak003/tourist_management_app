@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>flight</title>
+    <title>All flight</title>
 <style>
 body{
         background-color:aliceblue;
@@ -99,7 +99,13 @@ body{
    .flightno{
        visibility: hidden;
    }
-   
+   .noflight{
+   color: darkred;
+        text-align: center;
+        color:black;
+        font-size: 40px;
+        font-weight: bold;
+   }
 </style>
 
 </head>
@@ -119,16 +125,16 @@ body{
     String depDate = request.getParameter("startdate") ;
      
 		LocalDate depatureTimeDate = LocalDate.parse(depDate);
-     String daysPlane = request.getParameter("noofdays");
+        String daysPlane = request.getParameter("noofdays");
 		//System.out.println(daysPlane);
 		
 	int noOfPerson =Integer.parseInt( request.getParameter("noofperson"));
 	//System.out.println(noOfPerson);
 	
 	int days = Integer.parseInt(daysPlane.substring(0, 1));
-	System.out.println(days);
+	//System.out.println(days);
 	double totalPrice = booking.getTotalPrice() * days;
-	System.out.println(totalPrice);
+	//System.out.println(totalPrice);
 	
 	String flightClass = null;
 	
@@ -137,6 +143,8 @@ body{
 		//System.out.println(booking.getPackageName());
 		List<FlightClass> flights = flightDao.getFlightByNo(booking.getPackageName(),depatureTimeDate); 
 		
+		if(flights!=null)
+		{
 		for (int i = 0; i < flights.size(); i++) {
 			
 			
@@ -167,13 +175,13 @@ body{
             <p>
             <% if(flight.getBusinessClassSeat()>=noOfPerson) {
             	
-            	 flightClass = "business class";
+            	 
             %>
                 <input type="radio" name="price" id="Business" value="<%=flight.getBusinessClassFare() %>" required><label for="">Business Class <span><%=flight.getBusinessClassFare() %></span></label>
                <%} 
                 if(flight.getEconomicClassSeat()>=noOfPerson){ 
                 	 
-                	 flightClass = "economic class";
+                	
                 %>
                 
                 <input type="radio" name="price" id="Economic" value="<%=flight.getEconomicClassFare() %>" required><label for="" id="Economic">Economic Class <span><%=flight.getEconomicClassFare() %></span></label>
@@ -192,11 +200,15 @@ body{
      <br><br>
     </div>
 
-<% }
-		}	 %>
+<% } }
+		}else%>
+		<br><br>
+		<p class = "noflight">No Flights Available<p>
+	<% 	
+		%>
  <% 
       
-      BookingClass bookings = new  BookingClass( booking.getUserId(),booking.getPackageIid(),0,0,noOfPerson,depatureTimeDate,totalPrice,flightClass,"",daysPlane,booking.getPackageName()); 
+      BookingClass bookings = new  BookingClass( booking.getUserId(),booking.getPackageIid(),0,0,noOfPerson,depatureTimeDate,totalPrice,flightClass,"",daysPlane,booking.getPackageName(),0); 
 		session.setAttribute("bookings",bookings);
 		
 		//System.out.println("allflights "+bookings); %>

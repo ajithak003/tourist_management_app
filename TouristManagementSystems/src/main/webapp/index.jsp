@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Tourist Managements</title>
 
   <style>
   
@@ -22,12 +22,12 @@
      
  }
 body{
-     background-image: url("https://stockton.edu/business/images/tourism-mgmt-banner.jpg");
+     background-image: url("home.png.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     height: 100vh;
-    filter: brightness(120%);
+    filter: brightness(150%);
 }
 h1{
      color:crimson;
@@ -41,18 +41,30 @@ h1{
 ul{
      list-style: none;
      background-color: black;
-     height: 50px;
+     height: 70px;
      padding-inline: 100px;
 
 }
 li{
      display: inline-block;
      line-height: 2px;
-     width :220px; ;
+     width :250px; ;
      padding: 24px;
      word-spacing: 4px;
      position: relative;
-     left: 100px;
+     margin-top:10px;
+     font-size: 20px;
+     left: 150px; 
+   /*  width: 180px;
+    color: white;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align: center; */
      
 }
 a{
@@ -63,7 +75,7 @@ a{
 a:hover{
      color:deepskyblue;
 }
-  
+
   
   </style>
     

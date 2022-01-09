@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>add hotels</title>
+    <title>update hotels</title>
     <style>
       *{
   
@@ -18,7 +18,7 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color:rgb(161, 241, 161);
+  background-color:azure;
   
 }
 
@@ -27,7 +27,7 @@ h1{
 }
 .addpackage{
     border: 3px solid;
-    height: 510px;
+    height: 580px;
     width: 45%;
     position: absolute;
     left: 27%;
@@ -64,7 +64,7 @@ button{
 
 
     </style>
-</head>s
+</head>
 <body>
     <h1>Update Hotels</h1>
     <br><br><br>
@@ -97,8 +97,9 @@ button{
      <td> <label for="">Premium Room One Day Price :</label></td>
       <td><input type="text" name="premiumprice" id="premiumprice" value="<%=hotel.getPremiumPrice() %>" required pattern="[0-9]{2,10}"></td>
       </tr>
-      <td>Add Images URL : </td>
-    <td> <input type="file" name="hotelimage" id="hotelimage" required> </td>
+      <tr>
+      <td> <label for="">Add Image URL :</label> </td>
+    <td> <input type="file" name="hotelimage" id="hotelimage" value="<%=hotel.getImage()%>" required> </td>
     </tr>
     </table>
     <button name ="hotelid" value="<%=hotel.getHotelId()%>">Update hotel</button>

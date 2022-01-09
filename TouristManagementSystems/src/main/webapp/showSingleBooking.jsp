@@ -1,3 +1,5 @@
+<%@page import="com.ajith.daoImplement.FlightTableDaoImplement"%>
+<%@page import="com.ajith.daoImplement.PackageModeClassDaoImplement"%>
 <%@page import="com.ajith.daoImplement.UserTableDaoImplement"%>
 <%@page import="com.ajith.daoImplement.BookingTableDaoImplement"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -68,52 +70,41 @@
    <%  DateTimeFormatter formatter =
 		     DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
    
-   BookingClass booking =(BookingClass) session.getAttribute("bookingsflight"); 
+   int bookingId = Integer.parseInt( request.getParameter("bookingid"));
+   BookingTableDaoImplement bookingDao = new BookingTableDaoImplement();
+   BookingClass booking = bookingDao.getSingleBookingById(bookingId); 
    
-        String hotelId = request.getParameter("hotelid");
-       // System.out.println(hotelId);
-        
-        double no = booking.getNoOfPerson();
-        double noOfRoom  = Math.ceil(no/4);
-       // System.out.println("no of rooms: "+noOfRoom);
-        double hotelPrices = Double.parseDouble(request.getParameter("hotelprice"));
-        double  hotelonePrice = hotelPrices*noOfRoom;
-       // System.out.println("no of rooms price: "+hotelPrices);
-        int days = Integer.parseInt(booking.getDaysPlan().substring(0, 1));
-      //  System.out.println("no of rooms days: "+days);
-        
-       double hotelPrice = hotelonePrice * days;
-        double totalPrice = booking.getTotalPrice()+hotelPrice;
-      //  System.out.println(totalPrice);
+       
         
         HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
-        HotelClass hotel = hotelDao.getSingleHotel(Integer.parseInt(hotelId));
-       // System.out.println(hotel);
-        session.setAttribute("singlehotel", hotel);
-        String hotelRoomType = null;
-        String room = null;
-        if(hotelPrices==hotel.getPremiumPrice()){
-        	/* hotelRoomType = "premimum room"; */
-        	room = "premimum room";
+        HotelClass hotel = hotelDao.getSingleHotel(booking.getHotelId());
+        double hotelfare = 0.0;
+        if(booking.getHotelRoomType().equalsIgnoreCase("premimum room")){
+        	hotelfare = hotel.getPremiumPrice();
         }
-        else{        	
-             room = "Standard Room";
+        else{
+        	hotelfare = hotel.getMidRangePrice();
         }
-        
-        UserClass user = (UserClass) session.getAttribute("user");
+      
+        UserTableDaoImplement userDao = new UserTableDaoImplement();
+        UserClass user = userDao.getSingleUserById(booking.getUserId());
       //  System.out.println(user);
       //System.out.println(user.getWallet());
-        
-        PackageModeClass packages = (PackageModeClass) session.getAttribute("singlepackages");
+        PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
+        PackageModeClass packages = packageDao.getPackageByNo(booking.getPackageName());
       //  System.out.println(packages);
-        
-        FlightClass flight = (FlightClass) session.getAttribute("singleflight");
+        FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
+        FlightClass flight = flightDao.getSingleFlight(booking.getFlightNo());
        // System.out.println(flight);
-        
-        double flightFare = Double.parseDouble (request.getParameter("hotelprice"));
-       // System.out.println(flightFare);
+      double flightfare =0.0;
+       if(booking.getFlightClass().equalsIgnoreCase("economic class")){
+    	   flightfare = flight.getEconomicClassFare();
+       }
+       else{
+    	   flightfare = flight.getBusinessClassFare();
+       }
        
-       int noOfHotelRooms = (int) noOfRoom;
+       int noOfHotelRooms = (int) booking.getNoOfRoom();
         
         %>
     
@@ -130,7 +121,7 @@
             <td><%=user.getName() %></td>
         
         <tr>
-            <td>User Emailid : </td>
+            <td>User Email Id : </td>
             <td><%=user.getEmail() %></td>
             
         </tr>
@@ -188,7 +179,7 @@
         </tr>
         <tr>
             <td>Ticket Price : </td>
-            <td><%=flightFare%></td>
+            <td><%=flightfare%></td>
         </tr>
         
         <tr>
@@ -204,35 +195,23 @@
         </tr>
         <tr>
             <td>Room Type : </td>
-            <td><%=room %></td>
+            <td><%=booking.getHotelRoomType() %></td>
         </tr>
         <tr>
             <td>Hotel One Day Night Price : </td>
-            <td><%= hotelPrice %></td>
+            <td><%=hotelfare %></td>
         </tr>
          <tr>
             <td>No Of Room : </td>
-            <td><%=noOfHotelRooms  %> Room</td>
+            <td><%=noOfHotelRooms %> Room</td>
         </tr>
         <tr>
             <td><h3>Package Total Price</h3> </td>
-            <td><h3><%=totalPrice %></h3></td>
+            <td><h3><%=booking.getTotalPrice() %></h3></td>
         </tr>
     </table>
-<button >Confirm Booking</button>
 
 
-<% 
- 
-BookingClass bookings = new BookingClass(user.getId(), packages.getPackageId(),
-			flight.getFlightNo(), hotel.getHotelId(), booking.getNoOfPerson(),booking.getStartDate(), totalPrice,
-			booking.getFlightClass(),room,booking.getDaysPlan(),booking.getPackageName(),noOfHotelRooms);
-	
-	session.setAttribute("confirmbooking", bookings);
-	
-	
-
-%>
 </div>
 </form>
 </body>

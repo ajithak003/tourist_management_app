@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>flight</title>
+    <title>date change feature plane</title>
 <style>
 body{
         background-color:aliceblue;
@@ -122,7 +122,7 @@ DateTimeFormatter formatter =
    
     //int bookingId = Integer.parseInt(request.getParameter("bookingid"));
     int bookingId =(Integer) session.getAttribute("datechangeid");
-    System.out.println("date change page "+bookingId);
+  //  System.out.println("date change page "+bookingId);
     //int bookingId = Integer.parseInt(bookingIds);
     
     BookingClass bookingpackage = 	book.getSingleBookingById(bookingId);
@@ -205,8 +205,8 @@ DateTimeFormatter formatter =
  <% 
       
       BookingClass bookings = new  BookingClass( bookingpackage.getUserId(),bookingpackage.getPackageIid(),bookingpackage.getFlightNo(),bookingpackage.getHotelId(),bookingpackage.getNoOfPerson(),
-    		  startDate,totalPrice,bookingpackage.getFlightClass(),bookingpackage.getHotelRoomType(),bookingpackage.getDaysPlan(),bookingpackage.getPackageName()); 
-		session.setAttribute("datechangebookings",bookings);
+    		  startDate,totalPrice,bookingpackage.getFlightClass(),bookingpackage.getHotelRoomType(),bookingpackage.getDaysPlan(),bookingpackage.getPackageName(),bookingpackage.getNoOfRoom()); 
+		session.setAttribute("datechangebookings",bookings); 
 		
 		//System.out.println("allflights "+bookings); %>
 </form>

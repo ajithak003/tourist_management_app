@@ -87,7 +87,7 @@ h2,a{
 			
 		}
 		else {
-			System.out.println("unable to cancel your booking please try again later");
+			//System.out.println("unable to cancel your booking please try again later");
 		}
 		}%>
 	

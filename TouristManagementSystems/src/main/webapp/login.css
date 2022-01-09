@@ -4,7 +4,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: url("\Tourist Management App\images\login.jpg");
+    background: url("blure.jpg");
     background-size: cover;
 }
 
@@ -64,5 +64,7 @@ p{
    
 a{
     text-decoration: none;
+    font-weight: bolder;
+    
 }
 

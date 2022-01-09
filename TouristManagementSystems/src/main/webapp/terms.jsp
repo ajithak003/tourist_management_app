@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>terms and condition</title>
 <style>
 body{
     background-color:ivory;
@@ -43,6 +43,22 @@ body{
     <button class="btn" id="btn">Ok</button>
 </div>
 </form>
+<script>
+today();
+function today(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var max = today.setMonth( today.getMonth() + 1 );
+maxdate = today.getFullYear() + '-' + 0+(today.getMonth() + 1) + '-'+ 0+today.getDate()  ;
+mindate =yyyy + '-' + mm + '-'+ dd ;
+document.getElementById("changedate").setAttribute("max",maxdate);
+console.log(maxdate);
+console.log(mindate);
+document.getElementById("changedate").setAttribute("min",mindate);
+}  
+</script>
 </body>
  
 

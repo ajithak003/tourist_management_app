@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>popularPlaces</title>
+<title>Single Plces</title>
 <style>
     *{
     margin: 0;
@@ -118,13 +118,13 @@ label{
 
 	<%
 	String location = request.getParameter("location");
-	System.out.println(location);
+	//System.out.println(location);
 	PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
 	PackageModeClass packages = packageDao.getSinglePackage(location.toLowerCase());
 	session.setAttribute("singlepackages", packages);
 	UserClass user = (UserClass) session.getAttribute("user");
 	int userId = user.getId();
-	System.out.println(userId);
+	//System.out.println(userId);
 	double totalPrice = packages.getPriceOneDays();
 	%>
      <form action="allFlights.jsp">
@@ -133,7 +133,7 @@ label{
 	<%String place=packages.getName();%>
 		<h1 name="place"><%=packages.getName()%></h1>
 		<br> <a href="#"> <img class="firstrowimg"
-			src="/images/goa/1.png" alt="">
+			src="<%=packages.getImage() %>" alt="">
 
 		</a> <br><br>
 		<table class="details" cellspacing="30px" cellpadding="">
@@ -202,7 +202,7 @@ label{
 	</form>
 	
 	<%
-	BookingClass booking = new  BookingClass( userId, packageId,  0,  0,  0,null ,totalPrice, "", "", "",place); 
+	BookingClass booking = new  BookingClass( userId, packageId,  0,  0,  0,null ,totalPrice, "", "", "",place,0); 
     //System.out.println("singlepackage"+booking);
 	session.setAttribute("booking",booking);
 	%>
@@ -212,7 +212,7 @@ label{
 
 <script>
 
-/*  today();
+  today();
 function today(){
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -220,12 +220,12 @@ function today(){
     var yyyy = today.getFullYear();
     var max = today.setMonth( today.getMonth() + 1 );
 maxdate = today.getFullYear() + '-' + 0+(today.getMonth() + 1) + '-'+ 0+today.getDate()  ;
-mindate =yyyy + '-' + mm + '-'+ dd  ;
+mindate =yyyy + '-' + mm + '-'+ dd ;
 document.getElementById("startdate").setAttribute("max",maxdate);
 console.log(maxdate);
 console.log(mindate);
 document.getElementById("startdate").setAttribute("min",mindate);
-}  */
+}  
  
 </script>
 

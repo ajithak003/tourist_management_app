@@ -73,7 +73,7 @@
             <br>
             <h4>Topup Wallet</h4>
             <br>
-            <input type="text" name="amount" id="amount" required placeholder="Rs.  Enter amount" min='0'>
+            <input type="text" name="amount" id="amount" required  min = 0 placeholder="Rs.  Enter amount">
             <br><br><br>
             <button>PROCEED TO TOPUP</button>
     </div>

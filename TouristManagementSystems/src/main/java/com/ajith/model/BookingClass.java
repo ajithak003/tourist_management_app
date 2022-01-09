@@ -24,9 +24,10 @@ public class BookingClass {
 	private String daysPlan;
 	private String packageName;
 	private String payment;
+	private double noOfRoom;
 	
 	
-	public BookingClass(int bookingId, int userId, int packageIid, int flightNo, int hotelId, int noOfPerson, LocalDate startDate, LocalDate endDate, double totalPrice, String status, LocalDateTime bookingDate,String flightClass,String hotelRoomType, String daysPlan,String packageName,String payment) {
+	public BookingClass(int bookingId, int userId, int packageIid, int flightNo, int hotelId, int noOfPerson, LocalDate startDate, LocalDate endDate, double totalPrice, String status, LocalDateTime bookingDate,String flightClass,String hotelRoomType, String daysPlan,String packageName,String payment,double noOfRoom) {
 		super();
 		// TODO Auto-generated constructor stub
 		this.bookingId = bookingId;
@@ -45,11 +46,12 @@ public class BookingClass {
 		this.daysPlan = daysPlan;
 		this.packageName = packageName;
 		this.payment = payment;
+		this.noOfRoom = noOfRoom;
 		
 	}
 
 
-	public BookingClass(int userId, int packageIid, int flightNo, int hotelId, int noOfPerson, LocalDate startDate, double totalPrice,String flightClass,String hotelRoomType, String daysPlan,String packageName) {
+	public BookingClass(int userId, int packageIid, int flightNo, int hotelId, int noOfPerson, LocalDate startDate, double totalPrice,String flightClass,String hotelRoomType, String daysPlan,String packageName, double noOfRoom) {
 		super();
 		this.userId = userId;
 		this.packageIid = packageIid;
@@ -62,11 +64,22 @@ public class BookingClass {
 		this.hotelRoomType = hotelRoomType;
 		this.daysPlan = daysPlan;
 		this.packageName = packageName;
+		this.noOfRoom = noOfRoom;
 		
 	}
 	
 	
 	
+	public double getNoOfRoom() {
+		return noOfRoom;
+	}
+
+
+	public void setNoOfRoom(double noOfRoom) {
+		this.noOfRoom = noOfRoom;
+	}
+
+
 	public String getPayment() {
 		return payment;
 	}

@@ -23,17 +23,17 @@ public class rating extends HttpServlet {
 			
 			HttpSession session = req.getSession();
 			UserClass user = (UserClass) session.getAttribute("user");
-			System.out.println(user);
+			//System.out.println(user);
 			RatingDaoImplement ratingDao = new RatingDaoImplement();
 			
 			int bookingId = Integer.parseInt(req.getParameter("bookingId"));
-			System.out.println(bookingId);
+			//System.out.println(bookingId);
 			
 			BookingTableDaoImplement bookingDao = new BookingTableDaoImplement();
 			BookingClass booking = bookingDao.getSingleBookingById(bookingId);
 			
 			float rating = Float.parseFloat(req.getParameter("rate"));
-			System.out.println(rating);
+			//System.out.println(rating);
 			
 			String describrion = req.getParameter("describe");
 			
@@ -41,12 +41,12 @@ public class rating extends HttpServlet {
 			boolean rate  = ratingDao.insertFeedback(userRating);
 			
 			if(rate==true) {
-				System.out.println("successfully rated");
+				//System.out.println("successfully rated");
 				session.setAttribute("rating", "true");
 				req.getRequestDispatcher("showAllRating.jsp");
 			}
 			else {
-				System.out.println("invalid");
+				//System.out.println("invalid");
 				session.setAttribute("rating", "true");
 				req.getRequestDispatcher("showAllRating.jsp");
 			}

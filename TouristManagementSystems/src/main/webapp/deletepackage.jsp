@@ -7,25 +7,25 @@
 l>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Delete Package</title>
 </head>
 <body>
 
       
       
       <% String packageName = request.getParameter("packagname");
-       System.out.print(packageName);
+       //System.out.print(packageName);
        PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
     
        boolean packages = packageDao.deletePackage(packageName);
        if(packages==true) {
-			System.out.println("deleted");
+			//System.out.println("deleted");
 			session.setAttribute("adminpackage", "delete");
 			request.getRequestDispatcher("showAllAdminPackages.jsp").forward(request,response);
 			
 		}
 		else {
-			System.out.println("invalid");
+			//System.out.println("invalid");
 			session.setAttribute("adminpackage", "canotdelete");
 			request.getRequestDispatcher("showAllAdminPackages.jsp").forward(request,response);
 		}

@@ -36,9 +36,9 @@ public class Login extends HttpServlet {
 			adminDao = new AdminTableDaoImplement();
 			userDao = new UserTableDaoImplement();
 
-			System.out.println("Login Page");
+			//System.out.println("Login Page");
 			String email = req.getParameter("loginemail");
-			System.out.println(email);
+			//System.out.println(email);
 					email = email.trim().toLowerCase();
 
 						// System.out.println(email);
@@ -48,17 +48,17 @@ public class Login extends HttpServlet {
 
 					AdminClass admin = new AdminClass();
 					String password = req.getParameter("loginpsws");
-					System.out.println(password);
+					//System.out.println(password);
 					
 					 admin = adminDao.validateAdmin(email, password);
 					if (admin == null) {
-						System.out.println("user name and password mismatch");
+						//System.out.println("user name and password mismatch");
 						
 						session.setAttribute("error", "user name and password mismatch");
 					    req.getRequestDispatcher("login.jsp").forward(req,res); 
 					} else if (admin != null) {
 						res.sendRedirect("AdminPage.jsp");
-						System.out.println("Welcom " + admin.getName());
+						//System.out.println("Welcom " + admin.getName());
 						session.setAttribute("welcom",admin.getName() );
 						req.getRequestDispatcher("UserPage.jsp").forward(req,res); 
 				         
@@ -66,12 +66,12 @@ public class Login extends HttpServlet {
 					}
 				
 				String password = req.getParameter("loginpsws");
-				System.out.println(password);
+				//System.out.println(password);
 				
 				UserClass user = userDao.validateUser(email, password);
 				
 				if (user == null) {
-					System.out.println("user name and password mismatch");
+					//System.out.println("user name and password mismatch");
 					
 					
 					session.setAttribute("error", "user name and password mismatch");

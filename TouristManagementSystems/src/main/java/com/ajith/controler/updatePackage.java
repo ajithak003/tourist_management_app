@@ -33,23 +33,23 @@ public class updatePackage extends HttpServlet {
 		//System.out.println(description);
 		
 		int packageId = Integer.parseInt(req.getParameter("packageid"));
-		System.out.println(packageId);
+		//System.out.println(packageId);
 		
 		String image = req.getParameter("packageimage");
 		
 		PackageModeClass packages = new PackageModeClass(packageId,packagename,packageOneDayPrice,season,protocol,description,image);
-		System.out.println("servlet : "+packages);
+		//System.out.println("servlet : "+packages);
 		boolean pack = packageDao.updatePackage(packages);
 		
 		HttpSession session = req.getSession();
 		if(pack==true) {
-			System.out.println("insert success");
+			//System.out.println("insert success");
 			session.setAttribute("adminpackage", "true");
 			req.getRequestDispatcher("showAllAdminPackages.jsp").forward(req,res);
 			
 		}
 		else {
-			System.out.println("insert invalid");
+			//System.out.println("insert invalid");
 			session.setAttribute("adminpackage", "false");
 			req.getRequestDispatcher("showAllAdminPackages.jsp").forward(req,res);
 		}

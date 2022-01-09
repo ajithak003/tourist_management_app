@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>delete flight</title>
 </head>
 <body>
 
@@ -17,13 +17,13 @@
        FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
        boolean flight = flightDao.deleteFlight(flightNo);
        if(flight==true) {
-			System.out.println("delete success");
+		//	System.out.println("delete success");
 			session.setAttribute("updateflight", "delete");
 			request.getRequestDispatcher("showAllFlight.jsp").forward(request,response);
 			
 		}
 		else {
-			System.out.println(" invalid");
+			//System.out.println(" invalid");
 			session.setAttribute("updateflight", "canotdelete");
 			request.getRequestDispatcher("showAllFlight.jsp").forward(request,response);
 		}

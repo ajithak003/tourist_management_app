@@ -8,8 +8,69 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Login Page</title>
-   <link rel="stylesheet" href="login.css">
+<style>
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: url("blure.jpg");
+    background-size: cover;
+}
 
+
+.loginbox{
+    border: 2px solid;
+    background-color:cornsilk;
+    border-radius: 20px;
+    padding:30px;
+     width: 290px;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%,-50%);
+     color:black;
+}
+.loginbox h1{
+     
+    float: left;
+    font-size: 40px ;
+    border-bottom: 6px solid #1ef725;
+    margin-bottom: 50px;
+    padding: 13px 0;
+}
+.textbox{
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin:8px 0 ;
+    border-bottom: 1px solid #1ef725;
+}
+.textbox input{
+    border: none;
+    outline: none;
+    background: none;
+    color: whiye;
+    font-size: 18px;
+    width: 80%;
+    float: left;
+    margin: 10px;
+}
+.btn{
+    width: 100%;
+    background: none;
+    
+    border: 2px solid #1ef725;
+    color:blue;
+    padding: 5px;
+    font-size: 18px;
+    }
+    a{
+    text-decoration: none;
+    font-weight: bolder;
+    
+}
+</style>
 </head>
 
 <body>
@@ -31,8 +92,8 @@
             <button class="btn" type="submit">Sign in</button>
 
             <div class="forget">
-               <p><a href="forgetpsw.html">Forget Password?</a>
-                 
+<!--                <p><a href="forgetpsw.html">Forget Password?</a>
+ -->                 
                </p>
                <p>New User? <a href="Register.jsp" >create an account </a></p>
             </div>

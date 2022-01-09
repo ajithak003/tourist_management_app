@@ -7,10 +7,104 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>user Login</title>
+    <title>user Page</title>
 
-    <link rel="stylesheet" href="userPage.css">
+    <style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    
+}
+body{
+        
+    background-image:  url("home.png.jpg") ;
+      background-repeat: no-repeat;
+}
+h1{
+   
+    color:rgb(241, 11, 57);
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+}
+#link{
+    width: 100%;
+    background: black;
+    height: 75px;
 
+}
+
+ul{
+   
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    float: left;
+    position: relative;
+    left:50px;
+}
+
+ul li{
+    float: left;
+    margin-top: 10px;
+    
+     }
+
+ul li a{
+    width: 180px;
+    color: white;
+    display: block;
+    text-decoration: none;
+    font-size: 20px;text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+a:hover{
+    background: cornsilk;
+    color:mediumblue;
+}
+
+ul li ul{
+    background: #000033;
+}
+
+
+ul li ul li{
+    float: none;
+    position: relative;
+    left: 0px;
+}
+ul li ul{
+   display: none;
+   position: relative;
+   left: 0px;
+}
+
+ul li:hover ul {
+    display: block;
+    
+}
+
+span{
+    position: absolute;
+    right: 100px;
+    color: bisque;
+   font-size: 20px;
+   top: 30px;
+   font-weight: bold;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+    
+    
+    </style>
 
 </head>
 
@@ -20,7 +114,7 @@
             if(error!=null) {%>
            <%=session.getAttribute("welcom") %>
            
-            <%} session.removeAttribute("welcom"); %>
+            <%} %>
        </span>
        <br>
 
@@ -30,15 +124,15 @@
             <li ><a href="papularPlaces.jsp">Book Package</a></li>
             <li><a href="papularPlaces.jsp">Popular Places</a>
             </li>
-            <li >><a href="showAllBooking.jsp">My Booking</a></li>
-            <li >><a href="#">More</a>
+            <li ><a href="showAllBooking.jsp">My Booking</a></li>
+            <li ><a href="#">More</a>
             <ul>
             <a href="profile.jsp"><li>Profile</li></a>
            <a href="wallet.jsp"> <li>Wallet Topup</li></a>
             </ul>
             </li>
             <li><a href ="showAllRating.jsp">Ratings</a></li>
-            <li><a href="index.jsp">Logout</a></li>
+            <li><a href="logout">Logout</a></li>
         </ul>
     </div>
 

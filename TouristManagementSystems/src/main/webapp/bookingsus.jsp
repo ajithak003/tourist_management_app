@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>successfully BOOKED</title>
 <style>
 body{
  background-color:ivory;
@@ -55,7 +55,7 @@ if (user.getWallet() >=booking.getTotalPrice() ) {
 	
 	BookingClass confirmBooking = new BookingClass(user.getId(), booking.getPackageIid(),
 			booking.getFlightNo(), booking.getHotelId(), booking.getNoOfPerson(),booking.getStartDate(), booking.getTotalPrice(),
-			booking.getFlightClass(),booking.getHotelRoomType(),booking.getDaysPlan(),booking.getPackageName());
+			booking.getFlightClass(),booking.getHotelRoomType(),booking.getDaysPlan(),booking.getPackageName(),booking.getNoOfRoom());
 	//System.out.println(booking.toString1(booking));
 	  int businessClassSeats = flight.getBusinessClassSeat();
 	  int economicClassSeats = flight.getEconomicClassSeat();
@@ -72,7 +72,7 @@ if (user.getWallet() >=booking.getTotalPrice() ) {
 	wallet = (long) (wallet - booking.getTotalPrice());
 	userDao.addWalletAmount(user.getId(), wallet);
 	if (book == true) {
-		System.out.println("\n \n successfully booked \n\n" + "get a amazing trip");
+		//System.out.println("\n \n successfully booked \n\n" + "get a amazing trip");
 	}
 
 }

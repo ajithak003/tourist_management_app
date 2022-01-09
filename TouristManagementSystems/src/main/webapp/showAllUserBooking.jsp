@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Show All Bookings</title>
 
 <style>
     table{
@@ -47,7 +47,7 @@
 </head>
 <body>
     <h1>Show All Booking</h1> 
-    <span><h2><a href="index.jsp">Go To Home</a></h2></span>
+    <span><h2><a href="AdminPage.jsp">Go To Home</a></h2></span>
     <br><br>
     
     

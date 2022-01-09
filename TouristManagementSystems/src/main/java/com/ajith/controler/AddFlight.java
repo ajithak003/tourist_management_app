@@ -25,36 +25,36 @@ public class AddFlight extends HttpServlet {
 		PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
 		
 		String flightName = req.getParameter("flightname");
-		System.out.println(flightName);
+		//System.out.println(flightName);
 		
 		String depature = req.getParameter("Depature");
-		System.out.println(depature);
+		//System.out.println(depature);
 		
 		String destination = req.getParameter("destination");
-		System.out.println(destination);
+		//System.out.println(destination);
 		
 		String depatureDate = req.getParameter("DepatureDate");
 		LocalDateTime depatureTimeDate = LocalDateTime.parse(depatureDate);
-		System.out.println(depatureTimeDate);
+		//System.out.println(depatureTimeDate);
 		
 		String ArrivalDate = req.getParameter("ArrivalDate");
 		LocalDateTime arrivalTimeDate = LocalDateTime.parse(ArrivalDate);
-		System.out.println(arrivalTimeDate);
+		//System.out.println(arrivalTimeDate);
 		
 		double businessClassFare = Double.parseDouble(req.getParameter("businessclassfare"));
-		System.out.println(businessClassFare);
+		//System.out.println(businessClassFare);
 		
 		double economicClassFare = Double.parseDouble(req.getParameter("economicclassfare"));
-		System.out.println(economicClassFare);
+		//System.out.println(economicClassFare);
 		
 		String status = req.getParameter("status");
-		System.out.println(status);
+		//System.out.println(status);
 		
 		int businessClassSeat = Integer.parseInt(req.getParameter("businessclassseat"));
-		System.out.println(businessClassSeat);
+		//System.out.println(businessClassSeat);
 		
 		int economicClassSeat = Integer.parseInt(req.getParameter("economicclassseat"));
-		System.out.println(economicClassSeat);
+		//System.out.println(economicClassSeat);
 		
 		FlightTableDaoImplement flightDao = new FlightTableDaoImplement();
 		FlightClass flight = new FlightClass(flightName,depature, destination, depatureTimeDate, arrivalTimeDate,
@@ -64,12 +64,12 @@ public class AddFlight extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		if(flights==true) {
-			System.out.println("insert success");
+			//System.out.println("insert success");
 			req.getRequestDispatcher("addFlight.jsp").forward(req,res);
 			session.setAttribute("addFlight", "true");
 		}
 		else {
-			System.out.println("insert invalid");
+			//System.out.println("insert invalid");
 			session.setAttribute("addFlight", "false");
 		}
 		}catch(Exception e) {
