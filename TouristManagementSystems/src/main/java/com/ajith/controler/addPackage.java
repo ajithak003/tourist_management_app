@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ajith.daoImplement.PackageModeClassDaoImplement;
+import com.ajith.exception.UserDefineException;
 import com.ajith.model.PackageModeClass;
 
 
@@ -20,7 +21,7 @@ public class addPackage extends HttpServlet {
 	Scanner sc = new Scanner(System.in);
 
 	public void service(HttpServletRequest req, HttpServletResponse res)  {
-		try {
+
 		PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
 		
 		String packagename = req.getParameter("packagename");
@@ -40,24 +41,43 @@ public class addPackage extends HttpServlet {
 		
 		String image = req.getParameter("packageimage");
 		//System.out.println(image);
-
+try {
 		
 		PackageModeClass packages = new PackageModeClass(packagename,packageOneDayPrice,season,protocol,description,image);
 		//ystem.out.println(packages);
 		boolean pack = packageDao.insertPackage(packages);
 		
 		HttpSession session = req.getSession();
+		session.setAttribute("addpackages", "none");
 		if(pack==true) {
 			//System.out.println("insert success");
-			req.getRequestDispatcher("addPackage.jsp").forward(req,res);
-			session.setAttribute("addpackage", "true");
+			
+			session.setAttribute("addpackages", "true");
+			try {
+				req.getRequestDispatcher("addPackage.jsp").forward(req,res);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else {
 			//System.out.println("insert invalid");
-			session.setAttribute("addpackage", "false");
+			throw new UserDefineException();
 		}
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
+		} catch (UserDefineException e) {
+			// TODO Auto-generated catch block
+			HttpSession session = req.getSession();
+			//System.out.println("error");
+			session.setAttribute("addpackageerror", e.addPackage());
+			try {
+				res.sendRedirect("addPackage.jsp");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+	}}
 }

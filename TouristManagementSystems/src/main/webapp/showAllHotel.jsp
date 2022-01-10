@@ -93,6 +93,6 @@
         </tr>
         <%} %>
     </table>
-    
+     <%session.setAttribute("hotel", null);%>
 </body>
 </html>

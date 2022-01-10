@@ -49,8 +49,8 @@ textarea{
 }
 button{
     height: 30px;
-    width: 200px;
-    margin-left: 70%;
+    width: 170px;
+    margin-left: 65%;
     margin-top: 20px;
     border-radius: 20px;
     background-color: cyan;
@@ -66,6 +66,27 @@ button{
 <form action="addpackage">
     <h1>Add Tourist Package</h1>
   <h2><a href="AdminPage.jsp">Go To Home</a></h2>
+
+<%          
+      String data=(String)session.getAttribute("addpackages");
+      System.out.println(data);
+      String error = (String) session.getAttribute("addpackageerror");
+      System.out.println(error);
+
+    if(data.equals("true")){%>
+         <script type="text/javascript">
+         alert("successfully Added");
+         </script>
+         <% }
+       
+     else if(error!=null){ 
+    	 System.out.println(error+ " if"); %>
+     <script type="text/javascript">
+     alert("This Product Already Added");
+     </script>  
+<%} %> 
+
+
 
     <div class="addpackage">
         <table cellspacing="20px" cellpadding="30px">  
@@ -91,11 +112,13 @@ button{
       <td><textarea name="description" id="description" cols="30" rows="3" required></textarea></td>
     </tr>
     <tr>
-    <td>Add Images URL : </td>
+    <td> <label for="image">Add Images URL : </label></td>
     <td> <input type="file" name="packageimage" id="packageimage" required> </td>
     </tr>
     </table>
     <button >Add Package</button>
     </form>
+    <%session.setAttribute("addpackages", null);
+  session.setAttribute("addpackageerror", null);%>
 </body>
 </html>

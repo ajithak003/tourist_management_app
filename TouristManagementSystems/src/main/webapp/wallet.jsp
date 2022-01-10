@@ -78,6 +78,6 @@
             <button>PROCEED TO TOPUP</button>
     </div>
 </form>
-
+<%session.setAttribute("wallet", null);%>
 </body>
 </html>

@@ -9,10 +9,11 @@ CONSTRAINT pk_user_id primary key(user_id)
 );
 describe user_details;
 select * from user_details;
-
+delete from user_details where user_id=1125;
 alter table user_details add status varchar(30) default 'active';
 drop table users_details;
 update user_details set wallet =200000 where user_id = 1040;
+
 create table admin_details(
 admin_id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 1,
 name varchar(100) not null,
@@ -22,9 +23,6 @@ password varchar(30) not null,
 CONSTRAINT pk_admin_id primary key (admin_id)
 );
 describe admin_details;
-
-
-
 select * from admin_details;
 
 insert into admin_details(name,email_id,mobile_no,password) values('ajith','ajith@admin.com',7834661290,'Ajith@123');
@@ -39,12 +37,14 @@ package_price_1n number (30,2) not null,
 season varchar(60) not null,
 protocols varchar2(3999) not null,
 description varchar2(3999) not null, 
-check(package_price_2n>0),
+status varchar(30) default 'active',
+image varchar2(4000),
+check(package_price_1n>0),
 CONSTRAINT pk_package_id primary key (package_id)
 );
 
 --alter table package_modes rename column package_price_2n to package_price_1n;
-
+alter table package_modes modify package_name varchar(500) unique ;
 insert into package_modes(package_name,package_price_1n,season,protocols,description) values('usa',2000,3000,4000,'sprin');
 update user_details set package_name='maldives',package_price_2n=3000,package_price_3n=5500,package_price_4n=7500,season=snow,protocols=' No restriction on interstate travel as per latest Guidelines issued by the state government
 ' ,description='Jammu and Kashmir is home to several valleys such as the Kashmir Valley, Chenab Valley, Sindh Valley and Lidder Valley. Some major tourist attractions in Jammu and Kashmir are Srinagar, the Mughal Gardens, Gulmarg, Pahalgam, Patnitop and Jammu.
@@ -52,6 +52,10 @@ update user_details set package_name='maldives',package_price_2n=3000,package_pr
 describe package_modes;
 drop table package_modes CASCADE CONSTRAINTS;
 select * from package_modes;
+alter table package_modes add image varchar2(4000);
+select * from package_modes where package_name='Kashmir' and status='active';
+delete from package_modes where package_id=127;
+
 create table flights_details(
 flight_no  NUMBER GENERATED ALWAYS AS IDENTITY START WITH 200,
 flight_name varchar(100) not null,
@@ -68,11 +72,12 @@ check(business_class_fare>0),
 check(economic_class_fare>0),
 CONSTRAINT pk_flight_no primary key (flight_no)
 );
-    update flights_details set business_class_seat_status  = 40 where flight_no  = 221;
+update flights_details set business_class_seat_status  = 40 where flight_no  = 221;
 insert into flights_details (flight_name,depature,destination,depature_date_time,arrival_date_time,business_class_fare,economic_class_fare,status,
 business_class_seat_status,economic_class_seat_status)values('spiejet' ,'bangalour','kashmir',to_date('03-01-2022 09:30','dd-mm-yyyy hh24:mi'),
 to_date('03-01-2022 19:30','dd-mm-yyyy hh24:mi'),4000,3000,available,40,40);
 select * from flights_details;
+select * from flights_details where status=+'available';
 describe flights_details;
 drop table flights_details CASCADE CONSTRAINTS;
 alter table flights_details add economic_class_seat_status number default 50;
@@ -83,22 +88,27 @@ location varchar (100) not null,
 hotel_name varchar(100) not null,
 room_type_mid_range_price number(30,2) not null,
 room_type_premium_price number(30,2) not null,
+status varchar(30) default 'active',
+image varchar(4000),
 check(room_type_premium_price>0),
 check (room_type_mid_range_price>0),
 CONSTRAINT pk_hotel_id primary key (hotel_id)
 );
 
-
+alter table hotel_details add image varchar(4000);
+alter table hotel_details modify hotel_name varchar(500) unique ;
 describe hotel_details;
 
 select * from hotel_details where location='kashmir';
-delete from hotel_details where hotel_id=600;
-select * from hotel_details;
+delete from hotel_details where hotel_id=632;
+select * from hotel_det ails;
 drop table hotel_details  CASCADE CONSTRAINTS;
 insert into hotel_details(location,hotel_name,room_type_mid_range_price,room_type_premium_price) values('kashmir','white snow',3000,4000);
 insert into hotel_details(location,hotel_name,room_type_mid_range_price,room_type_premium_price) values('kashmir','hotel cafe',2500,3750);
+
+
 create table booking_details(
-  NUMBER GENERATED ALWAYS AS IDENTITY START WITH 300,
+booking_id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 300,
 user_id number not null,
 package_id number not null,
 flight_no number not null,
@@ -123,8 +133,9 @@ CONSTRAINT fk_hotel_id FOREIGN key (hotel_id) REFERENCES hotel_details (hotel_id
 );
 
 describe booking_details;
---drop table booking_details CASCADE CONSTRAINTS;
+drop table booking_details CASCADE CONSTRAINTS;
 select * from booking_details;
+alter table booking_details add no_of_room number(30);
 
 create table users_feedback(
 feedback_id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 800,
@@ -135,11 +146,15 @@ user_name varchar(60) not null,
 package_name varchar(3999) not null,
 rating number (5,2),    
 describtion varchar(200),
+status varchar(30) default 'active'
 CONSTRAINT pk_feedback_id primary key (feedback_id),
 CONSTRAINT fk_feedback_booking_id FOREIGN key (booking_id) REFERENCES booking_details (booking_id),
 CONSTRAINT fk_feedback_package_id FOREIGN key (package_id) REFERENCES package_modes (package_id),
 CONSTRAINT fk_feedback_user_id FOREIGN key (user_id) REFERENCES user_details (user_id)
 );
+
+alter table users_feedback add status varchar(30) default 'active';
+
 drop table users_feedback CASCADE CONSTRAINTS;
 describe users_feedback;
 select * from users_feedback;
@@ -248,4 +263,8 @@ procedure showAll
 select * from user_details;
 delete from user_details where user_id=1060;
 
+
+select * from flights_details where status=+"available"+;
+select * from package_modes ;
+select * from package_modes where package_name='switzerland' and status='active'
 

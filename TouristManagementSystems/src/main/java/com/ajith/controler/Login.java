@@ -1,8 +1,10 @@
 package com.ajith.controler;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ajith.daoImplement.AdminTableDaoImplement;
 import com.ajith.daoImplement.UserTableDaoImplement;
+import com.ajith.exception.UserDefineException;
 import com.ajith.model.AdminClass;
 import com.ajith.model.UserClass;
 
@@ -54,13 +57,26 @@ public class Login extends HttpServlet {
 					if (admin == null) {
 						//System.out.println("user name and password mismatch");
 						
-						session.setAttribute("error", "user name and password mismatch");
-					    req.getRequestDispatcher("login.jsp").forward(req,res); 
+//						session.setAttribute("error", "user name and password mismatch");
+//					    req.getRequestDispatcher("login.jsp").forward(req,res); 
 					} else if (admin != null) {
-						res.sendRedirect("AdminPage.jsp");
+						try {
+							res.sendRedirect("AdminPage.jsp");
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						//System.out.println("Welcom " + admin.getName());
 						session.setAttribute("welcom",admin.getName() );
-						req.getRequestDispatcher("UserPage.jsp").forward(req,res); 
+						try {
+							req.getRequestDispatcher("UserPage.jsp").forward(req,res);
+						} catch (ServletException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} 
 				         
 					}
 					}
@@ -72,24 +88,50 @@ public class Login extends HttpServlet {
 				
 				if (user == null) {
 					//System.out.println("user name and password mismatch");
+					throw new UserDefineException();
 					
-					
-					session.setAttribute("error", "user name and password mismatch");
-				    req.getRequestDispatcher("login.jsp").forward(req,res); 
+//					session.setAttribute("error", "user name and password mismatch");
+//				    req.getRequestDispatcher("login.jsp").forward(req,res); 
 
 				} else if (user != null) {
-					res.sendRedirect("UserPage.jsp");
+					try {
+						res.sendRedirect("UserPage.jsp");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					//System.out.println("Welcom " + user.getName());
 					session.setAttribute("user", user);
 					session.setAttribute("welcom",user.getName());
 					session.setAttribute("wallet", "none");
-					req.getRequestDispatcher("UserPage.jsp").forward(req,res); 
+					try {
+						req.getRequestDispatcher("UserPage.jsp").forward(req,res);
+					} catch (ServletException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} 
 					
 				}
 				
-					} catch (Exception e) {
+					} catch (UserDefineException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+						
+						//System.out.println("error");
+						session.setAttribute("error", e.invalidPassword());
+						
+							try {
+								req.getRequestDispatcher("login.jsp").forward(req,res);
+							} catch (ServletException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						
 			}
 	
 	

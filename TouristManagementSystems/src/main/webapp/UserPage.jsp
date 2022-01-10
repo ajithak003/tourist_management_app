@@ -95,10 +95,19 @@ ul li:hover ul {
 
 span{
     position: absolute;
-    right: 100px;
+    right: 200px;
     color: bisque;
    font-size: 20px;
    top: 30px;
+   font-weight: bold;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.name{
+ position: absolute;
+    right: 100px;
+    color: black;
+   font-size: 15px;
+   top: 33px;
    font-weight: bold;
    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -109,8 +118,8 @@ span{
 </head>
 
 <body>
-       <h1>Tourist Management</h1><span>welcome  
-       <% String error=(String)session.getAttribute("welcom");
+       <h1>Tourist Management</h1><span>welcome  &nbsp;</span>
+      <span class="name"> <% String error=(String)session.getAttribute("welcom");
             if(error!=null) {%>
            <%=session.getAttribute("welcom") %>
            

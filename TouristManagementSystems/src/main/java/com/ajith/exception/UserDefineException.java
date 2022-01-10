@@ -11,5 +11,12 @@ public class UserDefineException extends Exception{
 		
 		return "This Email Id Already Registered! \n if you want to change mobile no or password login and update your accout";
 	}
-
+	
+	public String addPackage() {
+		return "This Product Already Added";
+	}
+	
+	public String addhotel() {
+		return "This hotel Already Added";
+	}
 }

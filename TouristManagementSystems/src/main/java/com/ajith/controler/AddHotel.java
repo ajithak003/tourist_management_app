@@ -1,5 +1,9 @@
 package com.ajith.controler;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ajith.daoImplement.HotelTableDaoImplement;
+import com.ajith.exception.UserDefineException;
 import com.ajith.model.HotelClass;
 
 
@@ -32,23 +37,56 @@ public class AddHotel extends HttpServlet {
 		
 		String image = req.getParameter("hotelimage");
 		
+		
 		HotelClass hotel = new HotelClass(hotelname,hotelLocation,normalRoom,premiumRoom,image);
 		//System.out.println(hotelDao);
-		boolean hotels = hotelDao.insertHotel(hotel);
+		boolean hotels;
+		
+			hotels = hotelDao.insertHotel(hotel);
 		
 		HttpSession session = req.getSession();
 		if(hotels==true) {
 			//System.out.println("insert success");
-			req.getRequestDispatcher("addHotel.jsp").forward(req,res);
+			
 			session.setAttribute("addHotel", "true");
+			
+			try {
+				req.getRequestDispatcher("addHotel.jsp").forward(req,res);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
+		
 		else {
 			//System.out.println("insert invalid");
-			session.setAttribute("addHotel", "false");
+			throw new UserDefineException();
 		}
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
+		} catch (UserDefineException e) {
+			// TODO Auto-generated catch block
+			HttpSession session = req.getSession();
+			//System.out.println("error");
+			session.setAttribute("addHotelerror", e.addhotel());
+			try {
+				res.sendRedirect("addHotel.jsp");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-	}
 	
+	
+	}
+
 }

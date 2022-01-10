@@ -63,14 +63,17 @@ public class AddFlight extends HttpServlet {
 		boolean flights = flightDao.insertFlight(flight);
 		
 		HttpSession session = req.getSession();
+		
 		if(flights==true) {
 			//System.out.println("insert success");
-			req.getRequestDispatcher("addFlight.jsp").forward(req,res);
 			session.setAttribute("addFlight", "true");
+			
 		}
 		else {
 			//System.out.println("insert invalid");
 			session.setAttribute("addFlight", "false");
+			req.getRequestDispatcher("addFlight.jsp").forward(req,res);
+			
 		}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());

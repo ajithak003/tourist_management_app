@@ -120,7 +120,26 @@
         font-size: 20px;
         font-weight: bold;
     }
-
+    .rate{
+        height: 40px;
+        width: 150px;
+        position: relative;
+        margin-left: 530px;
+        top: -40px;
+        border-radius: 15px;
+        background-color:midnightblue;
+        color: floralwhite;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+    
+    }
+    .see{
+        text-align: center;
+    }
+    .see, span{
+        color: black;
+    }
 
 </style>
 
@@ -166,22 +185,18 @@
             <div >
                 <button class="cancel" onclick="cancel()"><a href="index.html">Cancel</a> </button>
                 <button class="datechange"><a href="index.html">Change Date</a></button>
+                <button class="rate"><a href="">Rate Now</a></button>
             </div>
             <p id="demo"></p>
         </div>
+       
            <br><br>
         
        </div>
 
 <script>
     function cancel(){
-        let text;
-  if (confirm("if you want to delete") == true) {
-    text = "index.jsp";
-  } else {
-    text = "showallbooking.jsp";
-  }
-  document.getElementById("demo").innerHTML = text;
+      
     }
 </script>
 

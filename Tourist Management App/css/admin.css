@@ -34,7 +34,7 @@ ul{
     margin: 0;
     float: left;
     position: relative;
-    left: 160px;
+    left:70px;
 }
 
 ul li{
@@ -44,7 +44,7 @@ ul li{
      }
 
 ul li a{
-    width: 150px;
+    width: 200px;
     color: white;
     display: block;
     text-decoration: none;

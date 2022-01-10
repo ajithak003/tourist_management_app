@@ -68,6 +68,27 @@ button{
     <h1>Add Hotels</h1>
         <h2><a href="AdminPage.jsp">Go To Home</a></h2>
     <br><br><br>
+    
+    <%          
+      String data=(String)session.getAttribute("addHotel");
+     // System.out.println(data);
+      String error = (String) session.getAttribute("addHotelerror");
+     // System.out.println(error);
+
+    if(data.equals("true")){%>
+          <script type="text/javascript">
+         alert("successfully Added");
+         </script> 
+         <% }
+       
+     else if(error!=null){ 
+    	// System.out.println(error+ " if"); %>
+     <script type="text/javascript">
+     alert("This Hotel Already Added");
+     </script>  
+<%} %>
+    
+    
 <div class="container">
     <div class="addpackage">
         <table cellspacing="50px" cellpadding="70px">  
@@ -97,6 +118,7 @@ button{
     </div>
 </div>
 </form>
-
+<%session.setAttribute("addHotelerror", null);
+  session.setAttribute("addHotel", null);%>
 </body>
 </html>

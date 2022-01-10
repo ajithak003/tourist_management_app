@@ -56,6 +56,7 @@
   <script type="text/javascript">
   alert("successfully deleted");
   </script><%} else if(data.equals("canotdelete")){ %>
+  <script>
   alert("can't be deleted");
    </script> 
 <%  }
@@ -99,5 +100,6 @@
         </tr>
         <%} %>
     </table>
+    <%session.setAttribute("adminpackage", null);%>
 </body>
 </html>

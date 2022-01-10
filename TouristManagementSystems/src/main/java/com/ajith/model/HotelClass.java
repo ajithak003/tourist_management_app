@@ -23,10 +23,11 @@ public class HotelClass {
 		this.premiumPrice = premiumPrice;
 		this.image = image;
 	}
-	public HotelClass(String location, String hotelName, double midRangePrice, double premiumPrice,String image) {
+	public HotelClass(String hotelName,String location,  double midRangePrice, double premiumPrice,String image) {
 		super();
-		this.location = location;
+		
 		this.hotelName = hotelName;
+		this.location = location;
 		this.midRangePrice = midRangePrice;
 		this.premiumPrice = premiumPrice;
 		this.image = image;

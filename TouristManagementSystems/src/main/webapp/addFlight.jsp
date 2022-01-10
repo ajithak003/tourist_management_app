@@ -66,6 +66,23 @@ button{
     </style>
 </head>
 <body>
+
+<%          
+      String data=(String)session.getAttribute("addFlight");
+
+       if(data.equals("true")){%>
+         <script type="text/javascript">
+         alert("successfully Added");
+         </script>
+         <% }
+       
+     else if(data.equals("false")){ %>
+     <script type="text/javascript">
+     alert("can't be Added");
+     </script> 
+
+<%} %>
+
 <form action="addflight">
     <div class="container">
     <h1>Add Flight</h1>
@@ -76,37 +93,37 @@ button{
         <table cellspacing="20px" cellpadding="30px">  
             <tr>
      <td><label for="location">Flight Name : </label></td> 
-     <td> <input type="text" name="flightname" id="flightname" required></td> 
+     <td> <input type="text" name="flightname" id="flightname" required ></td> 
     </tr>
      
       <tr>
-     <td> <label for="depature">Depature Location : </label></td>
-     <td> <input type="text" name="Depature" id="Depature" required></td>
+     <td> <label for="depature">Departure Location : </label></td>
+     <td> <input type="text" name="Depature" id="Depature" required pattern="[aA-zZ]{2,}"></td>
      </tr>
       <tr>
 <td><label for="destination">destination Location :</label></td>
-     <td> <input type="text" name="destination" id="destination" required></td>
+     <td> <input type="text" name="destination" id="destination" required pattern="[aA-zZ]{2,}"></td>
       </tr>
       <tr>
-          <td><label>Depature Date And Time</label></td>
-          <td><input type="datetime-local" name="DepatureDate" id="Depature Date" required></td>
+          <td><label>Departure Date And Time</label></td>
+          <td><input type="datetime-local" name="DepatureDate" id="Date" required ></td>
       </tr>
       <tr>
         <td><label>Arrival Date And Time</label></td>
-        <td><input type="datetime-local" name="ArrivalDate" id="Arrival Date" required> </td>
+        <td><input type="datetime-local" name="ArrivalDate" id="Date" required> </td>
     </tr>
       <tr>
      <td> <label for="">Business Class Fare  :</label></td>
-      <td><input type="text" name="businessclassfare" id="businessclassfare" pattern="[0-9]{2,10}" required></td>
+      <td><input type="text" name="businessclassfare" id="businessclassfare" pattern="[0-9]{3,10}" required></td>
       </tr>
       <tr>
         <td> <label for="">Economic Class Fare  :</label></td>
-         <td><input type="text" name="economicclassfare" id="economicclassfare" pattern="[0-9]{2,10}" required></td>
+         <td><input type="text" name="economicclassfare" id="economicclassfare" pattern="[0-9]{3,10}" required></td>
          </tr>
 
       <tr>
-     <td> <label for=" ">Status :</label></td>
-      <td><input type="text" name="status" id="status" cols="30" rows="3" required></td>
+     <td> <label for=" ">Status : </label></td>
+      <td><input type="text" name="status" id="status" cols="30" rows="3" required pattern="[Aa-Zz]{2,}"></td>
     </tr>
 </tr>
 <tr>
@@ -122,7 +139,25 @@ button{
     </div>
     </div>
     </form>
-    
+    <%session.setAttribute("addFlight", null);%>
+   <script>
+
+  today();
+function today(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var max = today.setMonth( today.getMonth() + 1 );
+maxdate = today.getFullYear() + '-' + 0+(today.getMonth() + 1) + '-'+ 0+today.getDate()  ;
+mindate =yyyy + '-' + mm + '-'+ dd 00:00;
+document.getElementById("Date").setAttribute("max",maxdate);
+console.log(maxdate);
+console.log(mindate);
+document.getElementById("Date").setAttribute("min",mindate);
+}  
+ 
+</script> 
   
 </body>
 

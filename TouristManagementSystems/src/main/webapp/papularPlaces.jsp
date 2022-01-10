@@ -51,7 +51,7 @@ body{
     
    
      top: 400px;
-      width: 300px; 
+      width: 298px; 
       height: 350px; 
       border-radius: 10px;
 

@@ -38,6 +38,27 @@
 
 </head>
 <body>
+<%          
+      String data=(String)session.getAttribute("updateflight");
+
+       if(data.equals("true")){%>
+         <script type="text/javascript">
+         alert("successfully updated");
+         
+         </script>
+         <%} 
+     else if(data.equals("false")){ %>
+     <script type="text/javascript">
+     alert("can't be updated");
+     </script> 
+  <%  } else if(data.equals("delete")){%>
+  <script type="text/javascript">
+  alert("successfully deleted");
+  </script><%} else if(data.equals("canotdelete")){ %>
+  <script>
+  alert("can't be deleted");
+   </script> 
+<%  }%> 
 
     <h1>Show All Flight</h1>
      <h2><a href="AdminPage.jsp">Go To Home</a></h2>
@@ -57,29 +78,9 @@
         <th></th>
         <th></th>
         
-<%          
-      String data=(String)session.getAttribute("updateflight");
 
-       if(data.equals("true")){%>
-         <script type="text/javascript">
-         alert("successfully updated");
-         
-         </script>
-         <%} 
-     else if(data.equals("false")){ %>
-     <script type="text/javascript">
-     alert("can't be updated");
-     </script> 
-  <%  } else if(data.equals("delete")){%>
-  <script type="text/javascript">
-  alert("successfully deleted");
-  </script><%} else if(data.equals("canotdelete")){ %>
-  alert("can't be deleted");
-   </script> 
-<%  }
-  session.setAttribute("updateflight", "none");%> 
      
-
+ 
 
 <%
 
@@ -110,7 +111,8 @@
         <%
        }%>
     </table>
-   
+  <%session.setAttribute("updateflight", null);
+  session.removeAttribute("updateflight");%>
    
 </body>
 </html>
