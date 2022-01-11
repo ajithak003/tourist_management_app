@@ -87,16 +87,16 @@ button{
         <table cellspacing="20px" cellpadding="30px">  
             <tr>
      <td><label for="location">Flight Name : </label></td> 
-     <td> <input type="text" name="flightname" id="flightname" value="<%=flight.getFlightName() %>" required></td> 
+     <td> <input type="text" name="flightname" id="flightname" value="<%=flight.getFlightName() %>" required pattern="[Aa-Zz 0-9]{2,}" autofocus></td> 
     </tr>
      
       <tr>
      <td> <label for="depature">Departure Location : </label></td>
-     <td> <input type="text" name="Depature" id="Depature" value="<%=flight.getDepature()%>"></td>
+     <td> <input type="text" name="Depature" id="Depature" value="<%=flight.getDepature()%>" required pattern="[aa-Zz]{2,}" title="must contain characters only"></td>
      </tr>
       <tr>
 <td><label for="destination">destination Location :</label></td>
-     <td> <input type="text" name="destination" id="destination" value="<%=flight.getDestination()%>"></td>
+     <td> <input type="text" name="destination" id="destination" value="<%=flight.getDestination()%>"required pattern="[aa-Zz]{2,}" title="must contain characters only"></td>
       </tr>
       <tr>
           <td><label>Departure Date And Time</label></td>
@@ -108,24 +108,24 @@ button{
     </tr>
       <tr>
      <td> <label for="">Business Class Fare  :</label></td>
-      <td><input type="text" name="businessclassfare" id="businessclassfare" value="<%=flight.getBusinessClassFare()%>" pattern="[0-9]{2,10}" ></td>
+      <td><input type="text" name="businessclassfare" id="businessclassfare" value="<%=flight.getBusinessClassFare()%>" pattern="[0-9]{2,10}" title="must contain number only"></td>
       </tr>
       <tr>
         <td> <label for="">Economic Class Fare  :</label></td>
-         <td><input type="text" name="economicclassfare" id="economicclassfare" value="<%=flight.getEconomicClassFare()%>" pattern="[0-9]{2,10}" ></td>
+         <td><input type="text" name="economicclassfare" id="economicclassfare" value="<%=flight.getEconomicClassFare()%>" pattern="[0-9]{2,10}" title="must contain number only"></td>
          </tr>
 
       <tr>
      <td> <label for=" ">Status :</label></td>
-      <td><input type="text" name="status" id="status" cols="30" rows="3" value="<%=flight.getStatus()%>"></td>
+      <td><input type="text" name="status" id="status" cols="30" rows="3" value="<%=flight.getStatus()%>"required pattern="[aa-Zz]{2,}" title="must contain characters only"></td>
     </tr>
 <tr>
 <td> <label for="">Business Class Seats Count  :</label></td>
-<td><input type="text" name="businessclassseat" id="businessclassseat" value="<%=flight.getBusinessClassSeat()%>" pattern="[0-9]{2,3}" ></td>
+<td><input type="text" name="businessclassseat" id="businessclassseat" value="<%=flight.getBusinessClassSeat()%>" pattern="[0-9]{2,3}" title="must contain number only"></td>
 </tr>
 <tr>
   <td> <label for="">Economic Class Seats Count  :</label></td>
-   <td><input type="text" name="economicclassseat" id="economicclassseat" value="<%=flight.getEconomicClassSeat()%>" pattern="[0-9]{2,3}"></td>
+   <td><input type="text" name="economicclassseat" id="economicclassseat" value="<%=flight.getEconomicClassSeat()%>" pattern="[0-9]{2,3}" title="must contain number only"></td>
    </tr>
     </table>
     

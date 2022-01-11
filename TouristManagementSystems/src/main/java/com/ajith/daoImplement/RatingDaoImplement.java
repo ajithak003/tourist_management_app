@@ -163,5 +163,45 @@ public class RatingDaoImplement implements UserFeedbackDaoInterface {
 		
 		return flag;
 	}
+	
+    
+	public List<UserFeedbackClass> getAllFeedbackratingS() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		Statement stmt = null;
+		
+		
+		UserFeedbackClass rating= null;
+		
+		List<UserFeedbackClass> ratings = new ArrayList<UserFeedbackClass>();
+
+		String query = "select package_name, avg(rating)as rating  from users_feedback group by package_name";
+		
+		try {
+			con = ConnectionUtil.getDBConnect();
+			
+			 stmt =con.createStatement();
+			
+			 ResultSet rs = stmt.executeQuery(query);
+			
+			while(rs.next()) {
+				rating = new UserFeedbackClass(0,0,0,0,"", rs.getString(1),rs.getFloat(2),"");
+				ratings.add(rating);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionUtil.closeStatement(stmt, con);
+		}
+		
+		return ratings;
+		
+	}
+
 
 }

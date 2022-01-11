@@ -105,7 +105,7 @@ span{
 .name{
  position: absolute;
     right: 100px;
-    color: black;
+    color: white;
    font-size: 15px;
    top: 33px;
    font-weight: bold;

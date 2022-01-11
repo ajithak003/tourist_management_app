@@ -1,6 +1,7 @@
 package com.ajith.controler;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -71,18 +72,27 @@ public class updateFlight extends HttpServlet {
 		boolean flights = flightDao.updateFlight(flight);
 		
 		HttpSession session = req.getSession();
+		PrintWriter out = res.getWriter();
 		if(flights==true) {
 			//System.out.println("update success");
-			session.setAttribute("updateflight", "true");
-			req.getRequestDispatcher("showAllFlight.jsp").forward(req,res);
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Successfully Updated');");
+			out.println("location='showAllFlight.jsp';");
+			out.println("</script>");
+//			session.setAttribute("updateflight", "true");
+//			req.getRequestDispatcher("showAllFlight.jsp").forward(req,res);
 			
 		}
 		else {
 			//System.out.println("insert invalid");
-			session.setAttribute("updateflight", "false");
-		}
-			req.getRequestDispatcher("showAllFlight.jsp").forward(req,res);
-			
+//			session.setAttribute("updateflight", "false");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('can not be updated');");
+			out.println("location='showAllFlight.jsp';");
+			out.println("</script>");
+		
+			//req.getRequestDispatcher("showAllFlight.jsp").forward(req,res);
+		}	
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

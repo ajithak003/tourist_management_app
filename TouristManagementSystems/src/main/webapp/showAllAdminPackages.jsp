@@ -39,7 +39,7 @@
 </head>
 <body>
 
-<%          
+<%-- <%          
       String data=(String)session.getAttribute("adminpackage");
 
        if(data.equals("true")){%>
@@ -60,7 +60,7 @@
   alert("can't be deleted");
    </script> 
 <%  }
-  session.setAttribute("adminpackage", "none");%> 
+  session.setAttribute("adminpackage", "none");%>  --%>
      
 
 
@@ -80,6 +80,8 @@
         <th>Season</th>
         <th>Protocols</th>
         <th>Description</th>
+        <th>Action</th>
+        <th>Action</th>
 <%
     PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
     List<PackageModeClass> packages = packageDao.getAllPackage();
@@ -100,6 +102,6 @@
         </tr>
         <%} %>
     </table>
-    <%session.setAttribute("adminpackage", null);%>
+   <%--  <%session.setAttribute("adminpackage", null);%> --%>
 </body>
 </html>

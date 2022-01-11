@@ -38,7 +38,7 @@
 
 </head>
 <body>
-<%          
+<%-- <%          
       String data=(String)session.getAttribute("updateflight");
 
        if(data.equals("true")){%>
@@ -58,7 +58,7 @@
   <script>
   alert("can't be deleted");
    </script> 
-<%  }%> 
+<%  }%>  --%>
 
     <h1>Show All Flight</h1>
      <h2><a href="AdminPage.jsp">Go To Home</a></h2>
@@ -75,8 +75,8 @@
         <th>Status</th>
         <th>Business Class Seats Status</th>
         <th>Economic Class Seat Status</th>
-        <th></th>
-        <th></th>
+        <th>Action</th>
+        <th>Action</th>
         
 
      
@@ -111,8 +111,8 @@
         <%
        }%>
     </table>
-  <%session.setAttribute("updateflight", null);
-  session.removeAttribute("updateflight");%>
+  <%-- <%session.setAttribute("updateflight", null);
+  session.removeAttribute("updateflight");%> --%>
    
 </body>
 </html>

@@ -67,7 +67,7 @@ button{
 </head>
 <body>
 
-<%          
+<%-- <%          
       String data=(String)session.getAttribute("addFlight");
 
        if(data.equals("true")){%>
@@ -81,7 +81,7 @@ button{
      alert("can't be Added");
      </script> 
 
-<%} %>
+<%} %> --%>
 
 <form action="addflight">
     <div class="container">
@@ -93,16 +93,16 @@ button{
         <table cellspacing="20px" cellpadding="30px">  
             <tr>
      <td><label for="location">Flight Name : </label></td> 
-     <td> <input type="text" name="flightname" id="flightname" required ></td> 
+     <td> <input type="text" name="flightname" id="flightname" required pattern="[Aa-Zz 0-9]{2,}" title="must contain  and numbers only" autofocus></td> 
     </tr>
      
       <tr>
      <td> <label for="depature">Departure Location : </label></td>
-     <td> <input type="text" name="Depature" id="Depature" required pattern="[aA-zZ]{2,}"></td>
+     <td> <input type="text" name="Depature" id="Depature" required pattern="[aA-zZ]{2,}" title="must contain characters only"></td>
      </tr>
       <tr>
 <td><label for="destination">destination Location :</label></td>
-     <td> <input type="text" name="destination" id="destination" required pattern="[aA-zZ]{2,}"></td>
+     <td> <input type="text" name="destination" id="destination" required pattern="[aA-zZ ]{2,}" title="must contain characters only"></td>
       </tr>
       <tr>
           <td><label>Departure Date And Time</label></td>
@@ -110,29 +110,29 @@ button{
       </tr>
       <tr>
         <td><label>Arrival Date And Time</label></td>
-        <td><input type="datetime-local" name="ArrivalDate" id="Date" required> </td>
+        <td><input type="datetime-local" name="ArrivalDate" id="Date" required > </td>
     </tr>
       <tr>
      <td> <label for="">Business Class Fare  :</label></td>
-      <td><input type="text" name="businessclassfare" id="businessclassfare" pattern="[0-9]{3,10}" required></td>
+      <td><input type="text" name="businessclassfare" id="businessclassfare" pattern="[0-9]{3,10}" required title="must contain number only maximum 10 minimum 3 no. number"></td>
       </tr>
       <tr>
         <td> <label for="">Economic Class Fare  :</label></td>
-         <td><input type="text" name="economicclassfare" id="economicclassfare" pattern="[0-9]{3,10}" required></td>
+         <td><input type="text" name="economicclassfare" id="economicclassfare" pattern="[0-9]{3,10}" title="must contain number only maximum 10 minimum 3 no. number" required></td>
          </tr>
 
       <tr>
      <td> <label for=" ">Status : </label></td>
-      <td><input type="text" name="status" id="status" cols="30" rows="3" required pattern="[Aa-Zz]{2,}"></td>
+      <td><input type="text" name="status" id="status" cols="30" rows="3" required pattern="[Aa-Zz]{2,}" title="must contain characters only"></td>
     </tr>
 </tr>
 <tr>
 <td> <label for="">Business Class Seats Count  :</label></td>
-<td><input type="text" name="businessclassseat" id="businessclassseatr" required pattern="[0-9]{2,3}"></td>
+<td><input type="text" name="businessclassseat" id="businessclassseatr" required pattern="[0-9]{2,3}" title="must contain number only maximum 10 minimum 2 no. number"></td>
 </tr>
 <tr>
   <td> <label for="">Economic Class Seats Count  :</label></td>
-   <td><input type="text" name="economicclassseat" id="economicclassseat" required pattern="[0-9]{2,3}"></td>
+   <td><input type="text" name="economicclassseat" id="economicclassseat" required pattern="[0-9]{2,3}" title="must contain number only maximum 10 minimum 2 no. number"></td>
    </tr>
     </table>
     <button >Add Flight</button>

@@ -93,7 +93,6 @@ second{
         <tr>
         <%} %>
         
-              
             <td>
                 <div class="firstrow">
                     <a href="singlePackage.jsp?location=<%=rs.getName() %>">

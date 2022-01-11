@@ -39,7 +39,7 @@
 </head>
 <body>
 
-<%          
+<%-- <%          
       String data=(String)session.getAttribute("hotel");
        System.out.print(data);
        if(data.equals("true")){%>
@@ -58,7 +58,7 @@
   alert("can't be deleted");
    </script> 
 <%  }
-  session.setAttribute("hotel", "none");%> 
+  session.setAttribute("hotel", "none");%>  --%>
 <h2><a href="AdminPage.jsp">Go To Home</a></h2>
 
     <h1>Show All Hotels</h1>
@@ -72,6 +72,8 @@
         <th>Hotel Location</th>
         <th>Standard Room Price</th>
         <th>Premium Room Price</th>
+        <th>Action</th>
+        <th>Action</th>
        
         
         <%  HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
@@ -93,6 +95,6 @@
         </tr>
         <%} %>
     </table>
-     <%session.setAttribute("hotel", null);%>
+    <%--  <%session.setAttribute("hotel", null);%> --%>
 </body>
 </html>

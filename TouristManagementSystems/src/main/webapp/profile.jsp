@@ -17,9 +17,16 @@
        .table {
             align-items: center;
             border: 3px solid;
-            margin-left: 38%;
+            margin-left: 36%;
             height: 400px;
             width: 430px;
+        }
+        a{
+           text-decoration: none;
+           margin-top: -50px;
+           margin-left: 900px;
+           font-size: 20px;
+           font-weight: bold;
         }
 
     </style>
@@ -30,7 +37,10 @@
     My Profile
 </h1>
 
-<br><br>
+
+<a href="updateprofile.jsp">Update</a>
+<br>
+<br>
 
 <%  
     UserClass user = (UserClass) session.getAttribute("user");
@@ -40,17 +50,17 @@
 <div class="table">
 <table  cellspacing ="50px">
     <tr>
-        <td><h2>Name : </h2></td>
+        <td><h2>Name  </h2></td>
         <td><h3><%=user.getName() %></h3></td>
     </tr>
     <tr>
-        <td><h2>Email Id : </h2></td>
+        <td><h2>Email Id  </h2></td>
         <td><h3><%=user.getEmail() %></h3></td>
     </tr>
 
     <tr>
-        <td><h2>Mobile No : </h2></td>
-        <td><h3><%=user.getMboNo() %></h3></td>
+        <td><h2>Mobile No  </h2></td>
+        <td><h3><%= user.getMboNo() %></h3></td>
     </tr>
 </table>
 

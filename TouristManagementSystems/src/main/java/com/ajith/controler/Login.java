@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
 	
 	 
 		public void service(HttpServletRequest req,HttpServletResponse res) {
-			 Scanner sc = new Scanner (System.in);
+			 
 			 HttpSession session=req.getSession();
 		try {
 			UserTableDaoImplement userDao = new UserTableDaoImplement();
@@ -57,26 +57,17 @@ public class Login extends HttpServlet {
 					if (admin == null) {
 						//System.out.println("user name and password mismatch");
 						
-//						session.setAttribute("error", "user name and password mismatch");
-//					    req.getRequestDispatcher("login.jsp").forward(req,res); 
+						session.setAttribute("error", "user name and password mismatch");
+					    req.getRequestDispatcher("login.jsp").forward(req,res); 
 					} else if (admin != null) {
-						try {
+					
 							res.sendRedirect("AdminPage.jsp");
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						
 						//System.out.println("Welcom " + admin.getName());
 						session.setAttribute("welcom",admin.getName() );
-						try {
+					
 							req.getRequestDispatcher("UserPage.jsp").forward(req,res);
-						} catch (ServletException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} 
+						
 				         
 					}
 					}
@@ -88,50 +79,32 @@ public class Login extends HttpServlet {
 				
 				if (user == null) {
 					//System.out.println("user name and password mismatch");
-					throw new UserDefineException();
+					//throw new UserDefineException();
 					
-//					session.setAttribute("error", "user name and password mismatch");
-//				    req.getRequestDispatcher("login.jsp").forward(req,res); 
+					session.setAttribute("error", "user name and password mismatch");
+				    req.getRequestDispatcher("login.jsp").forward(req,res); 
 
 				} else if (user != null) {
-					try {
+				
 						res.sendRedirect("UserPage.jsp");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					
 					//System.out.println("Welcom " + user.getName());
 					session.setAttribute("user", user);
 					session.setAttribute("welcom",user.getName());
 					session.setAttribute("wallet", "none");
-					try {
+					
 						req.getRequestDispatcher("UserPage.jsp").forward(req,res);
-					} catch (ServletException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} 
+					
 					
 				}
 				
-					} catch (UserDefineException e) {
+					} catch (Exception e) {
 				// TODO Auto-generated catch block
 						
-						//System.out.println("error");
-						session.setAttribute("error", e.invalidPassword());
+						//System.out.println(e.getMessage());
 						
-							try {
-								req.getRequestDispatcher("login.jsp").forward(req,res);
-							} catch (ServletException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							} catch (IOException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
 						
+							
 			}
 	
 	

@@ -190,9 +190,6 @@ DateTimeFormatter formatter =
        
         </div>
         <div class="btn">
-        
-        
-             <!-- <input type="button" value="Book" id="button"> -->
              <button id="button" name= "flightno" value="<%=flight.getFlightNo()%>">Book flight</button>
         </div>
      

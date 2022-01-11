@@ -1,6 +1,7 @@
 package com.ajith.controler;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ public class addPackage extends HttpServlet {
 
 	Scanner sc = new Scanner(System.in);
 
-	public void service(HttpServletRequest req, HttpServletResponse res)  {
+	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException  {
 
 		PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
 		
@@ -48,20 +49,16 @@ try {
 		boolean pack = packageDao.insertPackage(packages);
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("addpackages", "none");
+		PrintWriter out = res.getWriter();
 		if(pack==true) {
 			//System.out.println("insert success");
+			//session.setAttribute("addpackages", "true");
+			//req.getRequestDispatcher("addPackage.jsp").forward(req,res);
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Successfully Added');");
+			out.println("location='addPackage.jsp';");
+			out.println("</script>");
 			
-			session.setAttribute("addpackages", "true");
-			try {
-				req.getRequestDispatcher("addPackage.jsp").forward(req,res);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		else {
 			//System.out.println("insert invalid");

@@ -68,7 +68,7 @@ body{
       <div class="loginbox">
           <h1>Register</h1>
           <div class="textbox">
-            <input type="text" placeholder="FullName" name="FullName" value="" required autofocus>
+            <input type="text" placeholder="FullName" name="FullName" value="" required autofocus pattern="[aa-Zz]{2,}" title="must contain numbers only">
           </div>
           <div class="textbox">
              <input type="email" placeholder="Email" name="regemail" value="" required  pattern="[A-Za-z0-9]+[@][a-zA-Z]+[.][A-Za-z]{2,3}">

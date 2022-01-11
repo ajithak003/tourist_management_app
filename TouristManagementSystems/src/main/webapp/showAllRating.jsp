@@ -24,6 +24,7 @@
             border-radius: 10px;
             width: 700px;
             margin-left: 300px;
+            padding: 20px
         }
         .title{
             font-size: 40px;
@@ -42,15 +43,17 @@
         }
         p{
             margin-left: 10px;
-            margin-top: -50px;
+            margin-top: 0px;
             font-size: 16px;
         }
        .rate{
             position: relative;
-            margin-left: 560px;
+            margin-left: 480px;
             margin-top: -50px;
-            font-size: 60px;
+            font-size: 30px;
+            
         } 
+       
        
     </style>
 
@@ -75,7 +78,21 @@
      <div class="container">
      <h2 class="name"><%=user.getName() %></h2>
      <h3><%=rating.getPackageName() %> Trip</h3>
-     <h1 class="rate"><%=rating.getRating() %>/5</h1>
+     
+      <%if(rating.getRating()==5.0) {%>
+     
+     <h1 class="rate">&#11088;&#11088;&#11088;&#11088;&#11088;</h1>
+     <%}else if (rating.getRating()==4.0) {%>
+     <h1 class="rate">&#11088;&#11088;&#11088;&#11088;</h1>
+     <%} 
+     else if(rating.getRating()==3.0) {%>
+     
+     <h1 class="rate">&#11088;&#11088;&#11088;</h1>
+     <%}else if (rating.getRating()==2.0) {%>
+     <h1 class="rate">&#11088;&#11088;</h1>
+     <%} else if (rating.getRating()==1.0){%>
+      <h1 class="rate">&#11088;</h1>
+      <%} %> 
      <p><%=rating.getDescribtion() %></p>
 
 </div>

@@ -95,15 +95,15 @@
     %>
     
       <div class="rate">
-        <input type="radio" id="star5" name="rate" value="5" /> 
+        <input type="radio" id="star5" name="rate" value="5" required/> 
         <label for="star5" title=" 🤩 Excellent">5 stars</label>
-        <input type="radio" id="star4" name="rate" value="4"  />
+        <input type="radio" id="star4" name="rate" value="4"  required/>
         <label for="star4" title="😎 very good">4 stars</label>
-        <input type="radio" id="star3" name="rate" value="3" />
+        <input type="radio" id="star3" name="rate" value="3" required/>
         <label for="star3" title="😁 Good">3 stars</label>
-        <input type="radio" id="star2" name="rate" value="2" />
+        <input type="radio" id="star2" name="rate" value="2" required/>
         <label for="star2" title="🙂 Average">2 stars</label>
-        <input type="radio" id="star1" name="rate" value="1" />
+        <input type="radio" id="star1" name="rate" value="1" required/>
         <label for="star1" title="😶 Bad">1 star</label>
       </div>
       <br>

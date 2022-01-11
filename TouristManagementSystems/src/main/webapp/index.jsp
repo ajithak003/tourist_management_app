@@ -27,7 +27,7 @@ body{
     background-size: cover;
     width: 100%;
     height: 100vh;
-    filter: brightness(150%);
+   filter: brightness(150%); 
 }
 h1{
      color:crimson;
@@ -55,16 +55,6 @@ li{
      margin-top:10px;
      font-size: 20px;
      left: 150px; 
-   /*  width: 180px;
-    color: white;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    padding: 10px;
-    border-radius: 10px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    text-align: center; */
      
 }
 a{

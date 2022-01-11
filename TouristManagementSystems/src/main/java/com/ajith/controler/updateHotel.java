@@ -1,5 +1,7 @@
 package com.ajith.controler;
 
+import java.io.PrintWriter;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,16 +40,25 @@ public class updateHotel extends HttpServlet{
 		boolean hotels = hotelDao.updateHotel(hotel);
 		
 		HttpSession session = req.getSession();
+		PrintWriter out = res.getWriter();
 		if(hotels==true) {
 			//System.out.println("update success");
-			session.setAttribute("hotel", "true");
-			req.getRequestDispatcher("showAllHotel.jsp").forward(req,res);
+//			session.setAttribute("hotel", "true");
+//			req.getRequestDispatcher("showAllHotel.jsp").forward(req,res);
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Successfully Updated');");
+			out.println("location='showAllHotel.jsp';");
+			out.println("</script>");
 			
 		}
 		else {
 			//System.out.println("update invalid");
-			session.setAttribute("hotel", "false");
-			req.getRequestDispatcher("showAllHotel.jsp").forward(req,res);
+//			session.setAttribute("hotel", "false");
+//			req.getRequestDispatcher("showAllHotel.jsp").forward(req,res);
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('can not be Updated');");
+			out.println("location='showAllHotel.jsp';");
+			out.println("</script>");
 		}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());

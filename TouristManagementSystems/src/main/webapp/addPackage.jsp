@@ -68,18 +68,12 @@ button{
   <h2><a href="AdminPage.jsp">Go To Home</a></h2>
 
 <%          
-      String data=(String)session.getAttribute("addpackages");
-      System.out.println(data);
+     // String data=(String)session.getAttribute("addpackages");
+     // System.out.println(data);
       String error = (String) session.getAttribute("addpackageerror");
       System.out.println(error);
 
-    if(data.equals("true")){%>
-         <script type="text/javascript">
-         alert("successfully Added");
-         </script>
-         <% }
-       
-     else if(error!=null){ 
+    if(error!=null){ 
     	 System.out.println(error+ " if"); %>
      <script type="text/javascript">
      alert("This Product Already Added");
@@ -92,24 +86,24 @@ button{
         <table cellspacing="20px" cellpadding="30px">  
             <tr>
      <td><label for="location">package location : </label></td> 
-     <td> <input type="text" name="packagename" id="packagename" required></td> 
+     <td> <input type="text" name="packagename" id="packagename" required pattern="[Aa-Zz]{2,}" title="must contain characters only"></td> 
     </tr>
      
       <tr>
      <td> <label for="price">Package one day night price : </label></td>
-     <td> <input type="text" name="packageonedayprice" id="packageonedayprice" required></td>
+     <td> <input type="text" name="packageonedayprice" id="packageonedayprice" required pattern="[0-9]{2,}"title="must contain numbers only"></td>
      </tr>
       <tr>
 <td><label for="season">current season :</label></td>
-     <td> <input type="text" name="season" id="season" required></td>
+     <td> <input type="text" name="season" id="season" required pattern="[Aa-Zz]{2,}" title="must contain characters only"></td>
       </tr>
       <tr>
      <td> <label for="protocol">current tourist protocols :</label></td>
-      <td><textarea name="protocol" id="" cols="30" rows="3" required></textarea></td>
+      <td><textarea name="protocol" id="" cols="30" rows="3" required pattern="[Aa-Zz0-9]{5,}" title="must contain 5 characters only"></textarea></td>
       </tr>
       <tr>
      <td> <label for="description">Tourist Place Description :</label></td>
-      <td><textarea name="description" id="description" cols="30" rows="3" required></textarea></td>
+      <td><textarea name="description" id="description" cols="30" rows="3" required pattern="[Aa-Zz0-9]{5,}" title="must contain 5 characters only"></textarea></td>
     </tr>
     <tr>
     <td> <label for="image">Add Images URL : </label></td>
@@ -118,7 +112,7 @@ button{
     </table>
     <button >Add Package</button>
     </form>
-    <%session.setAttribute("addpackages", null);
+    <%
   session.setAttribute("addpackageerror", null);%>
 </body>
 </html>

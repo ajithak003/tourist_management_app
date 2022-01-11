@@ -82,20 +82,20 @@ button{
         <table cellspacing="50px" cellpadding="70px">  
             <tr>
      <td><label for="">Hotel Name : </label></td> 
-     <td> <input type="text" name="hotelname" id="hotelname" value="<%=hotel.getHotelName() %>" required></td> 
+     <td> <input type="text" name="hotelname" id="hotelname" value="<%=hotel.getHotelName() %>" required pattern="[aa-Zz]{2,}" title="must contain characters only" autofocus></td> 
     </tr>
      
       <tr>
      <td> <label for="">Hotel Location : </label></td>
-     <td> <input type="text" name="hotellocation" id="hotellocation" value="<%=hotel.getLocation() %>" required></td>
+     <td> <input type="text" name="hotellocation" id="hotellocation" value="<%=hotel.getLocation() %>" required pattern="[aa-Zz]{2,}" title="must contain characters only"></td>
      </tr>
       <tr>
 <td><label for="">Standard Room One Day Price :</label></td>
-     <td> <input type="text" name="standardprice" id="standardprice" value="<%=hotel.getMidRangePrice() %>" required pattern="[0-9]{2,10}"></td>
+     <td> <input type="text" name="standardprice" id="standardprice" value="<%=hotel.getMidRangePrice() %>" required pattern="[0-9]{2,10}" title="must contain number only maximum 10 number"></td>
       </tr>
       <tr>
      <td> <label for="">Premium Room One Day Price :</label></td>
-      <td><input type="text" name="premiumprice" id="premiumprice" value="<%=hotel.getPremiumPrice() %>" required pattern="[0-9]{2,10}"></td>
+      <td><input type="text" name="premiumprice" id="premiumprice" value="<%=hotel.getPremiumPrice() %>" required pattern="[0-9]{2,10}" title="must contain number only maximum 10 number"></td>
       </tr>
       <tr>
       <td> <label for="">Add Image URL :</label> </td>

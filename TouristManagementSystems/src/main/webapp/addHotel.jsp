@@ -70,18 +70,12 @@ button{
     <br><br><br>
     
     <%          
-      String data=(String)session.getAttribute("addHotel");
+      //String data=(String)session.getAttribute("addHotel");
      // System.out.println(data);
       String error = (String) session.getAttribute("addHotelerror");
      // System.out.println(error);
-
-    if(data.equals("true")){%>
-          <script type="text/javascript">
-         alert("successfully Added");
-         </script> 
-         <% }
        
-     else if(error!=null){ 
+     if(error!=null){ 
     	// System.out.println(error+ " if"); %>
      <script type="text/javascript">
      alert("This Hotel Already Added");
@@ -94,20 +88,20 @@ button{
         <table cellspacing="50px" cellpadding="70px">  
             <tr>
      <td><label for="">Hotel Name : </label></td> 
-     <td> <input type="text" name="hotelname" id="hotelname" required></td> 
+     <td> <input type="text" name="hotelname" id="hotelname" required pattern="[Aa-Zz]{2,}" title="must contain characters only" autofocus></td> 
     </tr>
      
       <tr>
      <td> <label for="">Hotel Location : </label></td>
-     <td> <input type="text" name="hotellocation" id="hotellocation" required></td>
+     <td> <input type="text" name="hotellocation" id="hotellocation" required pattern="[Aa-Zz]{2,}" title="must contain characters only"></td>
      </tr>
       <tr>
 <td><label for="">Standard Room One Day Price :</label></td>
-     <td> <input type="text" name="standardprice" id="standardprice" required pattern="[0-9]{2,10}"></td>
+     <td> <input type="text" name="standardprice" id="standardprice" required pattern="[0-9]{2,10}" title="must contain numbers maximum 10 no. minimum 2 no. only"></td>
       </tr>
       <tr>
      <td> <label for="">Premium Room One Day Price :</label></td>
-      <td><input type="text" name="premiumprice" id="premiumprice" required pattern="[0-9]{2,10}"></td>
+      <td><input type="text" name="premiumprice" id="premiumprice" required pattern="[0-9]{2,10}" title="must contain numbers maximum 10 no. minimum 2 no. only"></td>
       </tr>
       <tr>
     <td>Add Images URL : </td>

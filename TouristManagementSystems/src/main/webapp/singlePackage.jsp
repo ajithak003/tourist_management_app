@@ -181,10 +181,10 @@ label{
                 <td><label for="">No of days in night</label></td>
             </tr>
             <tr>
-                <td><input type="date" name="startdate" id="startdate" class="data"></td>
-                <td> <input type="text" name="noofperson" class="data"></td>
+                <td><input type="date" name="startdate" id="startdate" class="data" required autofocus></td>
+                <td> <input type="text" name="noofperson" class="data" required pattern="[0-9]"></td>
                 <td>
-                   <select name="noofdays" id="select" class="data">
+                   <select name="noofdays" id="select" class="data" required>
                       <option value="2 days plan">2N</option>
                       <option value="3 days plan">3N</option>
                       <option value="4 days plan">4N</option>

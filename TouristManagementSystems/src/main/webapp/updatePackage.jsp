@@ -84,24 +84,24 @@ button{
         <table cellspacing="20px" cellpadding="30px">  
             <tr>
      <td><label for="location">package location : </label></td> 
-     <td> <input type="text" name="packagename" id="packagename" value="<%=packages.getName() %>" required></td> 
+     <td> <input type="text" name="packagename" id="packagename" value="<%=packages.getName() %>" required pattern="[aa-Zz]{2,}" title="must contain characters only"></td> 
     </tr>
      
       <tr>
      <td> <label for="price">Package one day night price : </label></td>
-     <td> <input type="text" name="packageonedayprice" id="packageonedayprice" value="<%=packages.getPriceOneDays() %>"></td>
+     <td> <input type="text" name="packageonedayprice" id="packageonedayprice" value="<%=packages.getPriceOneDays() %>" required pattern="[0-9]{2,}" title="must contain numbers only"></td>
      </tr>
       <tr>
 <td><label for="season">current season :</label></td>
-<td> <input type="text" name="season" id="season" value="<%=packages.getSeason()%>" required></td>
+<td> <input type="text" name="season" id="season" value="<%=packages.getSeason()%>" required pattern="[aa-Zz]{2,}" title="must contain characters only"></td>
       </tr>
       <tr>
      <td> <label for="protocol">current tourist protocols :</label></td>
-      <td><textarea name="protocols" id="protocols"  value="<%=packages.getProtocols()%>" cols="30" rows="3"><%=packages.getProtocols()%></textarea></td>
+      <td><textarea name="protocols" id="protocols"  value="<%=packages.getProtocols()%>" cols="30" rows="3" required pattern="[aa-Zz 0-9]{2,}" title="must contain characters and numbers only"><%=packages.getProtocols()%></textarea></td>
       </tr>
       <tr>
      <td> <label for="description">Tourist Place Description :</label></td>
-      <td><textarea name="description" id="description" value="<%=packages.getDescription() %>" cols="30" rows="3" ><%=packages.getDescription() %></textarea></td>
+      <td><textarea name="description" id="description" value="<%=packages.getDescription() %>" cols="30" rows="3" required pattern="[aa-Zz 0-9]{2,}" title="must contain characters and numbers only"><%=packages.getDescription() %></textarea></td>
     </tr>
     <tr>
      <td> <label for="image">Add Image URL :</label> </td>

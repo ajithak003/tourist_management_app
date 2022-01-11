@@ -1,6 +1,7 @@
 package com.ajith.controler;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ import com.ajith.model.HotelClass;
 public class AddHotel extends HttpServlet {
 
 	
-	public void service(HttpServletRequest req, HttpServletResponse res)  {
+	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException  {
 		try {
 			HotelTableDaoImplement hotelDao = new HotelTableDaoImplement();
 		
@@ -45,20 +46,16 @@ public class AddHotel extends HttpServlet {
 			hotels = hotelDao.insertHotel(hotel);
 		
 		HttpSession session = req.getSession();
+		PrintWriter out = res.getWriter();
 		if(hotels==true) {
 			//System.out.println("insert success");
 			
-			session.setAttribute("addHotel", "true");
-			
-			try {
-				req.getRequestDispatcher("addHotel.jsp").forward(req,res);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			session.setAttribute("addHotel", "true");
+//			req.getRequestDispatcher("addHotel.jsp").forward(req,res);
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Successfully Added');");
+			out.println("location='addHotel.jsp';");
+			out.println("</script>");
 			
 		}
 		
@@ -66,11 +63,11 @@ public class AddHotel extends HttpServlet {
 			//System.out.println("insert invalid");
 			throw new UserDefineException();
 		}
-		} catch (UserDefineException e) {
+		} catch (UserDefineException | ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			HttpSession session = req.getSession();
 			//System.out.println("error");
-			session.setAttribute("addHotelerror", e.addhotel());
+			session.setAttribute("addHotelerror", ((UserDefineException) e).addhotel());
 			try {
 				res.sendRedirect("addHotel.jsp");
 			} catch (IOException e1) {
@@ -78,14 +75,7 @@ public class AddHotel extends HttpServlet {
 				e1.printStackTrace();
 			}
 		
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
-	
 	
 	}
 

@@ -1,5 +1,6 @@
 package com.ajith.controler;
 
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -63,16 +64,25 @@ public class AddFlight extends HttpServlet {
 		boolean flights = flightDao.insertFlight(flight);
 		
 		HttpSession session = req.getSession();
+		PrintWriter out = res.getWriter();
 		
 		if(flights==true) {
 			//System.out.println("insert success");
-			session.setAttribute("addFlight", "true");
+			//session.setAttribute("addFlight", "true");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Successfully Updated');");
+			out.println("location='addFlight.jsp';");
+			out.println("</script>");
 			
 		}
 		else {
 			//System.out.println("insert invalid");
-			session.setAttribute("addFlight", "false");
-			req.getRequestDispatcher("addFlight.jsp").forward(req,res);
+//			session.setAttribute("addFlight", "false");
+//			req.getRequestDispatcher("addFlight.jsp").forward(req,res);
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Successfully Updated');");
+			out.println("location='addFlight.jsp';");
+			out.println("</script>");
 			
 		}
 		}catch(Exception e) {
