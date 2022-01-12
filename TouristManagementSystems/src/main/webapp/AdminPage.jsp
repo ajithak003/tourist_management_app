@@ -107,7 +107,7 @@ span{
  .name{
  position: absolute;
     right: 100px;
-    color: black;
+    color: bisque;
 font-size: 15px;
  top: 33px;
  }   
@@ -135,7 +135,7 @@ font-size: 15px;
   
 <div id="link" >
 <ul>
-<li><a href="index.jsp">Home</a>
+<li><a href="#">Home</a>
 </li>
 <li><a href="showAllPlaces.jsp" >Popular Places</a></li>
 <li ><a>Package</a>

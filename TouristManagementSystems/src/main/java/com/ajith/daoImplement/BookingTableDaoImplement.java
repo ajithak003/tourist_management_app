@@ -82,7 +82,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		List<BookingClass> bookingDetails = new ArrayList<BookingClass>();
 		Connection con = null;
 		
-		String query = "select * from booking_details where user_id="+user.getId();
+		String query = "select * from booking_details where user_id="+user.getId()+"order by start_date desc";
 	
 		Statement stmt = null;
 		BookingClass booking = null;
@@ -354,7 +354,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 	public boolean endDateCheck(BookingClass booking) {
 		Connection con = null;
 	    PreparedStatement pstmt =null;		
-        String query = "select * from booking_details where booking_id=? and ?>SYSDATE";
+        String query = "select * from booking_details where booking_id=? and SYSDATE>?";
         			
 		boolean flag = false;
 		
@@ -363,7 +363,7 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 			con = ConnectionUtil.getDBConnect();
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, booking.getBookingId());
-			pstmt.setDate(2, java.sql.Date.valueOf(booking.getEndDate()));
+			pstmt.setDate(2, java.sql.Date.valueOf(booking.getStartDate()));
 
 		ResultSet rs = pstmt.executeQuery();
 		if (rs.next()) {

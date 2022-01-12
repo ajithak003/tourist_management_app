@@ -42,8 +42,8 @@ h2,a{
       
        //System.out.print(bookingid);
        int bookingId  = Integer.parseInt(bookingid);
-      BookingTableDaoImplement cancel = new BookingTableDaoImplement();
-	    BookingClass book = cancel.getSingleBookingById(bookingId);
+       BookingTableDaoImplement cancel = new BookingTableDaoImplement();
+	   BookingClass book = cancel.getSingleBookingById(bookingId);
 	    
 	    UserTableDaoImplement userDao = new UserTableDaoImplement(); 
 	    UserClass  userDetails= (UserClass) session.getAttribute("user");
@@ -54,6 +54,7 @@ h2,a{
 			System.out.println("this package already canceled");
 			%><h1><%="Your Booking Already Canceled" %></h1>
 			<h2><%="please wait! Your Payment Refund within 3 working days "%></h2>
+			<h2><a href="showAllBooking.jsp">Go To My Booking</a></h2>
 			<%
 		}
 		else {
@@ -82,7 +83,7 @@ h2,a{
 			System.out.println("successfully canceled");
 			%><h1><%="Cancel Successful"%></h1>
 			<h2><%="Your Payment Refund within 3 working days"%></h2>
-			<h2><a>Go To Home</a></h2>
+			<h2><a href="showAllBooking">Go To My Booking</a></h2>
 			 <%
 			
 		}

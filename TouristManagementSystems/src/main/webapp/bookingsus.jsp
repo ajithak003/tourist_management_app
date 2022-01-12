@@ -78,8 +78,12 @@ if (user.getWallet() >=booking.getTotalPrice() ) {
 }
 
 else {
-        session.setAttribute("wallet","low");
-		response.sendRedirect("wallet.jsp");
+        /* session.setAttribute("wallet","low");
+		response.sendRedirect("wallet.jsp"); */
+	out.println("<script type=\"text/javascript\">");
+	out.println("alert('Insufficient balance !');");
+	out.println("location='wallet.jsp';");
+	out.println("</script>");
 	}
 
 %>

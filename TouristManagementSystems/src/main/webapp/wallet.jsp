@@ -56,15 +56,8 @@
         UserClass newUser = userDao.getSingleUserById(user.getId());
         
         String data=(String)session.getAttribute("wallet");
-        
-         if(data.equals("low")){%>
-         <script type="text/javascript">
-         alert("Insufficient balance ! please Topup");
-         session.setAttribute("wallet", "none");
-         </script>
-         <%} 
          
-         session.setAttribute("newUser", newUser);%>
+        session.setAttribute("newUser", newUser);%>
          
          <form action="walletSus.jsp">
     <div class="container">

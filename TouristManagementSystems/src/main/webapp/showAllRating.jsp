@@ -92,9 +92,11 @@
      <h1 class="rate">&#11088;&#11088;</h1>
      <%} else if (rating.getRating()==1.0){%>
       <h1 class="rate">&#11088;</h1>
-      <%} %> 
-     <p><%=rating.getDescribtion() %></p>
-
+      <%} if(rating.getDescribtion()==null){
+      %> <p> </p><%}else if(rating.getDescribtion()!=null) {%>
+     <p><%=rating.getDescribtion()%></p>
+     <%} %>
+     
 </div>
 <br><br>
 <%} %>

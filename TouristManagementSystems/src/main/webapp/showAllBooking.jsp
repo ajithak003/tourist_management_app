@@ -67,7 +67,7 @@
         color:blue;
     }
     #dd{
-        margin-left: 60px;
+        margin-left: 62px;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-size: 40px;
         font-weight: bold;
@@ -75,7 +75,7 @@
         color: darkgoldenrod;
     }
     #mm{
-        margin-left: 55px ;
+        margin-left: 57px ;
         font-size: 30px;
         margin-top: -30px;
         color: red;
@@ -185,12 +185,13 @@
         
         RatingDaoImplement ratingDao = new RatingDaoImplement();
         boolean rating = ratingDao.endDateCheck(singlebooking);
+        //System.out.println("rating "+rating+" end dage" +singlebooking.getEndDate());
         
         boolean cancel = bookingDao.endDateCheck(singlebooking);
-        //System.out.println(cancel);
+       // System.out.println("cancel "+cancel+"date "+singlebooking.getStartDate());
 
     %>
-    <form action="showallbooking">
+    <form>
        
                <div class="box">
                 <div class="title">
@@ -225,13 +226,19 @@
             </table>
            
             <div >
-                 <% if(cancel==true){ %>
-                 <button class="cancel"  ><a href="cancelTrip.jsp?bookingid=<%=singlebooking.getBookingId()%>"> Cancel</a></button>
+                 <% if(cancel==false){ %>
+                 <button class="cancel"  >
+                 <a href="cancelTrip.jsp?bookingid=<%=singlebooking.getBookingId()%>" > Cancel</a>
+                 </button>
                  
-                <button class="datechange"><a href="terms.jsp?bookingid=<%=singlebooking.getBookingId() %>">Change Date</a></button>
+                <button class="datechange">
+                <a href="terms.jsp?bookingid=<%=singlebooking.getBookingId() %>" >Change Date</a>
+                </button>
                 <%} %>
                 <%if(rating==true) {%>
-                 <button class="rate"><a href="rating.jsp?bookingid=<%=singlebooking.getBookingId() %>">Rate Now</a></button>
+                 <button class="rate">
+                 <a href="rating.jsp?bookingid=<%=singlebooking.getBookingId() %>" >Rate Now</a>
+                 </button>
                 <%} %>
             </div>
         </div>

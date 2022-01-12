@@ -95,22 +95,14 @@ ul li:hover ul {
 
 span{
     position: absolute;
-    right: 200px;
+    right: 100px;
     color: bisque;
    font-size: 20px;
    top: 30px;
    font-weight: bold;
    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.name{
- position: absolute;
-    right: 100px;
-    color: white;
-   font-size: 15px;
-   top: 33px;
-   font-weight: bold;
-   font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
+
     
     
     </style>
@@ -118,8 +110,8 @@ span{
 </head>
 
 <body>
-       <h1>Tourist Management</h1><span>welcome  &nbsp;</span>
-      <span class="name"> <% String error=(String)session.getAttribute("welcom");
+       <h1>Tourist Management</h1><span>welcome  &nbsp;
+      <% String error=(String)session.getAttribute("welcom");
             if(error!=null) {%>
            <%=session.getAttribute("welcom") %>
            
@@ -129,7 +121,7 @@ span{
 
     <div id="link">
         <ul>
-            <li><a href="index.jsp">Home</a></li>
+            <li><a href="#">Home</a></li>
             <li ><a href="papularPlaces.jsp">Book Package</a></li>
             <li><a href="papularPlaces.jsp">Popular Places</a>
             </li>

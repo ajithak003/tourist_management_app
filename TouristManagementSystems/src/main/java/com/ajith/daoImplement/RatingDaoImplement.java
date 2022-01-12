@@ -143,10 +143,10 @@ public class RatingDaoImplement implements UserFeedbackDaoInterface {
 			pstmt.setInt(1, booking.getBookingId());
 			//pstmt.setDate(2, new java.sql.Date(Date.valueOf(booking.getEndDate()).getTime()));
 			pstmt.setDate(2, java.sql.Date.valueOf(booking.getEndDate()));
-
+			//System.out.println("nothing dfdj");
 		ResultSet rs = pstmt.executeQuery();
 		if (rs.next()) {
-			
+			//System.out.println("nothing");
 			int result = rs.getInt(1);
 			 flag =true;
 			

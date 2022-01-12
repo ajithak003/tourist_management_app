@@ -143,7 +143,13 @@ body{
 		//System.out.println(booking.getPackageName());
 		List<FlightClass> flights = flightDao.getFlightByNo(booking.getPackageName(),depatureTimeDate); 
 		
-		if(flights!=null)
+		if(flights.isEmpty()){%>
+		<br><br>
+		<p class = "noflight">No Flights Available<p>
+	<% 	}
+		
+		
+		else
 		{
 		for (int i = 0; i < flights.size(); i++) {
 			
@@ -177,14 +183,14 @@ body{
             	
             	 
             %>
-                <input type="radio" name="price" id="Business" value="<%=flight.getBusinessClassFare() %>" required><label for="">Business Class <span><%=flight.getBusinessClassFare() %></span></label>
+                <input type="radio" name="price" id="Business" value="<%=flight.getBusinessClassFare() %>" required title="please select one"><label for="">Business Class <span><%=flight.getBusinessClassFare() %></span></label>
                <%} 
                 if(flight.getEconomicClassSeat()>=noOfPerson){ 
                 	 
                 	
                 %>
                 
-                <input type="radio" name="price" id="Economic" value="<%=flight.getEconomicClassFare() %>" required><label for="" id="Economic">Economic Class <span><%=flight.getEconomicClassFare() %></span></label>
+                <input type="radio" name="price" id="Economic" value="<%=flight.getEconomicClassFare() %>" required title="please select one"><label for="" id="Economic">Economic Class <span><%=flight.getEconomicClassFare() %></span></label>
                  <%} %>
             </p>
        
@@ -201,10 +207,7 @@ body{
     </div>
 
 <% } }
-		}else%>
-		<br><br>
-		<p class = "noflight">No Flights Available<p>
-	<% 	
+		}
 		%>
  <% 
       
