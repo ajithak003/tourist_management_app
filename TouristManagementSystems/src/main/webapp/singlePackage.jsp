@@ -112,7 +112,9 @@ label{
 }
 
 </style>
-
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 
 </head>
 <body>
@@ -215,17 +217,21 @@ label{
 
    today();
 function today(){
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    var max = today.setMonth( today.getMonth() + 1 );
-maxdate = today.getFullYear() + '-' + 0+(today.getMonth() + 1) + '-'+ 0+today.getDate()  ;
-mindate =yyyy + '-' + mm + '-'+ dd ;
-document.getElementById("startdate").setAttribute("max",maxdate);
-console.log(maxdate);
-console.log(mindate);
-document.getElementById("startdate").setAttribute("min",mindate);
+  
+var currentTime = new Date() 
+var minDate = new Date(currentTime.getFullYear(), currentTime.getMonth(), + currentTime.getDate()+1); //one day next before month
+var maxDate =  new Date(currentTime.getFullYear(), currentTime.getMonth() +1, +currentTime.getDate()+1); // one day before next month
+console.log(minDate);
+console.log(maxDate);
+let date = JSON.stringify(maxDate)
+date = date.slice(1,11)
+console.log(date)
+let dates = JSON.stringify(minDate)
+dates = dates.slice(1,11)
+console.log(dates)
+document.getElementById("startdate").setAttribute("max",date);
+document.getElementById("startdate").setAttribute("min",dates);
+
 }   
  
 </script>

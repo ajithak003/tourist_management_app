@@ -59,6 +59,9 @@
 
         }
     </style>
+    <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
 <body>
 <form action="bookingsus.jsp">
@@ -229,9 +232,7 @@ BookingClass bookings = new BookingClass(user.getId(), packages.getPackageId(),
 			booking.getFlightClass(),room,booking.getDaysPlan(),booking.getPackageName(),noOfHotelRooms);
 	
 	session.setAttribute("confirmbooking", bookings);
-	
-	
-
+	  
 %>
 </div>
 </form>

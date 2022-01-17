@@ -71,6 +71,9 @@ body{
     
 }
 </style>
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
 
 <body>
@@ -105,7 +108,6 @@ body{
          </div>
      
   </form>
-
   <script type="text/javascript" src="script.js"></script>  
 </body>
 

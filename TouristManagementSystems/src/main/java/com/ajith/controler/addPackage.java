@@ -22,6 +22,10 @@ public class addPackage extends HttpServlet {
 	Scanner sc = new Scanner(System.in);
 
 	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException  {
+		
+		res.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+	     res.setHeader("progma", "no-cache");
+        res.setHeader("Expires", "0");
 
 		PackageModeClassDaoImplement packageDao = new PackageModeClassDaoImplement();
 		

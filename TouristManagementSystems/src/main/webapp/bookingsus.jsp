@@ -32,6 +32,9 @@ h2,a{
 }
 </style>
 </head>
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 <body>
 
 <% 
@@ -89,5 +92,6 @@ else {
 %>
         <h1>Booking Successful !</h1>
         <h2><a href="UserPage.jsp">GoTo Home</a></h2>
+        
 </body>
 </html>

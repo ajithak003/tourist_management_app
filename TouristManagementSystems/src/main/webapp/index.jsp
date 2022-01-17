@@ -84,7 +84,6 @@ a:hover{
 </div>
 <h1 >Tourist Management</h1>
 
-
-    
+   
 </body>
 </html>

@@ -32,6 +32,9 @@ body{
     border: none;
 }
 </style>
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
 <body>
     <form action="cancelTrip.jsp">

@@ -61,6 +61,9 @@ button{
 }
 
     </style>
+    <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
 <body>
 <form action="addpackage">
@@ -113,6 +116,7 @@ button{
     <button >Add Package</button>
     </form>
     <%
-  session.setAttribute("addpackageerror", null);%>
+  session.setAttribute("addpackageerror", null);
+   %>
 </body>
 </html>

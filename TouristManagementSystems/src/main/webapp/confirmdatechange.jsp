@@ -24,6 +24,9 @@ h2,a{
      text-decoration: none;
 }
 </style>
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
 <body>
 
@@ -89,6 +92,5 @@ h2,a{
 	}
 
 %>
-   %>
 </body>
 </html>

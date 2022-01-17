@@ -82,7 +82,9 @@ button{
      </script> 
 
 <%} %> --%>
-
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 <form action="addflight">
     <div class="container">
     <h1>Add Flight</h1>
@@ -139,7 +141,8 @@ button{
     </div>
     </div>
     </form>
-    <%session.setAttribute("addFlight", null);%>
+    <%session.setAttribute("addFlight", null);
+   %>
    <script>
 
   today();

@@ -107,10 +107,13 @@ span{
     
     
     </style>
-
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
 
 <body>
+
        <h1>Tourist Management</h1><span>welcome
       <% String error=(String)session.getAttribute("welcom");
             if(error!=null) {%>
@@ -134,7 +137,7 @@ span{
             </ul>
             </li>
             <li><a href ="showAllRating.jsp">Ratings</a></li>
-            <li><a href="logout">Logout</a></li>
+            <li><a href="logout.jsp">Logout</a></li>
         </ul>
     </div>
 

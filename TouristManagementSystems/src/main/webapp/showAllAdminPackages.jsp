@@ -35,36 +35,11 @@
 
     }
 </style>
-
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
 <body>
-
-<%-- <%          
-      String data=(String)session.getAttribute("adminpackage");
-
-       if(data.equals("true")){%>
-         <script type="text/javascript">
-         alert("successfully updated");
-         
-         </script>
-         <%} 
-     else if(data.equals("false")){ %>
-     <script type="text/javascript">
-     alert("can't be updated");
-     </script> 
-  <%  } else if(data.equals("delete")){%>
-  <script type="text/javascript">
-  alert("successfully deleted");
-  </script><%} else if(data.equals("canotdelete")){ %>
-  <script>
-  alert("can't be deleted");
-   </script> 
-<%  }
-  session.setAttribute("adminpackage", "none");%>  --%>
-     
-
-
-
 
     <h1>Show All Packages</h1>
     <h2><a href="AdminPage.jsp">Go To Home</a></h2>
@@ -102,6 +77,5 @@
         </tr>
         <%} %>
     </table>
-   <%--  <%session.setAttribute("adminpackage", null);%> --%>
 </body>
 </html>

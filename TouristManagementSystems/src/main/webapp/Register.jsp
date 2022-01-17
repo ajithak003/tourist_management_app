@@ -62,6 +62,9 @@ body{
     padding: 5px;
     font-size: 18px;
 </Style>
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
 <body>
 <form action="register" id="register"onsubmit="return resetpsw()" method="post">

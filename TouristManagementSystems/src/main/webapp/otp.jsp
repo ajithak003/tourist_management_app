@@ -17,8 +17,11 @@
    }
    
     </style>
-   
+   <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
+
 <body>
 
 <form  name="otp" id="otp" action="otp">
@@ -30,7 +33,6 @@
             <%} session.removeAttribute("success"); %>
             <h2><a href="login.jsp">Login</a></h2>
              
-            
     </form>
 
 </body>

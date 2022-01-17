@@ -108,6 +108,9 @@ body{
    }
 </style>
 
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
 <body>
 <form action="hotels.jsp">
@@ -214,7 +217,8 @@ body{
       BookingClass bookings = new  BookingClass( booking.getUserId(),booking.getPackageIid(),0,0,noOfPerson,depatureTimeDate,totalPrice,flightClass,"",daysPlane,booking.getPackageName(),0); 
 		session.setAttribute("bookings",bookings);
 		
-		//System.out.println("allflights "+bookings); %>
+		//System.out.println("allflights "+bookings); 
+		 %>
 </form>
 </body>
 </html>

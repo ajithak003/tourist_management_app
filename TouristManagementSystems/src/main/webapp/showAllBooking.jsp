@@ -36,7 +36,7 @@
     }
     .box{
         border: 3px solid;
-        height: 500px;
+        height: 450px;
         width: 750px;
         margin-left: 290px; 
         border-radius: 20px;
@@ -90,7 +90,7 @@
     .location{
         margin-left: 180px;
         margin-top: -160px;
-        font-size: 30px;
+        font-size: 25px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color:darkred;
     }
@@ -107,7 +107,7 @@
     .days{
         margin-left: 200px;
         font-size: 20px;
-       color: green;
+        color: green;
     }
     .cancel{
         height: 40px;
@@ -151,14 +151,18 @@
     }  	
  .see{
         text-align: center;
+        
     }
     .see, span{
         color: black;
     }
 
 </style>
-
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 </head>
+
 <body>
 <div class="container"> 
                <h2><a href="AdminPage.jsp">Go To Home</a></h2>

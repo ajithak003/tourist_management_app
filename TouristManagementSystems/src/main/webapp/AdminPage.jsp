@@ -109,7 +109,12 @@ span{
   
     
 </head>
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+     response.setHeader("progma", "no-cache");
+	 response.setHeader("Expires", "0");%>
 <body>
+
+
   <h1 >Tourist Management</h1><span>welcome
  <% String error=(String)session.getAttribute("welcom");
             if(error!=null) {%>
@@ -157,14 +162,12 @@ span{
       <li><a href="showAllUserBooking.jsp">view all booking</a></li>
       <li><a href="showAllRating.jsp">view all feedback</a></li>
     </ul></li>
-<li><a href="logout" >Logout</a></li>
+<li><a href="logout.jsp" >Logout</a></li>
 
 </ul>
 
 
-<%session.setAttribute("addpackages", "none"); 
-session.setAttribute("addFlight", "none");
-session.setAttribute("addHotel", "none");%>
+
 </div>
 
     
