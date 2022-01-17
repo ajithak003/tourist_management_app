@@ -29,7 +29,7 @@
     }
     h1{
         text-align: center;
-        font-size: 40px;
+        font-size: 30px;
         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         font-weight: bold;
         color: red;
@@ -56,7 +56,7 @@
         font-family: 'Times New Roman', Times, serif;
         float: right;
         position: relative;
-        right: 100px;
+        right: 60px;
         top: -100px;
     }
     .textdate{
@@ -140,7 +140,7 @@
         width: 150px;
         position: relative;
         margin-left: 530px;
-        top: -40px;
+        top: 20px;
         border-radius: 15px;
         background-color:midnightblue;
         color: floralwhite;
@@ -195,7 +195,7 @@
        
                <div class="box">
                 <div class="title">
-                    <h2 ><%=singlebooking.getPackageName() %> Trip</h2>
+                    <h3><%=singlebooking.getPackageName().toUpperCase() %> TRIP</h3s>
                 </div>   
                 <div class="status">
                     <h3><%=singlebooking.getStatus() %></h3>

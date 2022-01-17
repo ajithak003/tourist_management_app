@@ -69,10 +69,11 @@ public class HotelClass {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
 	@Override
 	public String toString() {
-		return "HotelClass \nhotelId=" + hotelId + "\n location=" + location + "\n hotelName=" + hotelName
-				+ "\n midRangePrice=" + midRangePrice + "\n premiumPrice=" + premiumPrice ;
+		return "HotelClass [hotelId=" + hotelId + ", location=" + location + ", hotelName=" + hotelName
+				+ ", midRangePrice=" + midRangePrice + ", premiumPrice=" + premiumPrice + ", image=" + image + "]";
 	}
 	public String usertoString(HotelClass hotelClass) {
 		return "HotelClass  \n location=" + hotelClass.location + "\n hotelName=" + hotelClass.hotelName

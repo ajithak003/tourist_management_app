@@ -14,32 +14,7 @@ import com.ajith.model.UserClass;
 
 public class AdminTableDaoImplement implements AdminDaoInterface {
 
-	@Override
-	public boolean insertAdmin(AdminClass user) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	
-
-	@Override
-	public void getUserById(AdminClass user) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateuser(AdminClass user) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteuser(AdminClass user) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public AdminClass validateAdmin(String emailId, String password)  {
 		// TODO Auto-generated method stub
@@ -68,11 +43,7 @@ public class AdminTableDaoImplement implements AdminDaoInterface {
 		
 	}
 
-	@Override
-	public List<AdminClass> getAllAdmin() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	public UserClass getUserById(int userId) {
 		// TODO Auto-generated method stub

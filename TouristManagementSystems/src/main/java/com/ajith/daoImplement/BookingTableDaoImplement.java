@@ -218,11 +218,6 @@ public class BookingTableDaoImplement implements BookingDaoInterface {
 		
 	}
 
-	@Override
-	public BookingClass validatebooking(String emailId, String password) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public List<BookingClass> getAllUserBooking() {
 		// TODO Auto-generated method stub

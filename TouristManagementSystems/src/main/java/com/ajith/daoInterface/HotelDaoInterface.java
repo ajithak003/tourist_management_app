@@ -12,7 +12,6 @@ public interface HotelDaoInterface {
 	public List<HotelClass> getHotelByNo(String loction) throws ClassNotFoundException, SQLException;
 	public boolean updateHotel(HotelClass hotel) throws ClassNotFoundException, SQLException;
 	public boolean deleteHotel(int hotel_id) throws ClassNotFoundException, SQLException;
-	public HotelClass validateHotel(String emailId, String password) throws ClassNotFoundException, SQLException;
-	HotelClass getSingleHotel(int hotelId);
+	public HotelClass getSingleHotel(int hotelId);
 
 }

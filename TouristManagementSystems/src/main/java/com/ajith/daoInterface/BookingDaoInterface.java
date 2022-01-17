@@ -14,8 +14,8 @@ public interface BookingDaoInterface {
 	public BookingClass getbookingById( int user_id, LocalDate startDate) throws ClassNotFoundException, SQLException;
 	public boolean updatebooking(int user_id, LocalDate startDate, double refundPrice,int businessSeats,int economicSeats,int flightNo,int bookingId) throws ClassNotFoundException, SQLException;
 	public boolean deletebooking(int userId, LocalDate startDate) throws ClassNotFoundException, SQLException;
-	public BookingClass validatebooking(String emailId, String password) throws ClassNotFoundException, SQLException;
-
-	
-
+	public List<BookingClass> getAllUserBooking();
+	public boolean dateChange(BookingClass booking ,double wallet,int end,int newFlightbSeat, int newFlighteSeat,int oldFlightbSeat,int oldFlighteSeat,int newFlightNo, int bookingId);
+	public BookingClass getSingleBookingById(int bookingId);
+	public boolean endDateCheck(BookingClass booking);
 }

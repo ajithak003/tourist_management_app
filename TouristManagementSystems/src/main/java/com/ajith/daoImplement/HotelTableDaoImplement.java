@@ -202,11 +202,6 @@ public class HotelTableDaoImplement implements HotelDaoInterface {
 	}
 
 
-	@Override
-	public HotelClass validateHotel(String emailId, String password) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public HotelClass getSingleHotel(int hotelId)  {

@@ -103,31 +103,6 @@ public class RatingDaoImplement implements UserFeedbackDaoInterface {
 		
 	}
 
-	@Override
-	public UserFeedbackClass getFeedbackByNo(UserFeedbackClass Feedback) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean updateFeedback(String name, String email, long mobileNo, String password)
-			throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteFeedback(UserFeedbackClass Feedback) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public UserFeedbackClass validateFeedback(String emailId, String password)
-			throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	public boolean endDateCheck(BookingClass booking) {
 		Connection con = null;

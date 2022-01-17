@@ -67,7 +67,7 @@
             <h4>Topup Wallet</h4>
             <br>
             <input type="number" name="amount" id="amount"   placeholder="Rs.  Enter amount" required min="5000" autofocus   pattern="[0-9]{3,}" title="must contain numbers only">
-            <p>minimum 5000</p>
+            <p>Minimum 5000</p>
             <br><br><br>
             <button>PROCEED TO TOPUP</button>
     </div>

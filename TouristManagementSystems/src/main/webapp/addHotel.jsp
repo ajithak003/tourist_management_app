@@ -104,7 +104,7 @@ button{
       <td><input type="text" name="premiumprice" id="premiumprice" required pattern="[0-9]{2,10}" title="must contain numbers maximum 10 no. minimum 2 no. only"></td>
       </tr>
       <tr>
-    <td>Add Images URL : </td>
+    <td><label>Add Images URL </label></td>
     <td> <input type="file" name="hotelimage" id="hotelimage" required> </td>
     </tr>
     </table>

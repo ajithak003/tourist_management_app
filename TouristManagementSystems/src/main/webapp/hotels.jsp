@@ -134,7 +134,7 @@ for (int i = 0; i < hotels.size(); i++) {
 			
 	HotelClass hotel = hotels.get(i);
 	
-	//System.out.println(hotel);	
+	System.out.println(hotel);	
         
     %>
     

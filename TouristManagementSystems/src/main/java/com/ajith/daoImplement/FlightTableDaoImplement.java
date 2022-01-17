@@ -242,12 +242,7 @@ public class FlightTableDaoImplement implements FlightDaoInterface {
 		return flights;
 	}
 
-	@Override
-	public FlightClass validateFlight(String emailId, String password) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 
 	@Override
 	public FlightClass getSingleFlight(int flightNo)  {

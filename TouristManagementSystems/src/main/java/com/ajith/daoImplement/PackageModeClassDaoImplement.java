@@ -196,12 +196,7 @@ public class PackageModeClassDaoImplement implements PackageModeDaoInterface{
 		
 	}
 
-	@Override
-	public PackageModeClass validatePackage(String emailId, String password)
-			throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	@Override
 	public PackageModeClass getSinglePackage(String location) {
