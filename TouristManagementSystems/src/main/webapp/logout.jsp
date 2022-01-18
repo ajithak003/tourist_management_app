@@ -8,9 +8,9 @@
 </head>
 <body>
  <%        request.getSession().invalidate();
+ 
 	       response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
-	       response.setHeader("progma", "no-cache");
-	       response.setHeader("Expires", "0");
+	      
 	       response.sendRedirect("index.jsp");
 	       %>
 </body>

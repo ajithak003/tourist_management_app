@@ -65,11 +65,12 @@ button{
 
 
     </style>
-    <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
+    
 </head>
 <body>
+
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+
     <h1>Update Tourist Package</h1>
     <br><br><br>
     
@@ -115,6 +116,6 @@ button{
     </div>
     </form>
    
-    <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate"); %>
+    
 </body>
 </html> 

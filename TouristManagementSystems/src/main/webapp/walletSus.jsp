@@ -30,11 +30,12 @@ span{
     color:crimson;
 }
 </style>
-<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
+
 </head>
 <body>
+
+
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
 <%  
     UserClass user = (UserClass) session.getAttribute("newUser");
@@ -63,7 +64,6 @@ span{
       <h1>Enter the Correct Values</h1>
        <h2><a href="UserPage.jsp">Go To Home</a></h2>
       <%  
-      request.getRequestDispatcher("wallet.jsp");
    } %>
 </body>
 </html>

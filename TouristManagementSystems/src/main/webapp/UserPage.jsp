@@ -9,6 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>user Page</title>
 
+<script>
+    history.forward();
+</script>
+
     <style>
     *{
     margin: 0;
@@ -107,12 +111,12 @@ span{
     
     
     </style>
-<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
+
 </head>
 
 <body>
+
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
        <h1>Tourist Management</h1><span>welcome
       <% String error=(String)session.getAttribute("welcom");

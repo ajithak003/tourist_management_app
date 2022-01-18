@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdminPage</title>
 
+  <script>
+    history.forward();
+</script>
   
     <style>
     *{
@@ -109,11 +112,10 @@ span{
   
     
 </head>
-<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
+
 <body>
 
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
   <h1 >Tourist Management</h1><span>welcome
  <% String error=(String)session.getAttribute("welcom");

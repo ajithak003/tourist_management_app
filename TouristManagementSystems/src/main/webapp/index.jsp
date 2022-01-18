@@ -9,6 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tourist Managements</title>
+    
+<script>
+    history.forward();
+</script>
 
   <style>
   
@@ -71,7 +75,7 @@ a:hover{
     
 </head>
 <body>
-  
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>  
 
 <div id="link" >
 <ul >

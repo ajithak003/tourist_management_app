@@ -33,9 +33,7 @@ public class Login extends HttpServlet {
 			 
 			 HttpSession session=req.getSession();
 			 
-			 res.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-		     res.setHeader("progma", "no-cache");
-	         res.setHeader("Expires", "0");
+			
 			 
 		try {
 			UserTableDaoImplement userDao = new UserTableDaoImplement();

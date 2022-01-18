@@ -14,9 +14,6 @@ public class UpdateProfile extends HttpServlet {
 
 	public void service(HttpServletRequest req, HttpServletResponse res) {
 
-		res.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	     res.setHeader("progma", "no-cache");
-        res.setHeader("Expires", "0");
 		
 		try {
 

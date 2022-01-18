@@ -13,11 +13,11 @@
     <title>otppage</title>
 
     <link rel="stylesheet" href="/css/forget.css">
-<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
+
 </head>
 <body>
+     
+     <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
      
       <% 
          String email = (String) request.getParameter("emailid");

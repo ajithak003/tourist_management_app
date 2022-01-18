@@ -32,10 +32,10 @@ h2,a{
 }
 </style>
 </head>
-<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
+
 <body>
+
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
 <% 
 UserClass users = (UserClass) session.getAttribute("user");
@@ -81,8 +81,7 @@ if (user.getWallet() >=booking.getTotalPrice() ) {
 }
 
 else {
-        /* session.setAttribute("wallet","low");
-		response.sendRedirect("wallet.jsp"); */
+        
 	out.println("<script type=\"text/javascript\">");
 	out.println("alert('Insufficient balance !');");
 	out.println("location='wallet.jsp';");

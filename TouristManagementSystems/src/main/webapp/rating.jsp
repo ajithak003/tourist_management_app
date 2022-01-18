@@ -82,12 +82,13 @@
     
     }
     </style>
-    <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
+    
     </head>
     
     <body>
+    
+    <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+    
     <form action="rating"> 
     
     <% 

@@ -66,25 +66,8 @@ button{
     </style>
 </head>
 <body>
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
-<%-- <%          
-      String data=(String)session.getAttribute("addFlight");
-
-       if(data.equals("true")){%>
-         <script type="text/javascript">
-         alert("successfully Added");
-         </script>
-         <% }
-       
-     else if(data.equals("false")){ %>
-     <script type="text/javascript">
-     alert("can't be Added");
-     </script> 
-
-<%} %> --%>
-<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
 <form action="addflight">
     <div class="container">
     <h1>Add Flight</h1>

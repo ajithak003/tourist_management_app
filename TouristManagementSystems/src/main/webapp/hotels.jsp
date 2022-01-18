@@ -15,10 +15,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Hotels</title>
-    <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
-</head>
+    
+
 <style>
     body{
         background-color:rgb(243, 221, 167);
@@ -96,7 +94,11 @@
 
 
 </style>
+</head>
 <body>
+
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+
    <form action="booking.jsp">
         <h1>Hotels</h1>
     <br><br>

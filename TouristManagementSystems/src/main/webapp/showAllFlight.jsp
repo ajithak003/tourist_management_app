@@ -35,32 +35,11 @@
 
     }
 </style>
-<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
+
 </head>
 <body>
-<%-- <%          
-      String data=(String)session.getAttribute("updateflight");
 
-       if(data.equals("true")){%>
-         <script type="text/javascript">
-         alert("successfully updated");
-         
-         </script>
-         <%} 
-     else if(data.equals("false")){ %>
-     <script type="text/javascript">
-     alert("can't be updated");
-     </script> 
-  <%  } else if(data.equals("delete")){%>
-  <script type="text/javascript">
-  alert("successfully deleted");
-  </script><%} else if(data.equals("canotdelete")){ %>
-  <script>
-  alert("can't be deleted");
-   </script> 
-<%  }%>  --%>
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
     <h1>Show All Flight</h1>
      <h2><a href="AdminPage.jsp">Go To Home</a></h2>
@@ -68,9 +47,9 @@
     <table cellpading="30px" cellspacing="30px"    >
         <th>Flight No</th>
         <th>Flight Name</th>
-        <th>Depature</th>
+        <th>Departure</th>
         <th>Destination</th>
-        <th>Depature Date And Time</th>
+        <th>Departure Date And Time</th>
         <th>Arrival Date And Time</th>
         <th>Business Class Fare</th>
         <th>Economic Class Fare</th>

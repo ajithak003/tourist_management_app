@@ -65,13 +65,12 @@ button{
 .container{
     height: 830px;
 }
-
-    </style>
-    <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-     response.setHeader("progma", "no-cache");
-	 response.setHeader("Expires", "0");%>
+</style>
 </head>
 <body>
+
+<%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+
     <div class="container">
     <h1>Update Flight</h1>
     <br><br><br>
