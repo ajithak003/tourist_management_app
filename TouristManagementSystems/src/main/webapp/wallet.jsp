@@ -44,6 +44,9 @@
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         color: cornsilk;
     }
+    a{
+    text-decoration: none;
+    }
 </style>
 
 </head>
@@ -63,6 +66,7 @@
         session.setAttribute("newUser", newUser);%>
          
          <form action="walletSus.jsp">
+         <h3><a href="UserPage.jsp">Go To Home</a></h3>
     <div class="container">
            
            <h3>Your Wallet Amount : <span><%=newUser.getWallet() %></span></h2></h3>

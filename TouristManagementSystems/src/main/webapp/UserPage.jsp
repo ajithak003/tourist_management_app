@@ -134,13 +134,14 @@ span{
             <li><a href="papularPlaces.jsp">Popular Places</a>
             </li>
             <li ><a href="showAllBooking.jsp">My Booking</a></li>
-            <li ><a href="#">More</a>
+            <li ><a >More</a>
             <ul>
-            <a href="profile.jsp"><li>Profile</li></a>
-           <a href="wallet.jsp"> <li>Wallet Topup</li></a>
+           <li> <a href="profile.jsp">Profile</a></li>
+           <li><a href="wallet.jsp"> Wallet Topup</a><li>
+           
             </ul>
             </li>
-            <li><a href ="showAllRating.jsp">Ratings</a></li>
+            <li><a href ="userRating.jsp">Ratings</a></li>
             <li><a href="logout.jsp">Logout</a></li>
         </ul>
     </div>

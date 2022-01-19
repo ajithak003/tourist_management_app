@@ -129,12 +129,13 @@ label{
 	double totalPrice = packages.getPriceOneDays();
 	%>
      <form action="allFlights.jsp">
-	<div id="container">
+<!--      <h3><a href="UserPage.jsp">Go To Home</a></h3>
+ -->	<div id="container">
 	<%int packageId = packages.getPackageId(); %>
 	<%String place=packages.getName();%>
 		<h1 name="place"><%=packages.getName()%></h1>
 		<br> <a href="#"> <img class="firstrowimg"
-			src="<%=packages.getImage() %>" alt="">
+			src="Assets/<%=packages.getImage() %>" alt="">
 
 		</a> <br><br>
 		<table class="details" cellspacing="30px" cellpadding="">

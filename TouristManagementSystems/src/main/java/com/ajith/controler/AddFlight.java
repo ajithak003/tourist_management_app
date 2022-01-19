@@ -72,7 +72,7 @@ public class AddFlight extends HttpServlet {
 			//System.out.println("insert success");
 			//session.setAttribute("addFlight", "true");
 			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Successfully Updated');");
+			out.println("alert('Successfully Added');");
 			out.println("location='addFlight.jsp';");
 			out.println("</script>");
 			
@@ -82,7 +82,7 @@ public class AddFlight extends HttpServlet {
 //			session.setAttribute("addFlight", "false");
 //			req.getRequestDispatcher("addFlight.jsp").forward(req,res);
 			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Successfully Updated');");
+			out.println("alert('can not be added! please try again');");
 			out.println("location='addFlight.jsp';");
 			out.println("</script>");
 			

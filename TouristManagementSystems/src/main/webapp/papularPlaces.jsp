@@ -4,14 +4,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.sql.ResultSet" %>
 <%@page import="com.ajith.daoImplement.PackageModeClassDaoImplement" %>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
         <!DOCTYPE html>
         <html lang="en">
 
@@ -78,6 +71,7 @@ second{
     <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
 <div class="second">
+<h3><a href="UserPage.jsp">Go To Home</a></h3>
     <table cellspacing="30px" cellpadding ="1000px" class="table">
 
        <%
@@ -96,7 +90,7 @@ second{
             <td>
                 <div class="firstrow">
                     <a href="singlePackage.jsp?location=<%=rs.getName() %>">
-                        <img class="firstrowimg" src="<%=rs.getImage() %>" alt="">
+                        <img class="firstrowimg" src="Assets/<%=rs.getImage() %>" alt="">
                     </a>
                     <h2 name="location"><%=rs.getName()%></h2>
                 </div>

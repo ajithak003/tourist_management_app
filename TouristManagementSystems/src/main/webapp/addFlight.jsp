@@ -78,12 +78,12 @@ button{
         <table cellspacing="20px" cellpadding="30px">  
             <tr>
      <td><label for="location">Flight Name : </label></td> 
-     <td> <input type="text" name="flightname" id="flightname" required pattern="[Aa-Zz 0-9]{2,}" title="must contain  and numbers only" autofocus></td> 
+     <td> <input type="text" name="flightname" id="flightname" required pattern="[Aa-Zz 0-9 ]{2,}" title="must contain  and numbers only" autofocus></td> 
     </tr>
      
       <tr>
      <td> <label for="depature">Departure Location : </label></td>
-     <td> <input type="text" name="Depature" id="Depature" required pattern="[aA-zZ]{2,}" title="must contain characters only"></td>
+     <td> <input type="text" name="Depature" id="Depature" required pattern="[aA-zZ ]{2,}" title="must contain characters only"></td>
      </tr>
       <tr>
 <td><label for="destination">destination Location :</label></td>

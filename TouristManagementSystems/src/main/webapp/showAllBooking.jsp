@@ -166,7 +166,7 @@
 <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
 <div class="container"> 
-               <h2><a href="AdminPage.jsp">Go To Home</a></h2>
+               <h2><a href="UserPage.jsp">Go To Home</a></h2>
         <div>
               <h1 >My Trips</h1>
               
@@ -231,15 +231,19 @@
             </table>
            
             <div >
-                 <% if(cancel==false){ %>
-                 <button class="cancel"  >
+                 <% if(cancel==false){ 
+                
+                 %>
+                 <button class="cancel" onclick="check()" >
                  <a href="cancelTrip.jsp?bookingid=<%=singlebooking.getBookingId()%>" > Cancel</a>
                  </button>
-                 
+                <%  if(singlebooking.getStatus().equalsIgnoreCase("confirmed")){
+                %>
                 <button class="datechange">
                 <a href="terms.jsp?bookingid=<%=singlebooking.getBookingId() %>" >Change Date</a>
                 </button>
-                <%} %>
+             
+                <%} }%>
                 <%if(rating==true) {%>
                  <button class="rate">
                  <a href="rating.jsp?bookingid=<%=singlebooking.getBookingId() %>" >Rate Now</a>
@@ -252,7 +256,15 @@
        <%} %> 
        </form>
        </div>
+<script>
+    function check(){
+        var result = confirm("if you want to cancel 10% cancelation charge will be detected on your total price");
 
+        if(result==false){
+            event.preventDefault();
+        }
+    }
+</script>
 
 </body>
 </html>

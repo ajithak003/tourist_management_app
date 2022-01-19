@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "icon" type = "" href = "Assets/logo.png">
     <title>Tourist Managements</title>
     
 <script>
@@ -80,7 +81,7 @@ a:hover{
 <div id="link" >
 <ul >
 <li><a href="#">Home</a></li>
-<li><a href="showAllPlaces.jsp" >Popular Places</a></li>
+<li><a href="showAllHomePlaces.jsp" >Popular Places</a></li>
 <li><a href="showAllRating.jsp" >Ratings</a></li>
 <li><a href="login.jsp" >Login</a></li>
 

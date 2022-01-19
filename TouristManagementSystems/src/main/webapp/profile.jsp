@@ -21,12 +21,15 @@
             height: 400px;
             width: 430px;
         }
-        a{
+        .update{
            text-decoration: none;
            margin-top: -50px;
            margin-left: 900px;
            font-size: 20px;
            font-weight: bold;
+        }
+        a{
+          text-decoration: none;
         }
 
     </style>
@@ -34,13 +37,13 @@
 <body>
     
     <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
-    
+    <h3><a href="UserPage.jsp">Go To Home</a></h3>
 <h1>
     My Profile
 </h1>
 
 
-<a href="updateprofile.jsp">Update</a>
+<a class = "update" href="updateprofile.jsp">Update</a>
 <br>
 <br>
 

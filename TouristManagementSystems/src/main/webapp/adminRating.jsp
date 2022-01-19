@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>show all rating</title>
+    <title>Admin show all rating</title>
 
     <style>
         body{
@@ -53,19 +53,18 @@
             font-size: 30px;
             
         } 
-        a{
-        text-decoration: none;
-        }
-       
+       a{
+       text-decoration: none;
+       }
        
     </style>
 </head>
 <body>
      
      <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
-    
+      
      <h1 class="title">Ratings</h1>
-      <h3><a href="index.jsp">Go To Home</a></h3>
+      <h3><a href="AdminPage.jsp">Go To Home</a></h3>
      <br>
      <% RatingDaoImplement ratingDao = new RatingDaoImplement();
      UserTableDaoImplement userDao = new UserTableDaoImplement();

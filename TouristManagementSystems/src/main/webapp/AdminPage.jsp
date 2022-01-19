@@ -12,7 +12,7 @@
   <script>
     history.forward();
 </script>
-  
+
     <style>
     *{
     margin: 0;
@@ -162,7 +162,7 @@ span{
     <ul class="list">
       <li><a href="showAllUserList.jsp">View User List</a></li>
       <li><a href="showAllUserBooking.jsp">view all booking</a></li>
-      <li><a href="showAllRating.jsp">view all feedback</a></li>
+      <li><a href="adminRating.jsp">view all feedback</a></li>
     </ul></li>
 <li><a href="logout.jsp" >Logout</a></li>
 

@@ -100,6 +100,7 @@
 <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
    <form action="booking.jsp">
+   <!-- <h3><a href="UserPage.jsp">Go To Home</a></h3> -->
         <h1>Hotels</h1>
     <br><br>
     
@@ -145,7 +146,7 @@ for (int i = 0; i < hotels.size(); i++) {
     
     <div class="container">
     <div>
-<img src="<%=hotel.getImage()%>" alt="">
+<img src="Assets/<%=hotel.getImage()%>" alt="">
 <div class="name">
     <h3>Hotel Name : </h3>
     <h3 class="hotelname"><%=hotel.getHotelName()%></h3>

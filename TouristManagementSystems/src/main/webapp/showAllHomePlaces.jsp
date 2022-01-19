@@ -103,7 +103,7 @@ second{
     <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
 <div class="second">
-<h3><a href="AdminPage.jsp">Go To Home</a></h3>
+<h3><a href="index.jsp">Go To Home</a></h3>
     <table cellspacing="30px" cellpadding ="1000px" class="table">
 
        <%

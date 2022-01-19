@@ -115,7 +115,9 @@ body{
 <%  response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 
 <form action="hotels.jsp">
+<!-- <h3><a href="UserPage.jsp">Go To Home</a></h3> -->
  <div>
+ 
      <h1>Flights</h1>
      
      <% 
