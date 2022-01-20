@@ -140,7 +140,7 @@ for (int i = 0; i < hotels.size(); i++) {
 			
 	HotelClass hotel = hotels.get(i);
 	
-	System.out.println(hotel);	
+	//System.out.println(hotel);	
         	
     %>
     
@@ -153,7 +153,7 @@ for (int i = 0; i < hotels.size(); i++) {
 </div>
 <div class="location">
     <h3>Location : </h3>
-    <h3 class="locationname"> <%=hotel.getHotelName() %></h3>
+    <h3 class="locationname"> <%=hotel.getLocation() %></h3>
 </div>
 <div class="radio">
     <p>

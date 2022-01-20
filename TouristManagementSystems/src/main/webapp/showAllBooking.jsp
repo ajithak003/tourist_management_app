@@ -88,11 +88,11 @@
         color:green;
     }
     .location{
-        margin-left: 180px;
+        margin-left: 200px;
         margin-top: -160px;
         font-size: 25px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color:darkred;
+        color:blue;
     }
     .hotel{
         margin-left: 200px;
@@ -155,6 +155,9 @@
     }
     .see, span{
         color: black;
+    }
+    #totprice{
+    color: green;
     }
 
 </style>
@@ -226,7 +229,7 @@
                     <h2>No Of Days : <span><%=singlebooking.getDaysPlan()%><span></h2>
                 </div>
                 <div class="days">
-                   <h2>Total price  &nbsp;: <span><%=singlebooking.getTotalPrice() %></span></h2>
+                   <h2>Total price  &nbsp;: <span id="totprice"><%=singlebooking.getTotalPrice() %></span></h2>
                 </div>
             </table>
            

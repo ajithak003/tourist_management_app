@@ -11,23 +11,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <style>
+       /*  body{
+            background-color:rgb(202, 187, 187);
+        } */
         h1{
             text-align: center;
+            color:blue;
         }
        .table {
             align-items: center;
             border: 3px solid;
-            margin-left: 36%;
+            margin-left: 35%;
             height: 400px;
-            width: 430px;
+            width: 400px;
         }
-        .update{
+         .update{
            text-decoration: none;
-           margin-top: -50px;
-           margin-left: 900px;
+           margin-left: 330px;
            font-size: 20px;
            font-weight: bold;
-        }
+        } 
         a{
           text-decoration: none;
         }
@@ -43,7 +46,7 @@
 </h1>
 
 
-<a class = "update" href="updateprofile.jsp">Update</a>
+<!-- <a class = "update" href="updateprofile.jsp">Update</a> -->
 <br>
 <br>
 
@@ -67,8 +70,10 @@
         <td><h2>Mobile No  </h2></td>
         <td><h3><%= user.getMboNo() %></h3></td>
     </tr>
+    
 </table>
-
+<br>	
+<a class = "update" href="updateprofile.jsp">Update</a>
 </div>
 </body>
 </html>

@@ -17,7 +17,7 @@
         border: 2px solid;
         border-collapse: collapse;
         background-color:rgb(235, 206, 194);
-        margin-left: 20%;
+        margin-left: 16%;
         
     }
     tr,td,th{

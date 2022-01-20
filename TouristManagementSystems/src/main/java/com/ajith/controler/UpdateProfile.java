@@ -21,28 +21,28 @@ public class UpdateProfile extends HttpServlet {
 			
 
 			String name = req.getParameter("FullName");
-		System.out.println(name);
+		//System.out.println(name);
 
 			String email = req.getParameter("regemail");
-			System.out.println(email);
+			//System.out.println(email);
 			email = email.trim().toLowerCase();
 			
-			 System.out.println(email);
+			// System.out.println(email);
 
 			long mboilNo = Long.parseLong(req.getParameter("regmobile"));
-			System.out.println(mboilNo);
+			//System.out.println(mboilNo);
 
 			String password = req.getParameter("regpsw");
-			System.out.println(password);
+			//System.out.println(password);
 			
 			boolean update = userDao.updateuser(name, email, mboilNo, password);
-			System.out.println(update);
+			//System.out.println(update);
 			PrintWriter out = res.getWriter();
 			if(update==true) {
 				
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Successfully Updated');");
-				out.println("location='logout';");
+				out.println("location='logout.jsp';");
 				out.println("</script>");
 
 
@@ -52,7 +52,7 @@ public class UpdateProfile extends HttpServlet {
 			else {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('can't be updated! please try agin later');");
-				out.println("location='logout';");
+				out.println("location='logout.jsp';");
 				out.println("</script>");
 
 			}

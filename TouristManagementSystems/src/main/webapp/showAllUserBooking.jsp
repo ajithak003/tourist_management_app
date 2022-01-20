@@ -1,3 +1,4 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="com.ajith.model.HotelClass"%>
 <%@page import="com.ajith.daoImplement.HotelTableDaoImplement"%>
 <%@page import="com.ajith.model.UserClass"%>
@@ -72,7 +73,10 @@
         <th>Booking Status</th>
 
 
-<% BookingTableDaoImplement bookingDao = new BookingTableDaoImplement();
+<%   DateTimeFormatter formatter =
+DateTimeFormatter.ofPattern("dd-MM-yy");
+
+       BookingTableDaoImplement bookingDao = new BookingTableDaoImplement();
        List<BookingClass> bookings = bookingDao.getAllUserBooking();
        
        for(int i=0; i<bookings.size(); i++){
@@ -97,6 +101,7 @@
             <td><%=booking.getEndDate() %></td>
             <td><%=booking.getNoOfPerson() %></td>
             <td><%=booking.getDaysPlan() %></td>
+            <td><%=booking.getBookingDate()		.format(formatter) %></td>
             <td><%=booking.getFlightClass() %></td>
             <td><%=hotel.getHotelName() %></td>
             <td><%=booking.getHotelRoomType() %></td>

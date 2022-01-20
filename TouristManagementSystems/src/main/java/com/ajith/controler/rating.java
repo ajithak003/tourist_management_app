@@ -1,5 +1,7 @@
 package com.ajith.controler;
 
+import java.io.PrintWriter;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,16 +40,20 @@ public class rating extends HttpServlet {
 			
 			UserFeedbackClass userRating = new UserFeedbackClass(bookingId,user.getId(),booking.getPackageIid(),user.getName(),booking.getPackageName(),rating,describrion);
 			boolean rate  = ratingDao.insertFeedback(userRating);
-			
+			PrintWriter out = res.getWriter();
 			if(rate==true) {
 				//System.out.println("successfully rated");
-				session.setAttribute("rating", "true");
-				req.getRequestDispatcher("showAllRating.jsp");
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Thanks For Your Rating');");
+				out.println("location='UserPage.jsp';");
+				out.println("</script>");
 			}
 			else {
 				//System.out.println("invalid");
-				session.setAttribute("rating", "true");
-				req.getRequestDispatcher("showAllRating.jsp");
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('can not be rated ! please try again');");
+				out.println("location='UserPage.jsp';");
+				out.println("</script>");
 			}
 			
 		}catch(Exception e) {

@@ -27,7 +27,7 @@
      
  }
 body{
-     background-image: url("home.png.jpg");
+     background-image: url("Assets/home.png.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
